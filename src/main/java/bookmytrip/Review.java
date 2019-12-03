@@ -8,7 +8,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
-import com.sun.istack.NotNull;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
+
+import com.sun.istack.NotNull;	
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +20,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Review {
+	
+	@Length(max = 500)
+	private String comment;
 	
 	@ManyToOne
 	@JoinColumn(name = "entry_id", nullable = false)
@@ -27,6 +33,7 @@ public class Review {
 	private Long id;
 	
 	@NotNull
+	@Range(min = 1L, max = 5L)
 	private Integer reviewPoints;
 	
 }
