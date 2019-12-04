@@ -1,6 +1,7 @@
-package bookmytrip;
+package bookmytrip.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -16,23 +17,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import bookmytrip.Entity.Review;
+import bookmytrip.Repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/reviews")
 public class ReviewController {
+	
+	// TODO: create tests
 
-	private final ReviewRepository reviewRepository;
+	private final ReviewRepository reviewRepo; // Changed the name to a shorter one
 	
 	@GetMapping
 	public List<Review> index(){
-		return reviewRepository.findAll();
+		return reviewRepo.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?> show(@PathVariable Long id){
-		var maybeReview = reviewRepository.findById(id);
+	public ResponseEntity<?> show(@PathVariable Long id) {
+		Optional<Review> maybeReview = reviewRepo.findById(id);
 		return ResponseEntity.of(maybeReview);
 	}
 	
@@ -40,30 +45,25 @@ public class ReviewController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public Review create(@RequestBody @Valid Review review) {
 		review.setId(null);
-		return reviewRepository.save(review);
-	}
-	
+		return reviewRepo.save(review);
+	}	
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Review review) {
-		review.setId(null);
-		
-		if (!reviewRepository.existsById(id)) {
+		review.setId(null);		
+		if (!reviewRepo.existsById(id)) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		
-		reviewRepository.save(review);
+		}		
+		reviewRepo.save(review);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable Long id){
-		
-		if (!reviewRepository.existsById(id)) {
+	public ResponseEntity<?> delete(@PathVariable Long id) {		
+		if (!reviewRepo.existsById(id)) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		
-		reviewRepository.deleteById(id);
+		}		
+		reviewRepo.deleteById(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }

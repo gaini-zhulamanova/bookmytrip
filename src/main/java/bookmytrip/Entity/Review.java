@@ -1,17 +1,19 @@
-package bookmytrip;
+package bookmytrip.Entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.Range;
 
-import com.sun.istack.NotNull;	
+import com.sun.istack.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +23,7 @@ import lombok.Setter;
 @Setter
 public class Review {
 	
+	@NotBlank
 	@Length(max = 500)
 	private String comment;
 	
@@ -33,8 +36,9 @@ public class Review {
 	private Long id;
 	
 	@NotNull
-	@Range(min = 1L, max = 5L)
-	private Integer reviewPoints;
+	@Min(1) @Max(5) // Changed the @Range Annotation (long type consumes more memory)
+	@Column(nullable = false)
+	private Integer rating; // Changed the reviewPoints name
 	
 }
 

@@ -1,6 +1,7 @@
-package bookmytrip;
+package bookmytrip.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -16,55 +17,53 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import bookmytrip.Entity.Hotel;
+import bookmytrip.Repository.HotelRepository;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/entries")
-public class EntryController {
+@RequestMapping("/hotels")
+public class HotelController {
 	
+	// TODO: create tests
 	
-	private final EntryRepository entryRepository;
+	private final HotelRepository hotelRepo; // Changed the name to a shorter one
 	
 	@GetMapping
-	public List<Entry> index(){
-		return entryRepository.findAll();
+	public List<Hotel> index(){
+		return hotelRepo.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?> show(@PathVariable Long id){
-		var maybeEntry = entryRepository.findById(id);
-		return ResponseEntity.of(maybeEntry);
+	public ResponseEntity<?> show(@PathVariable Long id) {
+		Optional<Hotel> maybeHotel = hotelRepo.findById(id);
+		return ResponseEntity.of(maybeHotel);
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Entry create(@RequestBody @Valid Entry entry) {
-		entry.setId(null);
-		return entryRepository.save(entry);
-	}
-	
+	public Hotel create(@RequestBody @Valid Hotel hotel) {
+		hotel.setId(null);
+		return hotelRepo.save(hotel);
+	}	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid Entry entry) {
-		entry.setId(null);
-		
-		if (!entryRepository.existsById(id)) {
+	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid Hotel hotel) {
+		hotel.setId(null);		
+		if (!hotelRepo.existsById(id)) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		
-		entryRepository.save(entry);
+		}		
+		hotelRepo.save(hotel);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable Long id){
-		
-		if (!entryRepository.existsById(id)) {
+	public ResponseEntity<?> delete(@PathVariable Long id) {		
+		if (!hotelRepo.existsById(id)) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		
-		entryRepository.deleteById(id);
+		}		
+		hotelRepo.deleteById(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }

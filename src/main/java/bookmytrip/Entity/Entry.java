@@ -1,4 +1,4 @@
-package bookmytrip;
+package bookmytrip.Entity;
 
 import java.util.List;
 
@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
@@ -19,6 +21,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Entry {
 	
 	@OneToMany(mappedBy = "entry")
@@ -39,5 +42,13 @@ public class Entry {
 	@Column(nullable = false)
 	private String name;
 
+	// New property
+	// TODO: Should we allow it to be null?
+	@NotBlank
+	private String phoneNumber;
 	
+	// New property
+	// TODO: Should we allow it to be null?
+	@NotBlank
+	private String address;
 }

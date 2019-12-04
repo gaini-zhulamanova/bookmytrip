@@ -1,0 +1,69 @@
+package bookmytrip.Controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import bookmytrip.Entity.Restaurant;
+import bookmytrip.Repository.RestaurantRepository;
+import lombok.RequiredArgsConstructor;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/restaurants")
+public class RestaurantController {
+	
+	// TODO: create tests
+	
+	private final RestaurantRepository restaurantRepo; // Changed the name to a shorter one
+	
+	@GetMapping
+	public List<Restaurant> index() {
+		return restaurantRepo.findAll();
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<?> show(@PathVariable Long id) {
+		Optional<Restaurant> maybeRestaurant = restaurantRepo.findById(id);
+		return ResponseEntity.of(maybeRestaurant);
+	}
+	
+	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
+	public Restaurant create(@RequestBody @Valid Restaurant restaurant) {
+		restaurant.setId(null);
+		return restaurantRepo.save(restaurant);
+	}	
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid Restaurant restaurant) {
+		restaurant.setId(null);		
+		if (!restaurantRepo.existsById(id)) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}		
+		restaurantRepo.save(restaurant);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> delete(@PathVariable Long id) {		
+		if (!restaurantRepo.existsById(id)) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}		
+		restaurantRepo.deleteById(id);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+}
