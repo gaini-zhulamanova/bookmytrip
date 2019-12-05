@@ -19,6 +19,7 @@ public class Hotel extends Entry {
 	// New property
 	@NotNull
 	@Min(1) @Max(5)
+	
 	@Column(nullable = false)
 	private Integer stars;
 	
