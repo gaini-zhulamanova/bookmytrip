@@ -7,13 +7,29 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import bookmytrip.Entity.*;
 
-public interface ReviewRepository extends JpaRepository<Review, Long>{
+public interface ReviewRepository extends JpaRepository<Review, Long> {
 	
-	default public List<Review> findAllByCityAndEntryId(String city, Long entry_id) {
-		return findAll().stream()
-				.filter(r -> r.getEntry().getCity().equals(city))
-				.filter(r -> r.getEntry().getId().equals(entry_id))
-				.collect(Collectors.toList());
+	default List<Review> findAllByCityAndEntryId(String city, String entries, Long entryId) {
+		Class<?> entryType;
+		
+		switch (entries) {
+			case "restaurants":
+				entryType = Restaurant.class;
+				break;
+			case "hotels":
+				entryType = Hotel.class;
+				break;
+			case "museums":
+				entryType = Museum.class;
+				break;
+			default:
+				return null;
+	}
+	return findAll().stream()
+			.filter(r -> r.getEntry().getCity().equals(city))
+			.filter(r -> r.getEntry().getClass().isInstance(entryType))
+			.filter(r -> r.getEntry().getId().equals(entryId))
+			.collect(Collectors.toList());
 	}
 	
 //	@Query(value = "SELECT * FROM Restaurant rest "

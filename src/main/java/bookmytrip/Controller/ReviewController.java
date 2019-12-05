@@ -1,25 +1,19 @@
 package bookmytrip.Controller;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.*;
 
 import javax.validation.Valid;
 
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
-import bookmytrip.Entity.Entry;
-import bookmytrip.Entity.Hotel;
-import bookmytrip.Entity.Museum;
-import bookmytrip.Entity.Restaurant;
-import bookmytrip.Entity.Review;
+import bookmytrip.Entity.*;
 import bookmytrip.Repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/book-my-trip/{city}/{entries}/{entry_id}/reviews")
+@RequestMapping("/book-my-trip/{city}/{entries}/{entryId}/reviews")
 public class ReviewController {
 
 	// TODO: create tests
@@ -28,32 +22,16 @@ public class ReviewController {
 
 	@GetMapping
 	public List<Review> index(@PathVariable String city, @PathVariable String entries,
-			@PathVariable Long entry_id) {
-		
-		List<Review> foundReviews = reviewRepo.findAllByCityAndEntryId(city, entry_id);
-		
-		switch (entries) {
-		case "restaurants":
-			return foundReviews.stream()
-					.filter(r -> r.getEntry() instanceof Restaurant)
-					.collect(Collectors.toList());
-		case "hotels":
-			return foundReviews.stream()
-					.filter(r -> r.getEntry() instanceof Hotel)
-					.collect(Collectors.toList());
-		case "museums":
-			return foundReviews.stream()
-					.filter(r -> r.getEntry() instanceof Museum)
-					.collect(Collectors.toList());
-		default:
-			return null;
-		}
-		
+			@PathVariable Long entryId) {		
+		return reviewRepo.findAllByCityAndEntryId(city, entries, entryId);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> show(@PathVariable Long id) {
-		Optional<Review> maybeReview = reviewRepo.findById(id);
+	public ResponseEntity<?> show(@PathVariable String city, @PathVariable String entries,
+			@PathVariable Long entryId, @PathVariable Long id) {
+		Optional<Review> maybeReview = reviewRepo.findAllByCityAndEntryId(city, entries, entryId)
+				.stream().filter(r -> r.getId().equals(id))
+				.findFirst();
 		return ResponseEntity.of(maybeReview);
 	}
 
@@ -66,20 +44,25 @@ public class ReviewController {
 
 	@PutMapping("/{id}")
 	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Review review) {
-		review.setId(null);
+		review.setId(id);
 		if (!reviewRepo.existsById(id)) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(review, HttpStatus.NOT_FOUND);
 		}
 		reviewRepo.save(review);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(review, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable Long id) {
-		if (!reviewRepo.existsById(id)) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	public ResponseEntity<?> delete(@PathVariable String city, @PathVariable String entries,
+			@PathVariable Long entryId, @PathVariable Long id) {	
+		
+		boolean existsById = reviewRepo.findAllByCityAndEntryId(city, entries, entryId)
+				.stream().anyMatch(r -> r.getId().equals(id));
+		
+		if (existsById) {
+			reviewRepo.deleteById(id);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		reviewRepo.deleteById(id);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 }

@@ -19,6 +19,6 @@ public class Cuisine {
 	@NotBlank
 	private String type;
 	
-//	@ManyToMany(mappedBy = "cuisines")
-//	private List<Restaurant> restaurants;
+	@ManyToMany(mappedBy = "cuisines")
+	private List<Restaurant> restaurants;
 }
