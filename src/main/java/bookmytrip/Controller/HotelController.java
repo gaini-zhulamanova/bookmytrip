@@ -2,6 +2,7 @@ package bookmytrip.Controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -23,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/hotels")
+@RequestMapping("/book-my-trip/{city}/hotels")
 public class HotelController {
 	
 	// TODO: create tests
@@ -31,8 +32,10 @@ public class HotelController {
 	private final HotelRepository hotelRepo; // Changed the name to a shorter one
 	
 	@GetMapping
-	public List<Hotel> index(){
-		return hotelRepo.findAll();
+	public List<Hotel> index(@PathVariable String city){
+		return hotelRepo.findAll().stream()
+				.filter(r -> r.getCity().equals(city))
+				.collect(Collectors.toList());
 	}
 	
 	@GetMapping("/{id}")
@@ -43,14 +46,17 @@ public class HotelController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Hotel create(@RequestBody @Valid Hotel hotel) {
+	public Hotel create(@PathVariable String city, @RequestBody @Valid Hotel hotel) {
 		hotel.setId(null);
+		hotel.setCity(city);
 		return hotelRepo.save(hotel);
 	}	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid Hotel hotel) {
-		hotel.setId(null);		
+	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid Hotel hotel, 
+			@PathVariable String city) {
+		hotel.setId(id);
+		hotel.setCity(city);
 		if (!hotelRepo.existsById(id)) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		

@@ -2,20 +2,13 @@ package bookmytrip.Controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import bookmytrip.Entity.Museum;
 import bookmytrip.Repository.MuseumRepository;
@@ -23,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/museums")
+@RequestMapping("/book-my-trip/{city}/museums")
 public class MuseumController {
 	
 	// TODO: create tests
@@ -31,8 +24,10 @@ public class MuseumController {
 	private final MuseumRepository museumRepo; // Changed the name to a shorter one
 	
 	@GetMapping
-	public List<Museum> index() {
-		return museumRepo.findAll();
+	public List<Museum> index(@PathVariable String city) {
+		return museumRepo.findAll().stream()
+				.filter(r -> r.getCity().equals(city))
+				.collect(Collectors.toList());
 	}
 	
 	@GetMapping("/{id}")
@@ -43,15 +38,18 @@ public class MuseumController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Museum create(@RequestBody @Valid Museum museum) {
+	public Museum create(@PathVariable String city, @RequestBody @Valid Museum museum) {
 		museum.setId(null);
+		museum.setCity(city);
 		return museumRepo.save(museum);
 	}
 	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid Museum museum) {
-		museum.setId(null);		
+	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid Museum museum, 
+			@PathVariable String city) {
+		museum.setId(id);
+		museum.setCity(city);
 		if (!museumRepo.existsById(id)) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		

@@ -2,20 +2,12 @@ package bookmytrip.Controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
 
 import bookmytrip.Entity.Restaurant;
 import bookmytrip.Repository.RestaurantRepository;
@@ -23,16 +15,16 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/restaurants")
+@RequestMapping("/book-my-trip/{city}/restaurants")
 public class RestaurantController {
 	
 	// TODO: create tests
 	
-	private final RestaurantRepository restaurantRepo; // Changed the name to a shorter one
+	private final RestaurantRepository restaurantRepo;
 	
 	@GetMapping
-	public List<Restaurant> index() {
-		return restaurantRepo.findAll();
+	public List<Restaurant> index(@PathVariable String city) {
+		return restaurantRepo.findAllByCity(city);
 	}
 	
 	@GetMapping("/{id}")
@@ -43,14 +35,17 @@ public class RestaurantController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Restaurant create(@RequestBody @Valid Restaurant restaurant) {
+	public Restaurant create(@PathVariable String city, @RequestBody @Valid Restaurant restaurant) {
 		restaurant.setId(null);
+		restaurant.setCity(city);
 		return restaurantRepo.save(restaurant);
 	}	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid Restaurant restaurant) {
-		restaurant.setId(null);		
+	public ResponseEntity<?> update(@PathVariable Long id, @PathVariable String city, 
+			@RequestBody @Valid Restaurant restaurant) {
+		restaurant.setId(id);
+		restaurant.setCity(city);
 		if (!restaurantRepo.existsById(id)) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		

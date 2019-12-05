@@ -5,17 +5,8 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
 
 import bookmytrip.Entity.Review;
 import bookmytrip.Repository.ReviewRepository;
@@ -23,16 +14,25 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/reviews")
+@RequestMapping("/book-my-trip/{city}/{entries}/{entry_id}/reviews")
 public class ReviewController {
 	
 	// TODO: create tests
 
-	private final ReviewRepository reviewRepo; // Changed the name to a shorter one
+	private final ReviewRepository reviewRepo;
 	
 	@GetMapping
-	public List<Review> index(){
-		return reviewRepo.findAll();
+	public List<Review> index(@PathVariable String city, @PathVariable String entries, @PathVariable Long entry_id) {
+		switch (entries) {
+			case "restaurants":
+				return reviewRepo.findAllByRestaurantId(city, entry_id);
+			case "hotels":
+				return reviewRepo.findAllByHotelId(city, entry_id);
+			case "museums":
+				return reviewRepo.findAllByMuseumId(city, entry_id);
+			default:
+				return null;
+		}		
 	}
 	
 	@GetMapping("/{id}")

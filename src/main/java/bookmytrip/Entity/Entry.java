@@ -2,21 +2,13 @@ package bookmytrip.Entity;
 
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
@@ -24,31 +16,28 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Entry {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Long id;
+	
 	@OneToMany(mappedBy = "entry")
 	@JsonBackReference
 	private List<Review> reviews;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	
 	@NotBlank
 	@NotNull
 	@Column(nullable = false)
-	private String city;
+	public String city;
 	
 	@NotBlank
 	@NotNull
 	@Column(nullable = false)
-	private String name;
+	public String name;
 
-	// New property
-	// TODO: Should we allow it to be null?
-	@NotBlank
-	private String phoneNumber;
-	
-	// New property
-	// TODO: Should we allow it to be null?
-	@NotBlank
-	private String address;
+//	@NotBlank
+//	private String phoneNumber;
+//
+//	// TODO: NotNull we do later
+//	@NotBlank
+//	private String address;
 }
