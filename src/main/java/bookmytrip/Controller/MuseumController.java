@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import bookmytrip.Entity.Museum;
+import bookmytrip.Entity.Restaurant;
 import bookmytrip.Repository.MuseumRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -24,16 +25,15 @@ public class MuseumController {
 	private final MuseumRepository museumRepo; // Changed the name to a shorter one
 	
 	@GetMapping
-	public List<Museum> index(@PathVariable String city) {
-		return museumRepo.findAll().stream()
-				.filter(r -> r.getCity().equals(city))
-				.collect(Collectors.toList());
+	public ResponseEntity<?> index(@PathVariable String city) {
+		List<Museum> maybeMuseums = museumRepo.findByCity(city);		
+		return ResponseEntity.of(Optional.of(maybeMuseums));
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?> show(@PathVariable Long id) {
-		Optional<Museum> maybeMuseum = museumRepo.findById(id);
-		return ResponseEntity.of(maybeMuseum);
+	public ResponseEntity<?> show(@PathVariable Long id, @PathVariable String city) {
+		Optional<Museum> maybeMuseums = museumRepo.findByCityAndId(city, id);
+		return ResponseEntity.of(maybeMuseums);
 	}
 	
 	@PostMapping
@@ -50,7 +50,7 @@ public class MuseumController {
 			@PathVariable String city) {
 		museum.setId(id);
 		museum.setCity(city);
-		if (!museumRepo.existsById(id)) {
+		if (museumRepo.findByCityAndId(city, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		museumRepo.save(museum);
@@ -58,8 +58,8 @@ public class MuseumController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable Long id) {		
-		if (!museumRepo.existsById(id)) {
+	public ResponseEntity<?> delete(@PathVariable Long id, @PathVariable String city) {		
+		if (museumRepo.findByCityAndId(city, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		museumRepo.deleteById(id);

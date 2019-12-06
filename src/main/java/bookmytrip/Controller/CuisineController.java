@@ -37,20 +37,6 @@ public class CuisineController {
 		return cuisineRepo.save(cuisine);
 	}
 
-	// TODO: do we need a PutMapping for Cuisine at all? We won't need to update anything since it has only one attribute 'type'
-
-//	@PutMapping("/{cuisine}")
-//	public ResponseEntity<?> update(@PathVariable String cuisine, @RequestBody @Valid Cuisine cuisine) {
-//		cuisine.setId(null);
-//
-//		if (!cuisineRepo.existsById(cuisine)) {
-//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//		}
-//
-//		cuisineRepo.save(cuisine);
-//		return new ResponseEntity<>(HttpStatus.OK);
-//	}
-
 	@DeleteMapping("/{cuisine}")
 	public ResponseEntity<?> delete(@PathVariable String cuisine) {
 		if (!cuisineRepo.existsById(cuisine)) {

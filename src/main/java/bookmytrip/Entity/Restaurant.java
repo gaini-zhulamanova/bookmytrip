@@ -16,10 +16,10 @@ import lombok.*;
 @PrimaryKeyJoinColumn(name = "restaurant_id")
 public class Restaurant extends Entry {
 	
-	@ManyToMany
-	@JoinTable(name = "restaurant_to_cousine",
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "restaurant_to_cuisine",
 			joinColumns = @JoinColumn(name = "restaurant_id"),
-			inverseJoinColumns = @JoinColumn(name = "cousine_id"))
+			inverseJoinColumns = @JoinColumn(name = "cuisine_id"))
 	//@JsonBackReference
 	private List<Cuisine> cuisines;
 	

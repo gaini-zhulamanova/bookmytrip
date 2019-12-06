@@ -2,13 +2,10 @@ package bookmytrip.Entity;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
@@ -16,9 +13,9 @@ import lombok.Setter;
 public class Cuisine {
 	
 	@Id
-	@NotBlank
 	private String type;
 	
-	@ManyToMany(mappedBy = "cuisines")
+	
+	@ManyToMany(mappedBy = "cuisines", cascade = CascadeType.ALL)
 	private List<Restaurant> restaurants;
 }

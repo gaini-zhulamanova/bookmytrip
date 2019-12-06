@@ -1,16 +1,25 @@
 package bookmytrip.Repository;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import bookmytrip.Entity.Restaurant;
 
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
-
-	@Query(value = "SELECT * FROM Restaurant r JOIN Entry e ON r.restaurant_id = e.id WHERE e.city = ?1",
-			nativeQuery = true)
-	List<Restaurant> findAllByCity(String city);
+	
+	default List<Restaurant> findByCity(String city) {
+		return findAll().stream()
+				.filter(r -> r.getCity().equals(city))
+				.collect(Collectors.toList());
+	}
+	
+	default Optional<Restaurant> findByCityAndId(String city, Long id) {
+		return findByCity(city).stream()
+				.filter(r -> r.getId().equals(id))
+				.findFirst();
+	}
 
 }

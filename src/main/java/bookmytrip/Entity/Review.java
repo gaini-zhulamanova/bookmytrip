@@ -28,9 +28,9 @@ public class Review {
 	private Long id;
 	
 	@NotNull
-	@Min(1) @Max(5) // Changed the @Range Annotation (long type consumes more memory)
+	@Min(1) @Max(5)
 	@Column(nullable = false)
-	private Integer rating; // Changed the reviewPoints name
+	private Integer rating;
 	
 }
 

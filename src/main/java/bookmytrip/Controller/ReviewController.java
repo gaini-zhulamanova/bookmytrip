@@ -29,9 +29,7 @@ public class ReviewController {
 	@GetMapping("/{id}")
 	public ResponseEntity<?> show(@PathVariable String city, @PathVariable String entries,
 			@PathVariable Long entryId, @PathVariable Long id) {
-		Optional<Review> maybeReview = reviewRepo.findAllByCityAndEntryId(city, entries, entryId)
-				.stream().filter(r -> r.getId().equals(id))
-				.findFirst();
+		Optional<Review> maybeReview = reviewRepo.findByIdLimited(city, entries, entryId, id);
 		return ResponseEntity.of(maybeReview);
 	}
 
@@ -43,9 +41,10 @@ public class ReviewController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Review review) {
+	public ResponseEntity<?> update(@PathVariable String city, @PathVariable String entries,
+			@PathVariable Long entryId, @PathVariable Long id, @RequestBody Review review) {
 		review.setId(id);
-		if (!reviewRepo.existsById(id)) {
+		if (reviewRepo.findByIdLimited(city, entries, entryId, id).isEmpty()) {
 			return new ResponseEntity<>(review, HttpStatus.NOT_FOUND);
 		}
 		reviewRepo.save(review);
@@ -54,15 +53,12 @@ public class ReviewController {
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable String city, @PathVariable String entries,
-			@PathVariable Long entryId, @PathVariable Long id) {	
-		
-		boolean existsById = reviewRepo.findAllByCityAndEntryId(city, entries, entryId)
-				.stream().anyMatch(r -> r.getId().equals(id));
-		
-		if (existsById) {
-			reviewRepo.deleteById(id);
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			@PathVariable Long entryId, @PathVariable Long id) {		
+		if (reviewRepo.findByIdLimited(city, entries, entryId, id).isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		reviewRepo.deleteById(id);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		
 	}
 }
