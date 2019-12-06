@@ -2,14 +2,7 @@ package bookmytrip.Entity;
 
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -42,13 +35,13 @@ public class Entry {
 	@Column(nullable = false)
 	private String name;
 
-	// New property
-	// TODO: Should we allow it to be null?
-	@NotBlank
-	private String phoneNumber;
-	
-	// New property
-	// TODO: Should we allow it to be null?
-	@NotBlank
-	private String address;
+//	// New property
+//	// TODO: Should we allow it to be null?
+//	@NotBlank
+//	private String phoneNumber;
+//	
+//	// New property
+//	// TODO: Should we allow it to be null?
+//	@NotBlank
+//	private String address;
 }
