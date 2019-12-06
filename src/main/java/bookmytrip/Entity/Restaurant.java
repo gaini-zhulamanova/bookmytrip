@@ -1,12 +1,13 @@
 package bookmytrip.Entity;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.*;
 
@@ -20,8 +21,8 @@ public class Restaurant extends Entry {
 	@JoinTable(name = "restaurant_to_cuisine",
 			joinColumns = @JoinColumn(name = "restaurant_id"),
 			inverseJoinColumns = @JoinColumn(name = "cuisine_id"))
-	//@JsonBackReference
-	private List<Cuisine> cuisines;
+//	@JsonManagedReference
+	private Set<Cuisine> cuisines;
 	
 	@NotNull
 	@Min(1) @Max(3)

@@ -1,12 +1,9 @@
 package bookmytrip.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
@@ -20,7 +17,10 @@ public class Museum extends Entry{
 	@Column(nullable = false)
 	private String type;
 	
-	
+	@NotNull
+	@Min(1) @Max(3)
+	@Column(nullable = false)
+	private Integer priceLevel;	
 	
 	
 }

@@ -53,22 +53,6 @@ public class RestaurantController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@PutMapping(value = "/{id}/cuisines")
-	public ResponseEntity<?> updateCuisine(@PathVariable Long id, @PathVariable String city, 
-			@RequestBody @Valid Cuisine cuisine, @RequestBody @Valid Restaurant restaurant) {
-//		HttpHeaders requestHeaders = new HttpHeaders();
-//		requestHeaders.setContentType(MediaType.parseMediaType("text/uri-list"));
-		restaurant.setId(id);
-		restaurant.setCity(city);
-//		System.out.println("Hallo");
-		if (restaurantRepo.findByCityAndId(city, id).isEmpty()) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		restaurant.getCuisines().add(cuisine);
-		restaurantRepo.save(restaurant);
-		return new ResponseEntity<>(HttpStatus.OK);
-	}
-	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id, @PathVariable String city) {		
 		if (restaurantRepo.findByCityAndId(city, id).isEmpty()) {
