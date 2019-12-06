@@ -18,12 +18,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import bookmytrip.Entity.Cuisine;
+import bookmytrip.Entity.Restaurant;
 import bookmytrip.Repository.CuisineRepository;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/cuisines")
+@RequestMapping("/book-my-trip/cuisines")
 public class CuisineController {
 	
 	// TODO: create tests
@@ -35,7 +36,7 @@ public class CuisineController {
 		return cuisineRepo.findAll();
 	}
 
-	@GetMapping("/{cuisine}")
+	@GetMapping("/book-my-trip/{cuisine}")
 	public ResponseEntity<?> show(@PathVariable String cuisine) {
 		Optional<Cuisine> maybeEntry = cuisineRepo.findById(cuisine);
 		return ResponseEntity.of(maybeEntry);

@@ -27,7 +27,7 @@ public class Restaurant extends Entry {
 	@ManyToMany
 	@JoinTable(name = "restaurant_to_cousine",
 			joinColumns = @JoinColumn(name = "restaurant_id"),
-			inverseJoinColumns = @JoinColumn(name = "cousine_id"))
+			inverseJoinColumns = @JoinColumn(name = "cuisine_id"))
 	@JsonBackReference
 	private List<Cuisine> cuisines;
 	
