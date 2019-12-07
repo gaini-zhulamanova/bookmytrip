@@ -21,14 +21,22 @@ public class ReviewController {
 	private final ReviewRepository reviewRepo;
 
 	@GetMapping
-	public List<Review> index(@PathVariable String city, @PathVariable String entries,
-			@PathVariable Long entryId) {		
+	public List<Review> index(
+			@PathVariable String city,
+			@PathVariable String entries,
+			@PathVariable Long entryId,
+			@RequestParam(required = false) Integer rating) {
+		
 		return reviewRepo.findAllByCityAndEntryId(city, entries, entryId);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> show(@PathVariable String city, @PathVariable String entries,
-			@PathVariable Long entryId, @PathVariable Long id) {
+	public ResponseEntity<?> show(
+			@PathVariable String city,
+			@PathVariable String entries,
+			@PathVariable Long entryId,
+			@PathVariable Long id) {
+		
 		Optional<Review> maybeReview = reviewRepo.findByIdLimited(city, entries, entryId, id);
 		return ResponseEntity.of(maybeReview);
 	}
@@ -36,13 +44,19 @@ public class ReviewController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Review create(@RequestBody @Valid Review review) {
+		
 		review.setId(null);
 		return reviewRepo.save(review);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@PathVariable String city, @PathVariable String entries,
-			@PathVariable Long entryId, @PathVariable Long id, @RequestBody Review review) {
+	public ResponseEntity<?> update(
+			@PathVariable String city,
+			@PathVariable String entries,
+			@PathVariable Long entryId,
+			@PathVariable Long id,
+			@RequestBody Review review) {
+		
 		review.setId(id);
 		if (reviewRepo.findByIdLimited(city, entries, entryId, id).isEmpty()) {
 			return new ResponseEntity<>(review, HttpStatus.NOT_FOUND);
@@ -52,13 +66,16 @@ public class ReviewController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable String city, @PathVariable String entries,
-			@PathVariable Long entryId, @PathVariable Long id) {		
+	public ResponseEntity<?> delete(
+			@PathVariable String city,
+			@PathVariable String entries,
+			@PathVariable Long entryId,
+			@PathVariable Long id) {	
+		
 		if (reviewRepo.findByIdLimited(city, entries, entryId, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		reviewRepo.deleteById(id);
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);		
 	}
 }

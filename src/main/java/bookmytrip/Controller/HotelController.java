@@ -21,28 +21,43 @@ public class HotelController {
 	private final HotelRepository hotelRepo;
 	
 	@GetMapping
-	public ResponseEntity<?> index(@PathVariable String city){
+	public ResponseEntity<?> index(
+			@PathVariable String city,
+			@RequestParam(required = false) String name,
+			@RequestParam(required = false) Integer rating,
+			@RequestParam(required = false) Integer stars,
+			@RequestParam(required = false) Boolean breakfast) {
+		
 		List<Hotel> maybeHotels = hotelRepo.findByCity(city);		
 		return ResponseEntity.of(Optional.of(maybeHotels));
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?> show(@PathVariable Long id, @PathVariable String city) {
+	public ResponseEntity<?> show(
+			@PathVariable Long id,
+			@PathVariable String city) {
+		
 		Optional<Hotel> maybeHotels = hotelRepo.findByCityAndId(city, id);
 		return ResponseEntity.of(maybeHotels);
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Hotel create(@PathVariable String city, @RequestBody @Valid Hotel hotel) {
+	public Hotel create(
+			@PathVariable String city,
+			@RequestBody @Valid Hotel hotel) {
+		
 		hotel.setId(null);
 		hotel.setCity(city);
 		return hotelRepo.save(hotel);
 	}	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid Hotel hotel, 
+	public ResponseEntity<?> update(
+			@PathVariable Long id,
+			@RequestBody @Valid Hotel hotel, 
 			@PathVariable String city) {
+		
 		hotel.setId(id);
 		hotel.setCity(city);
 		if (hotelRepo.findByCityAndId(city, id).isEmpty()) {
@@ -53,7 +68,10 @@ public class HotelController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable Long id, @PathVariable String city) {		
+	public ResponseEntity<?> delete(
+			@PathVariable Long id,
+			@PathVariable String city) {	
+		
 		if (hotelRepo.findByCityAndId(city, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		

@@ -1,22 +1,15 @@
 package bookmytrip.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter
 @PrimaryKeyJoinColumn(name = "hotel_Id")
 public class Hotel extends Entry {
-	
-	// New property
+
 	@NotNull
 	@Min(1) @Max(5)
 	@Column(nullable = false)
@@ -25,6 +18,4 @@ public class Hotel extends Entry {
 	@NotNull
 	@Column(nullable = false)
 	private Boolean breakfastIncl;
-	
-
 }

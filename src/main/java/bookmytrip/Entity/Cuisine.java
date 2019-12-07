@@ -10,16 +10,14 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter
 public class Cuisine {
 	
 	@Id
 	@NotBlank
-	private String type;
-	
+	private String type;	
 
-	@ManyToMany(mappedBy = "cuisines", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "cuisines")
 	@JsonBackReference
 	private Set<Restaurant> restaurants;
 }

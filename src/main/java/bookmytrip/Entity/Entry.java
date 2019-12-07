@@ -6,33 +6,29 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.sun.istack.NotNull;
 
 import lombok.*;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Entry {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id;
+	private Long id;
 	
 	@OneToMany(mappedBy = "entry")
 	@JsonBackReference
 	private List<Review> reviews;
 	
 	@NotBlank
-	@NotNull
 	@Column(nullable = false)
-	public String city;
+	private String city;
 	
 	@NotBlank
-	@NotNull
 	@Column(nullable = false)
-	public String name;
+	private String name;
 
 //	@NotBlank
 //	private String phoneNumber;

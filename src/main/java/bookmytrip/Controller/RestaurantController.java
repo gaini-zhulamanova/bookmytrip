@@ -7,9 +7,9 @@ import javax.validation.Valid;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
-import bookmytrip.Entity.Cuisine;
 import bookmytrip.Entity.Restaurant;
 import bookmytrip.Repository.RestaurantRepository;
+
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -22,28 +22,42 @@ public class RestaurantController {
 	private final RestaurantRepository restaurantRepo;
 	
 	@GetMapping
-	public ResponseEntity<?> index(@PathVariable String city) {
+	public ResponseEntity<?> index(
+			@PathVariable String city,
+			@RequestParam(required = false) String name,
+			@RequestParam(required = false) Integer priceLevel,
+			@RequestParam(required = false) Integer rating) {
+		
 		List<Restaurant> maybeRestaurants = restaurantRepo.findByCity(city);		
 		return ResponseEntity.of(Optional.of(maybeRestaurants));
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?> show(@PathVariable Long id, @PathVariable String city) {
+	public ResponseEntity<?> show(
+			@PathVariable Long id,
+			@PathVariable String city) {
+		
 		Optional<Restaurant> maybeRestaurant = restaurantRepo.findByCityAndId(city, id);
 		return ResponseEntity.of(maybeRestaurant);
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Restaurant create(@PathVariable String city, @RequestBody @Valid Restaurant restaurant) {
+	public Restaurant create(
+			@PathVariable String city,
+			@RequestBody @Valid Restaurant restaurant) {
+		
 		restaurant.setId(null);
 		restaurant.setCity(city);
 		return restaurantRepo.save(restaurant);
 	}	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@PathVariable Long id, @PathVariable String city, 
+	public ResponseEntity<?> update(
+			@PathVariable Long id,
+			@PathVariable String city, 
 			@RequestBody @Valid Restaurant restaurant) {
+		
 		restaurant.setId(id);
 		restaurant.setCity(city);
 		if (restaurantRepo.findByCityAndId(city, id).isEmpty()) {
@@ -54,7 +68,10 @@ public class RestaurantController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable Long id, @PathVariable String city) {		
+	public ResponseEntity<?> delete(
+			@PathVariable Long id,
+			@PathVariable String city) {
+		
 		if (restaurantRepo.findByCityAndId(city, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		

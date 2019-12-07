@@ -7,12 +7,10 @@ import org.hibernate.validator.constraints.Length;
 
 import com.sun.istack.NotNull;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter
 public class Review {
 	
 	@NotBlank
@@ -30,8 +28,7 @@ public class Review {
 	@NotNull
 	@Min(1) @Max(5)
 	@Column(nullable = false)
-	private Integer rating;
-	
+	private Integer rating;	
 }
 
  

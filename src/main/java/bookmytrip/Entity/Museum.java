@@ -6,12 +6,9 @@ import javax.validation.constraints.*;
 import lombok.*;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter
 @PrimaryKeyJoinColumn(name = "museum_id")
 public class Museum extends Entry{
-
-	// TODO: add properties (Controller and Repository are already done)
 	
 	@NotNull
 	@Column(nullable = false)
@@ -20,7 +17,5 @@ public class Museum extends Entry{
 	@NotNull
 	@Min(1) @Max(3)
 	@Column(nullable = false)
-	private Integer priceLevel;	
-	
-	
+	private Integer priceLevel;		
 }
