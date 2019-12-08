@@ -20,7 +20,6 @@ public class Restaurant extends Entry {
 	@JoinTable(name = "restaurant_to_cuisine",
 			joinColumns = @JoinColumn(name = "restaurant_id"),
 			inverseJoinColumns = @JoinColumn(name = "cuisine_id"))
-	//@JsonBackReference
 	private List<Cuisine> cuisines;
 	
 	@NotNull

@@ -11,29 +11,25 @@ import bookmytrip.Entity.*;
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 	
 	default List<Review> findAllByCityAndEntryId(String city, String entries, Long entryId) {		
-		Class<?> entryType = defineEntryType(entries);
 		
-		if (entryType == null) {
-			return null;
-		}
 		return findAll().stream()
 				.filter(r -> r.getEntry().getCity().equals(city))
-				.filter(r -> r.getEntry().getClass().isInstance(entryType))
-				.filter(r -> r.getEntry().getId().equals(entryId))
+				.filter(r -> entryTypeMatches(entries, r))
+				.filter(r -> r.getEntry().getId().equals((Long) entryId))
 				.collect(Collectors.toList());				
 	}
 	
-	default Class<?> defineEntryType(String entries) {		
-		switch (entries) {
+	default boolean entryTypeMatches(String entries, Review review) {
+			switch (entries) {
 			case "restaurants":
-				return Restaurant.class;
+				return review.getEntry() instanceof Restaurant;
 			case "hotels":
-				return Hotel.class;
+				return review.getEntry() instanceof Hotel;
 			case "museums":
-				return Museum.class;
+				return review.getEntry() instanceof Museum;
 			default:
-				return null;
-		}		
+				return false;
+			}
 	}
 		
 	default Optional<Review> findByIdLimited(String city, String entries, Long entryId, Long id) {
