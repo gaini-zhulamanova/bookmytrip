@@ -42,7 +42,12 @@ public class CuisineController {
 		return ResponseEntity.of(maybeEntry);
 	}
 	
-
+//	@GetMapping
+//	public ResponseEntity<?> showCuisinesByRestaurant(){
+//		Optional<Cuisine> maybeCuisins = cuisineRepo.findById(type);
+//	}
+	
+	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cuisine create(@RequestBody @Valid Cuisine cuisine) {
