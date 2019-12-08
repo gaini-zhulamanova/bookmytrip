@@ -24,8 +24,8 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 				.findFirst();
 	}
 	
-	default Optional<Restaurant> findByCuisines(List<Cuisine> cuisines){
-		return findAll().stream()
+	default Optional<Restaurant> findByCuisines(String city, List<Cuisine> cuisines){
+		return findByCity(city).stream()
 				.filter(r -> r.getCuisines().equals(cuisines))
 				.findAny();
 

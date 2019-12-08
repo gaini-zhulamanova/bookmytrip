@@ -34,10 +34,9 @@ public class RestaurantController {
 	}
 	
 	@GetMapping("/cuisines")
-	public ResponseEntity<?> showListRestaurantsByCousine(@PathVariable List<Cuisine> cuisines){
-		Optional<Restaurant> maybeCousines = restaurantRepo.findByCuisines(cuisines);
+	public ResponseEntity<?> showListRestaurantsByCousine(@PathVariable List<Cuisine> cuisines, String city){
+		Optional<Restaurant> maybeCousines = restaurantRepo.findByCuisines(city, cuisines);
 		return ResponseEntity.ok(maybeCousines);
-		
 	}
 	
 	@PostMapping
