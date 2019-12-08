@@ -36,11 +36,12 @@ public class CuisineController {
 		return cuisineRepo.findAll();
 	}
 
-	@GetMapping("/book-my-trip/{cuisine}")
+	@GetMapping("/{type}")
 	public ResponseEntity<?> show(@PathVariable String cuisine) {
 		Optional<Cuisine> maybeEntry = cuisineRepo.findById(cuisine);
 		return ResponseEntity.of(maybeEntry);
 	}
+	
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
@@ -62,7 +63,7 @@ public class CuisineController {
 //		return new ResponseEntity<>(HttpStatus.OK);
 //	}
 
-	@DeleteMapping("/{cuisine}")
+	@DeleteMapping("/{type}")
 	public ResponseEntity<?> delete(@PathVariable String cuisine) {
 		if (!cuisineRepo.existsById(cuisine)) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
