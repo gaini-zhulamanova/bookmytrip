@@ -22,10 +22,7 @@ public class EntryController {
 //	}
 	
 	@GetMapping("/{city}")
-	public ResponseEntity<?> showEntriesByCity(
-			@PathVariable String city,
-			@RequestParam(required = false) String name,
-			@RequestParam(required = false) Integer rating) {
+	public ResponseEntity<?> showEntriesByCity(@PathVariable String city) {
 		
 		Optional<List<Entry>> maybeCity = entryRepository.findByCity(city);
 		return ResponseEntity.of(maybeCity);

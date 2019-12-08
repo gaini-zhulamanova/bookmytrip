@@ -21,12 +21,7 @@ public class HotelController {
 	private final HotelRepository hotelRepo;
 	
 	@GetMapping
-	public ResponseEntity<?> index(
-			@PathVariable String city,
-			@RequestParam(required = false) String name,
-			@RequestParam(required = false) Integer rating,
-			@RequestParam(required = false) Integer stars,
-			@RequestParam(required = false) Boolean breakfast) {
+	public ResponseEntity<?> index(@PathVariable String city) {
 		
 		List<Hotel> maybeHotels = hotelRepo.findByCity(city);		
 		return ResponseEntity.of(Optional.of(maybeHotels));

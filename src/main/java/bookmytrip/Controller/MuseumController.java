@@ -21,12 +21,7 @@ public class MuseumController {
 	private final MuseumRepository museumRepo;
 	
 	@GetMapping
-	public ResponseEntity<?> index(
-			@PathVariable String city,
-			@RequestParam(required = false) String name,
-			@RequestParam(required = false) String type,
-			@RequestParam(required = false) Integer priceLevel,
-			@RequestParam(required = false) Integer rating) {
+	public ResponseEntity<?> index(@PathVariable String city) {
 		
 		List<Museum> maybeMuseums = museumRepo.findByCity(city);		
 		return ResponseEntity.of(Optional.of(maybeMuseums));

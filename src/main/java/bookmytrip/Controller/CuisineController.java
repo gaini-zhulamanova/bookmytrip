@@ -24,9 +24,9 @@ public class CuisineController {
 //		return cuisineRepo.findAll();
 //	}
 //
-//	@GetMapping("/{cuisine}")
-//	public ResponseEntity<?> show(@PathVariable String cuisine) {
-//		Optional<Cuisine> maybeEntry = cuisineRepo.findById(cuisine);
+//	@GetMapping("/{type}")
+//	public ResponseEntity<?> show(@PathVariable String type) {
+//		Optional<Cuisine> maybeEntry = cuisineRepo.findById(type);
 //		return ResponseEntity.of(maybeEntry);
 //	}
 
@@ -37,13 +37,13 @@ public class CuisineController {
 		return cuisineRepo.save(cuisine);
 	}
 
-	@DeleteMapping("/{cuisine}")
-	public ResponseEntity<?> delete(@PathVariable String cuisine) {
+	@DeleteMapping("/{type}")
+	public ResponseEntity<?> delete(@PathVariable String type) {
 		
-		if (!cuisineRepo.existsById(cuisine)) {
+		if (!cuisineRepo.existsById(type)) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		cuisineRepo.deleteById(cuisine);
+		cuisineRepo.deleteById(type);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}	
 }

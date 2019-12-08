@@ -22,11 +22,7 @@ public class RestaurantController {
 	private final RestaurantRepository restaurantRepo;
 	
 	@GetMapping
-	public ResponseEntity<?> index(
-			@PathVariable String city,
-			@RequestParam(required = false) String name,
-			@RequestParam(required = false) Integer priceLevel,
-			@RequestParam(required = false) Integer rating) {
+	public ResponseEntity<?> index(@PathVariable String city) {
 		
 		List<Restaurant> maybeRestaurants = restaurantRepo.findByCity(city);		
 		return ResponseEntity.of(Optional.of(maybeRestaurants));
@@ -39,6 +35,50 @@ public class RestaurantController {
 		
 		Optional<Restaurant> maybeRestaurant = restaurantRepo.findByCityAndId(city, id);
 		return ResponseEntity.of(maybeRestaurant);
+	}
+		
+	@GetMapping("/search")
+	public ResponseEntity<?> showByName(
+			@PathVariable String city, 
+			@RequestParam(required = false) String name) {
+		// moved the body to the separate method in repository	
+		return ResponseEntity.of(restaurantRepo.findByName(city, name));
+	}
+	
+	@GetMapping("/filter")
+	public ResponseEntity<?> showByFilter(
+			@PathVariable String city, 
+			@RequestParam(required = false) String cuisine, 
+			@RequestParam(required = false) Integer price,
+			@RequestParam(required = false) Integer rating) {
+		
+		List<Restaurant> maybeRestaurants = null;
+		
+		// TODO: filter by several cuisines (for instance, Italian + German)
+		
+		if (cuisine != null) {
+			maybeRestaurants = restaurantRepo.filterByCuisine(city, cuisine);
+		}
+		
+		// TODO: filter by several price levels (for instance, cheap + medium)
+		
+		if (maybeRestaurants != null && price != null) {
+			maybeRestaurants.retainAll(restaurantRepo
+					.filterByPriceLevel(city, price));
+		} else if (price != null) { // maybeRestaurants == null is unnecessary
+			maybeRestaurants = restaurantRepo
+					.filterByPriceLevel(city, price);
+		}
+		
+		if (maybeRestaurants != null && rating != null) {
+			maybeRestaurants.retainAll(restaurantRepo
+					.filterByRaitingPoints(city, rating));
+		} else if (rating != null) { // maybeRestaurants == null is unnecessary
+			maybeRestaurants = restaurantRepo
+					.filterByRaitingPoints(city, rating);
+		}
+		
+		return ResponseEntity.of(Optional.of(maybeRestaurants));		
 	}
 	
 	@PostMapping

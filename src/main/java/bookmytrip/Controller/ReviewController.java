@@ -21,13 +21,21 @@ public class ReviewController {
 	private final ReviewRepository reviewRepo;
 
 	@GetMapping
-	public List<Review> index(
+	public ResponseEntity<?> index(
 			@PathVariable String city,
 			@PathVariable String entries,
 			@PathVariable Long entryId,
 			@RequestParam(required = false) Integer rating) {
 		
-		return reviewRepo.findAllByCityAndEntryId(city, entries, entryId);
+		List<Review> maybeReviews= null;
+		
+		if (rating != null) {
+			maybeReviews = reviewRepo.filterByRating(city, entries, entryId, rating);
+		} else {
+			maybeReviews = reviewRepo.findAllByCityAndEntryId(city, entries, entryId);
+		}
+		
+		return ResponseEntity.of(Optional.of(maybeReviews));		
 	}
 
 	@GetMapping("/{id}")
