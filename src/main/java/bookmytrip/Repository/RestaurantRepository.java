@@ -55,7 +55,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 	}
 	
 	default Long calculateAvrgRating(Restaurant restaurant) {
-		return Math.round((double) restaurant.getReviews().stream() // why do we cast to double, when we already used getAsDouble()?
+		return Math.round(restaurant.getReviews().stream()
 				.map(review -> review.getRating())
 				.mapToInt(rating -> rating)
 				.average().getAsDouble());

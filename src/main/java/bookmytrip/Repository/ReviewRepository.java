@@ -13,7 +13,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 		return findAll().stream()
 				.filter(r -> r.getEntry().getCity().equals(city))
 				.filter(r -> entryTypeMatches(entries, r))
-				.filter(r -> r.getEntry().getId().equals((Long) entryId)) // why do we cast?
+				.filter(r -> r.getEntry().getId().equals(entryId)) // why do we cast?
 				.sorted((r1, r2) -> r2.getId().compareTo(r1.getId())) // sort by ID (from the most recent)
 				.collect(Collectors.toList());				
 	}
@@ -37,33 +37,6 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 				.sorted((r1, r2) -> r2.getId().compareTo(r1.getId())) // sort by ID (from the most recent)
 				.collect(Collectors.toList());
 	}
-
-	
-//	default List<Review> findAllByCityAndEntryId(String city, String entries, Long entryId) {		
-//		Class<?> entryType = defineEntryType(entries);
-//		
-//		if (entryType == null) {
-//			return null;
-//		}
-//		return findAll().stream()
-//				.filter(r -> r.getEntry().getCity().equals(city))
-//				.filter(r -> r.getEntry().getClass().isInstance(entryType))
-//				.filter(r -> r.getEntry().getId().equals(entryId))
-//				.collect(Collectors.toList());				
-//	}
-//	
-//	default Class<?> defineEntryType(String entries) {		
-//		switch (entries) {
-//			case "restaurants":
-//				return Restaurant.class;
-//			case "hotels":
-//				return Hotel.class;
-//			case "museums":
-//				return Museum.class;
-//			default:
-//				return null;
-//		}		
-//	}
 		
 	default Optional<Review> findByIdLimited(String city, String entries, Long entryId, Long id) {
 		return findAllByCityAndEntryId(city, entries, entryId)
