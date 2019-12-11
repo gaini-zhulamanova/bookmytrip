@@ -1,4 +1,4 @@
-package backend.src.main.java.bookmytrip.Controller;
+package bookmytrip.Controller;
 
 import javax.validation.Valid;
 

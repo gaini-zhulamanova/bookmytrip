@@ -1,4 +1,4 @@
-package backend.src.test.java.bookmytrip;
+package bookmytrip;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

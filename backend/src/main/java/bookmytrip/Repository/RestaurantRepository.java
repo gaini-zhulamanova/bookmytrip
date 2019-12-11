@@ -1,4 +1,4 @@
-package backend.src.main.java.bookmytrip.Repository;
+package bookmytrip.Repository;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -55,7 +55,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 	}
 	
 	default Long calculateAvrgRating(Restaurant restaurant) {
-		return Math.round(restaurant.getReviews().stream()
+		return Math.round((double) restaurant.getReviews().stream() // why do we cast to double, when we already used getAsDouble()?
 				.map(review -> review.getRating())
 				.mapToInt(rating -> rating)
 				.average().getAsDouble());
