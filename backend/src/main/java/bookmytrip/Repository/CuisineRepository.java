@@ -1,4 +1,4 @@
-package bookmytrip.Repository;
+package backend.src.main.java.bookmytrip.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

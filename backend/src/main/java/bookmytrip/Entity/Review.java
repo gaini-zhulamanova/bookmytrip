@@ -1,4 +1,4 @@
-package bookmytrip.Entity;
+package backend.src.main.java.bookmytrip.Entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;

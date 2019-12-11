@@ -1,4 +1,4 @@
-package bookmytrip;
+package backend.src.main.java.bookmytrip;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
