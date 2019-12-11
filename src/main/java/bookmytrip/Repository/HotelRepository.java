@@ -1,23 +1,14 @@
 package bookmytrip.Repository;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
-import org.springframework.data.jpa.repository.*;
+import java.util.List;
 
 import bookmytrip.Entity.Hotel;
 
-public interface HotelRepository extends JpaRepository<Hotel, Long> {
+public interface HotelRepository extends EntryRepository<Hotel> {
 	
-	default List<Hotel> findByCity(String city) {
-		return findAll().stream()
-				.filter(h -> h.getCity().equals(city))
-				.collect(Collectors.toList());
-	}
+	// TODO: implement a sorting functionality (according to different criteria - name, price level, rating etc.)
 	
-	default Optional<Hotel> findByCityAndId(String city, Long id) {
-		return findByCity(city).stream()
-				.filter(h -> h.getId().equals(id))
-				.findFirst();
-	}
+	List<Hotel> findByCityAndBreakfastInclOrderByName(String city, Boolean breakfastIncl);
+	
+	List<Hotel> findByCityAndStarsOrderByName(String city, Integer stars);	
 }

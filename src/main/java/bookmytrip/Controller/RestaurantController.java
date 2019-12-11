@@ -24,8 +24,9 @@ public class RestaurantController {
 	@GetMapping
 	public ResponseEntity<?> index(@PathVariable String city) {
 		
-		List<Restaurant> maybeRestaurants = restaurantRepo.findByCity(city);		
-		return ResponseEntity.of(Optional.of(maybeRestaurants));
+		var maybeRestaurants = Optional.of(restaurantRepo
+				.findByCity(city));		
+		return ResponseEntity.of(maybeRestaurants);
 	}
 	
 	@GetMapping("/{id}")
@@ -33,7 +34,8 @@ public class RestaurantController {
 			@PathVariable Long id,
 			@PathVariable String city) {
 		
-		Optional<Restaurant> maybeRestaurant = restaurantRepo.findByCityAndId(city, id);
+		var maybeRestaurant = Optional.of(restaurantRepo
+				.findByCityAndId(city, id));
 		return ResponseEntity.of(maybeRestaurant);
 	}
 		
@@ -41,15 +43,17 @@ public class RestaurantController {
 	public ResponseEntity<?> showByName(
 			@PathVariable String city, 
 			@RequestParam(required = false) String name) {
-		// moved the body to the separate method in repository	
-		return ResponseEntity.of(restaurantRepo.findByName(city, name));
+		
+		var maybeRestaurants = Optional.of(restaurantRepo
+				.findByCityAndNameOrderByRating(city, name));
+		return ResponseEntity.of(maybeRestaurants);
 	}
 	
 	@GetMapping("/filter")
 	public ResponseEntity<?> showByFilter(
 			@PathVariable String city, 
 			@RequestParam(required = false) String cuisine, 
-			@RequestParam(required = false) Integer price,
+			@RequestParam(required = false) Integer priceLevel,
 			@RequestParam(required = false) Integer rating) {
 		
 		List<Restaurant> maybeRestaurants = null;
@@ -57,25 +61,25 @@ public class RestaurantController {
 		// TODO: filter by several cuisines (for instance, Italian + German)
 		
 		if (cuisine != null) {
-			maybeRestaurants = restaurantRepo.filterByCuisine(city, cuisine);
+			maybeRestaurants = restaurantRepo.findByCityAndCuisineOrderByName(city, cuisine);
 		}
 		
 		// TODO: filter by several price levels (for instance, cheap + medium)
 		
-		if (maybeRestaurants != null && price != null) {
+		if (maybeRestaurants != null && priceLevel != null) {
 			maybeRestaurants.retainAll(restaurantRepo
-					.filterByPriceLevel(city, price));
-		} else if (price != null) { // maybeRestaurants == null is unnecessary
+					.findByCityAndPriceLevelOrderByPriceLevel(city, priceLevel));
+		} else if (priceLevel != null) { // maybeRestaurants == null is unnecessary
 			maybeRestaurants = restaurantRepo
-					.filterByPriceLevel(city, price);
+					.findByCityAndPriceLevelOrderByPriceLevel(city, priceLevel);
 		}
 		
 		if (maybeRestaurants != null && rating != null) {
 			maybeRestaurants.retainAll(restaurantRepo
-					.filterByRaitingPoints(city, rating));
+					.findByCityAndRatingOrderByName(city, rating));
 		} else if (rating != null) { // maybeRestaurants == null is unnecessary
 			maybeRestaurants = restaurantRepo
-					.filterByRaitingPoints(city, rating);
+					.findByCityAndRatingOrderByName(city, rating);
 		}
 		
 		return ResponseEntity.of(Optional.of(maybeRestaurants));		

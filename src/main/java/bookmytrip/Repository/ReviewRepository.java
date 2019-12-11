@@ -13,7 +13,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 		return findAll().stream()
 				.filter(r -> r.getEntry().getCity().equals(city))
 				.filter(r -> entryTypeMatches(entries, r))
-				.filter(r -> r.getEntry().getId().equals(entryId)) // why do we cast?
+				.filter(r -> r.getEntry().getId().equals(entryId))
 				.sorted((r1, r2) -> r2.getId().compareTo(r1.getId())) // sort by ID (from the most recent)
 				.collect(Collectors.toList());				
 	}

@@ -1,5 +1,7 @@
 package bookmytrip.Controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.http.*;
@@ -19,10 +21,10 @@ public class CuisineController {
 	
 	private final CuisineRepository cuisineRepo;
 
-//	@GetMapping
-//	public List<Cuisine> index(){
-//		return cuisineRepo.findAll();
-//	}
+	@GetMapping
+	public List<Cuisine> index(){
+		return cuisineRepo.findAll();
+	}
 //
 //	@GetMapping("/{type}")
 //	public ResponseEntity<?> show(@PathVariable String type) {

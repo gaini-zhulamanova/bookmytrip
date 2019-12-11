@@ -8,6 +8,7 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import bookmytrip.Entity.Museum;
+import bookmytrip.Entity.Museum;
 import bookmytrip.Repository.MuseumRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -23,8 +24,9 @@ public class MuseumController {
 	@GetMapping
 	public ResponseEntity<?> index(@PathVariable String city) {
 		
-		List<Museum> maybeMuseums = museumRepo.findByCity(city);		
-		return ResponseEntity.of(Optional.of(maybeMuseums));
+		var maybeMuseums = Optional.of(museumRepo
+				.findByCity(city));		
+		return ResponseEntity.of(maybeMuseums);
 	}
 	
 	@GetMapping("/{id}")
@@ -32,8 +34,45 @@ public class MuseumController {
 			@PathVariable Long id,
 			@PathVariable String city) {
 		
-		Optional<Museum> maybeMuseums = museumRepo.findByCityAndId(city, id);
+		var maybeMuseums = Optional.of(museumRepo
+				.findByCityAndId(city, id));
 		return ResponseEntity.of(maybeMuseums);
+	}
+	
+	@GetMapping("/filter")
+	public ResponseEntity<?> showByFilter(
+			@PathVariable String city, 
+			@RequestParam(required = false) String type, 
+			@RequestParam(required = false) Integer priceLevel,
+			@RequestParam(required = false) Integer rating) {
+		
+		List<Museum> maybeMuseums = null;
+		
+		// TODO: filter by several cuisines (for instance, Italian + German)
+		
+		if (type != null) {
+			maybeMuseums = museumRepo.findByCityAndTypeOrderByName(city, type);
+		}
+		
+		// TODO: filter by several price levels (for instance, cheap + medium)
+		
+		if (maybeMuseums != null && priceLevel != null) {
+			maybeMuseums.retainAll(museumRepo
+					.findByCityAndPriceLevelOrderByPriceLevel(city, priceLevel));
+		} else if (priceLevel != null) { // maybeMuseums == null is unnecessary
+			maybeMuseums = museumRepo
+					.findByCityAndPriceLevelOrderByPriceLevel(city, priceLevel);
+		}
+		
+		if (maybeMuseums != null && rating != null) {
+			maybeMuseums.retainAll(museumRepo
+					.findByCityAndRatingOrderByName(city, rating));
+		} else if (rating != null) { // maybeMuseums == null is unnecessary
+			maybeMuseums = museumRepo
+					.findByCityAndRatingOrderByName(city, rating);
+		}
+		
+		return ResponseEntity.of(Optional.of(maybeMuseums));		
 	}
 	
 	@PostMapping
