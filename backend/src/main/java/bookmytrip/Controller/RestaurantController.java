@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/book-my-trip/{city}/restaurants")
-@CrossOrigin("http://localhost:4205")
 public class RestaurantController {
 	
 	// TODO: create tests
