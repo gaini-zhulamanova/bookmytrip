@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="home_with_filter_leftside.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Home with Filters</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="custom.css">
+    
 </head>
 
-<body>
+<body id="overrides">
 <!-- Begin of Container -->
-    <div class="container-fluid">
+    <div class="container-fluidt overrides">
 <!-- Begin of Header / Navigation -->
         <div class="row header">
 
@@ -47,7 +48,7 @@
 
         </div>
 <!-- End of Header -->
-        <div class="row">
+        <div class="row overrides">
 <!-- Begin of Sidebar mit filters -->
             <div class="col-4 sidebar">
 
@@ -81,48 +82,48 @@
                                 <h4>Bewertung</h4>
                                 <!-- cd-filter-content -->
                                 <ul class="cd-filter-content cd-filters list">
-                                    <li>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
+                                    <li class="rating best">
+                                        <span class="fa fa-star" style="color: orange;"></span>
+                                        <span class="fa fa-star" style="color: orange;"></span>
+                                        <span class="fa fa-star" style="color: orange;"></span>
+                                        <span class="fa fa-star" style="color: orange;"></span>
+                                        <span class="fa fa-star" style="color: orange;"></span>
                                         <input class="filter" data-filter=".check1" type="checkbox" id="checkbox1">
                                     </li>
             
-                                    <li>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
+                                    <li class="rating very-good">
+                                        <span class="fa fa-star" style="color: orange;"></span>
+                                        <span class="fa fa-star" style="color: orange;"></span>
+                                        <span class="fa fa-star" style="color: orange;"></span>
+                                        <span class="fa fa-star" style="color: orange;"></span>
+                                        <span class="fa fa-star-o"></span>
                                         <input class="filter" data-filter=".check2" type="checkbox" id="checkbox2">
                                     </li>
             
-                                    <li>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
+                                    <li class="rating good">
+                                        <span class="fa fa-star" style="color: orange;"></span>
+                                        <span class="fa fa-star" style="color: orange;"></span>
+                                        <span class="fa fa-star" style="color: orange;"></span>
+                                        <span class="fa fa-star-o"></span>
+                                        <span class="fa fa-star-o"></span>
                                         <input class="filter" data-filter=".check3" type="checkbox" id="checkbox3">
                                     </li>
 
-                                    <li>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
+                                    <li class="rating ok">
+                                        <span class="fa fa-star" style="color: orange;"></span>
+                                        <span class="fa fa-star" style="color: orange;"></span>
+                                        <span class="fa fa-star-o"></span>
+                                        <span class="fa fa-star-o"></span>
+                                        <span class="fa fa-star-o"></span>
                                         <input class="filter" data-filter=".check3" type="checkbox" id="checkbox3">
                                     </li>
 
-                                    <li>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
+                                    <li class="rating bad">
+                                        <span class="fa fa-star" style="color: orange;"></span>
+                                        <span class="fa fa-star-o"></span>
+                                        <span class="fa fa-star-o"></span>
+                                        <span class="fa fa-star-o"></span>
+                                        <span class="fa fa-star-o"></span>
                                         <input class="filter" data-filter=".check3" type="checkbox" id="checkbox3">
                                     </li>
                                 </ul> <!-- cd-filter-content -->
