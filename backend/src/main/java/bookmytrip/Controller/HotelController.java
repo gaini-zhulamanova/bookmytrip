@@ -7,8 +7,9 @@ import javax.validation.Valid;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
-import bookmytrip.Entity.Hotel;
+import bookmytrip.Entity.*;
 import bookmytrip.Repository.HotelRepository;
+
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -17,15 +18,15 @@ import lombok.RequiredArgsConstructor;
 public class HotelController {
 	
 	// TODO: create tests
-	// TODO: adapt City enum
 	
 	private final HotelRepository hotelRepo;
 	
 	@GetMapping
 	public ResponseEntity<?> index(@PathVariable String city) {
 		
+		City enumCity = City.convertToEnum(city);
 		var maybeHotels = Optional.of(hotelRepo
-				.findByCity(city));		
+				.findByCity(enumCity));		
 		return ResponseEntity.of(maybeHotels);
 	}
 	
@@ -34,8 +35,20 @@ public class HotelController {
 			@PathVariable Long id,
 			@PathVariable String city) {
 		
+		City enumCity = City.convertToEnum(city);
 		var maybeHotels = Optional.of(hotelRepo
-				.findByCityAndId(city, id));
+				.findByCityAndId(enumCity, id));
+		return ResponseEntity.of(maybeHotels);
+	}
+	
+	@GetMapping("/search")
+	public ResponseEntity<?> showByName(
+			@PathVariable String city, 
+			@RequestParam(required = false) String name) {
+		
+		City enumCity = City.convertToEnum(city);
+		var maybeHotels = Optional.of(hotelRepo
+				.findByCityAndNameOrderByRating(enumCity, name));
 		return ResponseEntity.of(maybeHotels);
 	}
 	
@@ -46,28 +59,29 @@ public class HotelController {
 			@RequestParam(required = false) Integer stars,
 			@RequestParam(required = false) Integer rating) {
 		
-		List<Hotel> maybeHotels = null;
+		List<Hotel> maybeHotels = null;		
+		City enumCity = City.convertToEnum(city);	
 		
 		if (breakfast != null) {
-			maybeHotels = hotelRepo.findByCityAndBreakfastInclOrderByName(city, breakfast);
+			maybeHotels = hotelRepo.findByCityAndBreakfastInclOrderByName(enumCity, breakfast);
 		}
 		
 		// TODO: filter by several stars (for instance, 3* + 4*)
 		
 		if (maybeHotels != null && stars != null) {
 			maybeHotels.retainAll(hotelRepo
-					.findByCityAndStarsOrderByName(city, stars));
+					.findByCityAndStarsOrderByName(enumCity, stars));
 		} else if (stars != null) {
 			maybeHotels = hotelRepo
-					.findByCityAndStarsOrderByName(city, stars);
+					.findByCityAndStarsOrderByName(enumCity, stars);
 		}
 		
 		if (maybeHotels != null && rating != null) {
 			maybeHotels.retainAll(hotelRepo
-					.findByCityAndRatingOrderByName(city, rating));
+					.findByCityAndRatingOrderByName(enumCity, rating));
 		} else if (rating != null) {
 			maybeHotels = hotelRepo
-					.findByCityAndRatingOrderByName(city, rating);
+					.findByCityAndRatingOrderByName(enumCity, rating);
 		}
 		
 		return ResponseEntity.of(Optional.of(maybeHotels));		
@@ -79,8 +93,9 @@ public class HotelController {
 			@PathVariable String city,
 			@RequestBody @Valid Hotel hotel) {
 		
+		City enumCity = City.convertToEnum(city);
 		hotel.setId(null);
-		hotel.setCity(city);
+		hotel.setCity(enumCity);
 		return hotelRepo.save(hotel);
 	}	
 	
@@ -90,9 +105,10 @@ public class HotelController {
 			@RequestBody @Valid Hotel hotel, 
 			@PathVariable String city) {
 		
+		City enumCity = City.convertToEnum(city);	
 		hotel.setId(id);
-		hotel.setCity(city);
-		if (hotelRepo.findByCityAndId(city, id).isEmpty()) {
+		hotel.setCity(enumCity);
+		if (hotelRepo.findByCityAndId(enumCity, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		hotelRepo.save(hotel);
@@ -104,7 +120,8 @@ public class HotelController {
 			@PathVariable Long id,
 			@PathVariable String city) {	
 		
-		if (hotelRepo.findByCityAndId(city, id).isEmpty()) {
+		City enumCity = City.convertToEnum(city);
+		if (hotelRepo.findByCityAndId(enumCity, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		hotelRepo.deleteById(id);

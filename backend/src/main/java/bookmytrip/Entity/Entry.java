@@ -3,7 +3,7 @@ package bookmytrip.Entity;
 import java.util.List;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -13,8 +13,7 @@ import lombok.*;
 @Getter @Setter
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Entry {
-	
-	// TODO: adapt City enum
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,9 +23,9 @@ public class Entry {
 	@JsonBackReference
 	private List<Review> reviews;
 	
-	@NotBlank
+	@NotNull
 	@Column(nullable = false)
-	private String city;
+	private City city;
 	
 	@NotBlank
 	@Column(nullable = false)
