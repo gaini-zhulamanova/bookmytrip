@@ -1,6 +1,8 @@
 package bookmytrip.Controller;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,13 @@ public class EntryController {
 	
 	private final EntryRepository<Entry> entryRepository;
 	
+	@GetMapping
+	public List<String> showAllCities() {
+		return Stream.of(City.values())
+				.map(City::getTitle)
+				.collect(Collectors.toList());
+	}
+	
 	@GetMapping("/{city}")
 	public ResponseEntity<?> showEntriesByCity(@PathVariable String city) {
 		
@@ -23,5 +32,5 @@ public class EntryController {
 		List<Entry> maybeCity = entryRepository
 				.findByCity(enumCity);
 		return ResponseEntity.of(Optional.of(maybeCity));
-	}
+	}	
 }
