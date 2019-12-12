@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class HotelController {
 	
 	// TODO: create tests
+	// TODO: adapt City enum
 	
 	private final HotelRepository hotelRepo;
 	
@@ -56,7 +57,7 @@ public class HotelController {
 		if (maybeHotels != null && stars != null) {
 			maybeHotels.retainAll(hotelRepo
 					.findByCityAndStarsOrderByName(city, stars));
-		} else if (stars != null) { // maybeHotels == null is unnecessary
+		} else if (stars != null) {
 			maybeHotels = hotelRepo
 					.findByCityAndStarsOrderByName(city, stars);
 		}
@@ -64,7 +65,7 @@ public class HotelController {
 		if (maybeHotels != null && rating != null) {
 			maybeHotels.retainAll(hotelRepo
 					.findByCityAndRatingOrderByName(city, rating));
-		} else if (rating != null) { // maybeHotels == null is unnecessary
+		} else if (rating != null) {
 			maybeHotels = hotelRepo
 					.findByCityAndRatingOrderByName(city, rating);
 		}

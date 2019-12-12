@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/book-my-trip/cuisines")
+@CrossOrigin("http://localhost:4200")
 public class CuisineController {
 	
 	// TODO: create tests
@@ -25,18 +26,12 @@ public class CuisineController {
 	public List<Cuisine> index(){
 		return cuisineRepo.findAll();
 	}
-//
-//	@GetMapping("/{type}")
-//	public ResponseEntity<?> show(@PathVariable String type) {
-//		Optional<Cuisine> maybeEntry = cuisineRepo.findById(type);
-//		return ResponseEntity.of(maybeEntry);
-//	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cuisine create(@RequestBody @Valid Cuisine cuisine) {
 		
-		return cuisineRepo.save(cuisine);
+		return cuisineRepo.save(cuisine);		
 	}
 
 	@DeleteMapping("/{type}")

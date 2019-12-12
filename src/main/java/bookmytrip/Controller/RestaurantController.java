@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class RestaurantController {
 	
 	// TODO: create tests
+	// TODO: adapt City enum
 	
 	private final RestaurantRepository restaurantRepo;
 	
@@ -69,7 +70,7 @@ public class RestaurantController {
 		if (maybeRestaurants != null && priceLevel != null) {
 			maybeRestaurants.retainAll(restaurantRepo
 					.findByCityAndPriceLevelOrderByPriceLevel(city, priceLevel));
-		} else if (priceLevel != null) { // maybeRestaurants == null is unnecessary
+		} else if (priceLevel != null) {
 			maybeRestaurants = restaurantRepo
 					.findByCityAndPriceLevelOrderByPriceLevel(city, priceLevel);
 		}
@@ -77,7 +78,7 @@ public class RestaurantController {
 		if (maybeRestaurants != null && rating != null) {
 			maybeRestaurants.retainAll(restaurantRepo
 					.findByCityAndRatingOrderByName(city, rating));
-		} else if (rating != null) { // maybeRestaurants == null is unnecessary
+		} else if (rating != null) {
 			maybeRestaurants = restaurantRepo
 					.findByCityAndRatingOrderByName(city, rating);
 		}

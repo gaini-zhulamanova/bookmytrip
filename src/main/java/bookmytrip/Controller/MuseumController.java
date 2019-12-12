@@ -8,7 +8,6 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import bookmytrip.Entity.Museum;
-import bookmytrip.Entity.Museum;
 import bookmytrip.Repository.MuseumRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -17,7 +16,8 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/book-my-trip/{city}/museums")
 public class MuseumController {
 	
-	// TODO: create tests
+	// TODO: create tests	
+	// TODO: adapt City enum
 	
 	private final MuseumRepository museumRepo;
 	
@@ -48,7 +48,7 @@ public class MuseumController {
 		
 		List<Museum> maybeMuseums = null;
 		
-		// TODO: filter by several cuisines (for instance, Italian + German)
+		// TODO: filter by several types (for instance, historical + contemporary)
 		
 		if (type != null) {
 			maybeMuseums = museumRepo.findByCityAndTypeOrderByName(city, type);
@@ -59,7 +59,7 @@ public class MuseumController {
 		if (maybeMuseums != null && priceLevel != null) {
 			maybeMuseums.retainAll(museumRepo
 					.findByCityAndPriceLevelOrderByPriceLevel(city, priceLevel));
-		} else if (priceLevel != null) { // maybeMuseums == null is unnecessary
+		} else if (priceLevel != null) {
 			maybeMuseums = museumRepo
 					.findByCityAndPriceLevelOrderByPriceLevel(city, priceLevel);
 		}
@@ -67,7 +67,7 @@ public class MuseumController {
 		if (maybeMuseums != null && rating != null) {
 			maybeMuseums.retainAll(museumRepo
 					.findByCityAndRatingOrderByName(city, rating));
-		} else if (rating != null) { // maybeMuseums == null is unnecessary
+		} else if (rating != null) {
 			maybeMuseums = museumRepo
 					.findByCityAndRatingOrderByName(city, rating);
 		}
@@ -98,7 +98,7 @@ public class MuseumController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		museumRepo.save(museum);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(museumRepo.findAll(),HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")

@@ -14,7 +14,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 				.filter(r -> r.getEntry().getCity().equals(city))
 				.filter(r -> entryTypeMatches(entries, r))
 				.filter(r -> r.getEntry().getId().equals(entryId))
-				.sorted((r1, r2) -> r2.getId().compareTo(r1.getId())) // sort by ID (from the most recent)
+				.sorted((r1, r2) -> r2.getId().compareTo(r1.getId())) // sort by ID (from the most recent) TODO: test, whether .compareTo works
 				.collect(Collectors.toList());				
 	}
 	
@@ -34,7 +34,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 	default List<Review> filterByRating(String city, String entries, Long entryId, Integer rating) {
 		return findAllByCityAndEntryId(city, entries, entryId).stream()
 				.filter(r -> r.getRating() >= rating)
-				.sorted((r1, r2) -> r2.getId().compareTo(r1.getId())) // sort by ID (from the most recent)
+				.sorted((r1, r2) -> r2.getId().compareTo(r1.getId())) // sort by ID (from the most recent) TODO: test, whether .compareTo works
 				.collect(Collectors.toList());
 	}
 		

@@ -10,25 +10,13 @@ import bookmytrip.Entity.Entry;
 public interface EntryRepository<T extends Entry> extends JpaRepository<T, Long> {
 	
 	// TODO: implement a sorting functionality (according to different criteria - name, price level, rating etc.)
+	// TODO: adapt City enum
 	
 	List<T> findByCity(String city);
 	
 	List<T> findByCityOrderByName(String city);
 	
-//	default List<T> findByCity(String city) {
-//		return findAll().stream()
-//				.filter(r -> r.getCity().equals(city))
-//				.sorted((r1, r2) -> r1.getName().compareTo(r2.getName()))
-//				.collect(Collectors.toList());
-//	}
-	
 	List<T> findByCityAndId(String city, Long id);
-	
-//	default Optional<T> findByCityAndId(String city, Long id) {
-//		return findByCity(city).stream()
-//				.filter(r -> r.getId().equals(id))
-//				.findFirst();
-//	}
 	
 	default List<T> findByCityAndNameOrderByRating(String city, String name) {
 		return findByCity(city).stream()
@@ -36,14 +24,14 @@ public interface EntryRepository<T extends Entry> extends JpaRepository<T, Long>
 					r.getName().toLowerCase().contains(name.toLowerCase()) ||
 					name.toLowerCase().contains(r.getName().toLowerCase()) 
 				)
-				.sorted((r1, r2) -> calculateAvrgRating(r2).compareTo(calculateAvrgRating(r1))) // sorts by rating (from the best)
+				.sorted((r1, r2) -> (int) (calculateAvrgRating(r2) - calculateAvrgRating(r1)))
 				.collect(Collectors.toList());	
 	}
 	
 	default List<T> findByCityAndRatingOrderByName(String city, Integer avgRating) {
 		return findByCity(city).stream()
-				.filter(restaurant -> calculateAvrgRating(restaurant) >= avgRating) // separate method, changed == to >=
-				.sorted((r1, r2) -> r1.getName().compareTo(r2.getName())) // sort alphabetically
+				.filter(restaurant -> calculateAvrgRating(restaurant) >= avgRating)
+				.sorted((r1, r2) -> r1.getName().compareTo(r2.getName()))
 				.collect(Collectors.toList());
 	}
 	
@@ -51,6 +39,6 @@ public interface EntryRepository<T extends Entry> extends JpaRepository<T, Long>
 		return Math.round(entry.getReviews().stream()
 				.map(review -> review.getRating())
 				.mapToInt(rating -> rating)
-				.average().getAsDouble());
+				.average().orElse(0));
 	}
 }
