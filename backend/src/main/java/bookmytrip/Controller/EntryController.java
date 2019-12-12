@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/book-my-trip")
+@CrossOrigin("http://localhost:4200")
 public class EntryController {	
 	
 	private final EntryRepository<Entry> entryRepository;
