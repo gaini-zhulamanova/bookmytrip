@@ -1,0 +1,24 @@
+.header {
+    border: dotted grey;
+    border-width: 1px; 
+}
+
+.sidebar {
+    border: dotted grey;
+    border-width: 1px;
+}
+
+.main-content {
+    border: dotted grey;
+    border-width: 1px;
+}
+
+.nested {
+    border: dotted grey;
+    border-width: 1px;
+}
+
+.footer {
+    border: dotted grey;
+    border-width: 1px;
+}
