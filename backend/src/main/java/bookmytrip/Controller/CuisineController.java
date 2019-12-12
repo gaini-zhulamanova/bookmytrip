@@ -1,5 +1,7 @@
 package bookmytrip.Controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.http.*;
@@ -13,28 +15,23 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/book-my-trip/cuisines")
+@CrossOrigin("http://localhost:4200")
 public class CuisineController {
 	
 	// TODO: create tests
 	
 	private final CuisineRepository cuisineRepo;
 
-//	@GetMapping
-//	public List<Cuisine> index(){
-//		return cuisineRepo.findAll();
-//	}
-//
-//	@GetMapping("/{type}")
-//	public ResponseEntity<?> show(@PathVariable String type) {
-//		Optional<Cuisine> maybeEntry = cuisineRepo.findById(type);
-//		return ResponseEntity.of(maybeEntry);
-//	}
+	@GetMapping
+	public List<Cuisine> index(){
+		return cuisineRepo.findAll();
+	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cuisine create(@RequestBody @Valid Cuisine cuisine) {
 		
-		return cuisineRepo.save(cuisine);
+		return cuisineRepo.save(cuisine);		
 	}
 
 	@DeleteMapping("/{type}")

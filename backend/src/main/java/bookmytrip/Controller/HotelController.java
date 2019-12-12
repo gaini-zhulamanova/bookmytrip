@@ -17,14 +17,16 @@ import lombok.RequiredArgsConstructor;
 public class HotelController {
 	
 	// TODO: create tests
+	// TODO: adapt City enum
 	
 	private final HotelRepository hotelRepo;
 	
 	@GetMapping
 	public ResponseEntity<?> index(@PathVariable String city) {
 		
-		List<Hotel> maybeHotels = hotelRepo.findByCity(city);		
-		return ResponseEntity.of(Optional.of(maybeHotels));
+		var maybeHotels = Optional.of(hotelRepo
+				.findByCity(city));		
+		return ResponseEntity.of(maybeHotels);
 	}
 	
 	@GetMapping("/{id}")
@@ -32,8 +34,43 @@ public class HotelController {
 			@PathVariable Long id,
 			@PathVariable String city) {
 		
-		Optional<Hotel> maybeHotels = hotelRepo.findByCityAndId(city, id);
+		var maybeHotels = Optional.of(hotelRepo
+				.findByCityAndId(city, id));
 		return ResponseEntity.of(maybeHotels);
+	}
+	
+	@GetMapping("/filter")
+	public ResponseEntity<?> showByFilter(
+			@PathVariable String city, 
+			@RequestParam(required = false) Boolean breakfast, 
+			@RequestParam(required = false) Integer stars,
+			@RequestParam(required = false) Integer rating) {
+		
+		List<Hotel> maybeHotels = null;
+		
+		if (breakfast != null) {
+			maybeHotels = hotelRepo.findByCityAndBreakfastInclOrderByName(city, breakfast);
+		}
+		
+		// TODO: filter by several stars (for instance, 3* + 4*)
+		
+		if (maybeHotels != null && stars != null) {
+			maybeHotels.retainAll(hotelRepo
+					.findByCityAndStarsOrderByName(city, stars));
+		} else if (stars != null) {
+			maybeHotels = hotelRepo
+					.findByCityAndStarsOrderByName(city, stars);
+		}
+		
+		if (maybeHotels != null && rating != null) {
+			maybeHotels.retainAll(hotelRepo
+					.findByCityAndRatingOrderByName(city, rating));
+		} else if (rating != null) {
+			maybeHotels = hotelRepo
+					.findByCityAndRatingOrderByName(city, rating);
+		}
+		
+		return ResponseEntity.of(Optional.of(maybeHotels));		
 	}
 	
 	@PostMapping

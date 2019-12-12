@@ -16,15 +16,17 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/book-my-trip/{city}/museums")
 public class MuseumController {
 	
-	// TODO: create tests
+	// TODO: create tests	
+	// TODO: adapt City enum
 	
 	private final MuseumRepository museumRepo;
 	
 	@GetMapping
 	public ResponseEntity<?> index(@PathVariable String city) {
 		
-		List<Museum> maybeMuseums = museumRepo.findByCity(city);		
-		return ResponseEntity.of(Optional.of(maybeMuseums));
+		var maybeMuseums = Optional.of(museumRepo
+				.findByCity(city));		
+		return ResponseEntity.of(maybeMuseums);
 	}
 	
 	@GetMapping("/{id}")
@@ -32,8 +34,45 @@ public class MuseumController {
 			@PathVariable Long id,
 			@PathVariable String city) {
 		
-		Optional<Museum> maybeMuseums = museumRepo.findByCityAndId(city, id);
+		var maybeMuseums = Optional.of(museumRepo
+				.findByCityAndId(city, id));
 		return ResponseEntity.of(maybeMuseums);
+	}
+	
+	@GetMapping("/filter")
+	public ResponseEntity<?> showByFilter(
+			@PathVariable String city, 
+			@RequestParam(required = false) String type, 
+			@RequestParam(required = false) Integer priceLevel,
+			@RequestParam(required = false) Integer rating) {
+		
+		List<Museum> maybeMuseums = null;
+		
+		// TODO: filter by several types (for instance, historical + contemporary)
+		
+		if (type != null) {
+			maybeMuseums = museumRepo.findByCityAndTypeOrderByName(city, type);
+		}
+		
+		// TODO: filter by several price levels (for instance, cheap + medium)
+		
+		if (maybeMuseums != null && priceLevel != null) {
+			maybeMuseums.retainAll(museumRepo
+					.findByCityAndPriceLevelOrderByPriceLevel(city, priceLevel));
+		} else if (priceLevel != null) {
+			maybeMuseums = museumRepo
+					.findByCityAndPriceLevelOrderByPriceLevel(city, priceLevel);
+		}
+		
+		if (maybeMuseums != null && rating != null) {
+			maybeMuseums.retainAll(museumRepo
+					.findByCityAndRatingOrderByName(city, rating));
+		} else if (rating != null) {
+			maybeMuseums = museumRepo
+					.findByCityAndRatingOrderByName(city, rating);
+		}
+		
+		return ResponseEntity.of(Optional.of(maybeMuseums));		
 	}
 	
 	@PostMapping
@@ -59,7 +98,7 @@ public class MuseumController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		museumRepo.save(museum);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(museumRepo.findAll(),HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")

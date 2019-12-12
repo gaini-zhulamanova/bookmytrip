@@ -14,6 +14,8 @@ import lombok.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Entry {
 	
+	// TODO: adapt City enum
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

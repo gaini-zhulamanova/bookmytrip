@@ -1,23 +1,15 @@
 package bookmytrip.Repository;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
-import org.springframework.data.jpa.repository.*;
+import java.util.List;
 
 import bookmytrip.Entity.Museum;
 
-public interface MuseumRepository extends JpaRepository<Museum, Long> {
+public interface MuseumRepository extends EntryRepository<Museum> {
 	
-	default List<Museum> findByCity(String city) {
-		return findAll().stream()
-				.filter(m -> m.getCity().equals(city))
-				.collect(Collectors.toList());
-	}
+	// TODO: implement a sorting functionality (according to different criteria - name, price level, rating etc.)
+	// TODO: adapt City enum
 	
-	default Optional<Museum> findByCityAndId(String city, Long id) {
-		return findByCity(city).stream()
-				.filter(m -> m.getId().equals(id))
-				.findFirst();
-	}
+	List<Museum> findByCityAndPriceLevelOrderByPriceLevel(String city, Integer priceLevel);
+	
+	List<Museum> findByCityAndTypeOrderByName(String city, String type);
 }

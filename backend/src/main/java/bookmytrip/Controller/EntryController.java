@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/book-my-trip")
 public class EntryController {	
 	
-	private final EntryRepository entryRepository;
+	private final EntryRepository<Entry> entryRepository;
 	
 //	@GetMapping
 //	public List<Entry> index() {		
@@ -24,7 +24,7 @@ public class EntryController {
 	@GetMapping("/{city}")
 	public ResponseEntity<?> showEntriesByCity(@PathVariable String city) {
 		
-		Optional<List<Entry>> maybeCity = entryRepository.findByCity(city);
-		return ResponseEntity.of(maybeCity);
+		List<Entry> maybeCity = entryRepository.findByCity(city);
+		return ResponseEntity.of(Optional.of(maybeCity));
 	}
 }
