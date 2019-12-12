@@ -28,11 +28,14 @@ public class ReviewController {
 			@RequestParam(required = false) Integer rating) {
 		
 		List<Review> maybeReviews= null;
+		City enumCity = City.convertToEnum(city);
 		
 		if (rating != null) {
-			maybeReviews = reviewRepo.filterByRating(city, entries, entryId, rating);
+			maybeReviews = reviewRepo
+					.filterByRating(enumCity, entries, entryId, rating);
 		} else {
-			maybeReviews = reviewRepo.findAllByCityAndEntryId(city, entries, entryId);
+			maybeReviews = reviewRepo
+					.findAllByCityAndEntryId(enumCity, entries, entryId);
 		}
 		
 		return ResponseEntity.of(Optional.of(maybeReviews));		
@@ -45,7 +48,9 @@ public class ReviewController {
 			@PathVariable Long entryId,
 			@PathVariable Long id) {
 		
-		Optional<Review> maybeReview = reviewRepo.findByIdLimited(city, entries, entryId, id);
+		City enumCity = City.convertToEnum(city);
+		Optional<Review> maybeReview = reviewRepo
+				.findByIdLimited(enumCity, entries, entryId, id);
 		return ResponseEntity.of(maybeReview);
 	}
 
@@ -65,8 +70,11 @@ public class ReviewController {
 			@PathVariable Long id,
 			@RequestBody Review review) {
 		
+		City enumCity = City.convertToEnum(city);
 		review.setId(id);
-		if (reviewRepo.findByIdLimited(city, entries, entryId, id).isEmpty()) {
+		if (reviewRepo
+				.findByIdLimited(enumCity, entries, entryId, id)
+				.isEmpty()) {
 			return new ResponseEntity<>(review, HttpStatus.NOT_FOUND);
 		}
 		reviewRepo.save(review);
@@ -80,7 +88,10 @@ public class ReviewController {
 			@PathVariable Long entryId,
 			@PathVariable Long id) {	
 		
-		if (reviewRepo.findByIdLimited(city, entries, entryId, id).isEmpty()) {
+		City enumCity = City.convertToEnum(city);
+		if (reviewRepo
+				.findByIdLimited(enumCity, entries, entryId, id)
+				.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		reviewRepo.deleteById(id);

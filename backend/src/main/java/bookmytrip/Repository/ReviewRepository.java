@@ -9,12 +9,12 @@ import bookmytrip.Entity.*;
 
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 	
-	default List<Review> findAllByCityAndEntryId(String city, String entries, Long entryId) {			
+	default List<Review> findAllByCityAndEntryId(City city, String entries, Long entryId) {			
 		return findAll().stream()
 				.filter(r -> r.getEntry().getCity().equals(city))
 				.filter(r -> entryTypeMatches(entries, r))
 				.filter(r -> r.getEntry().getId().equals(entryId))
-				.sorted((r1, r2) -> r2.getId().compareTo(r1.getId())) // sort by ID (from the most recent) TODO: test, whether .compareTo works
+				.sorted((r1, r2) -> r2.getId().compareTo(r1.getId()))
 				.collect(Collectors.toList());				
 	}
 	
@@ -31,14 +31,14 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 			}
 	}
 	
-	default List<Review> filterByRating(String city, String entries, Long entryId, Integer rating) {
+	default List<Review> filterByRating(City city, String entries, Long entryId, Integer rating) {
 		return findAllByCityAndEntryId(city, entries, entryId).stream()
 				.filter(r -> r.getRating() >= rating)
-				.sorted((r1, r2) -> r2.getId().compareTo(r1.getId())) // sort by ID (from the most recent) TODO: test, whether .compareTo works
+				.sorted((r1, r2) -> r2.getId().compareTo(r1.getId()))
 				.collect(Collectors.toList());
 	}
 		
-	default Optional<Review> findByIdLimited(String city, String entries, Long entryId, Long id) {
+	default Optional<Review> findByIdLimited(City city, String entries, Long entryId, Long id) {
 		return findAllByCityAndEntryId(city, entries, entryId)
 				.stream().filter(r -> r.getId().equals(id))
 				.findFirst();

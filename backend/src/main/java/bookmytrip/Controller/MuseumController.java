@@ -7,7 +7,7 @@ import javax.validation.Valid;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
-import bookmytrip.Entity.Museum;
+import bookmytrip.Entity.*;
 import bookmytrip.Repository.MuseumRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -16,16 +16,16 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/book-my-trip/{city}/museums")
 public class MuseumController {
 	
-	// TODO: create tests	
-	// TODO: adapt City enum
+	// TODO: create tests
 	
 	private final MuseumRepository museumRepo;
 	
 	@GetMapping
 	public ResponseEntity<?> index(@PathVariable String city) {
 		
+		City enumCity = City.convertToEnum(city);
 		var maybeMuseums = Optional.of(museumRepo
-				.findByCity(city));		
+				.findByCity(enumCity));		
 		return ResponseEntity.of(maybeMuseums);
 	}
 	
@@ -34,8 +34,20 @@ public class MuseumController {
 			@PathVariable Long id,
 			@PathVariable String city) {
 		
+		City enumCity = City.convertToEnum(city);
 		var maybeMuseums = Optional.of(museumRepo
-				.findByCityAndId(city, id));
+				.findByCityAndId(enumCity, id));
+		return ResponseEntity.of(maybeMuseums);
+	}
+	
+	@GetMapping("/search")
+	public ResponseEntity<?> showByName(
+			@PathVariable String city, 
+			@RequestParam(required = false) String name) {
+		
+		City enumCity = City.convertToEnum(city);
+		var maybeMuseums = Optional.of(museumRepo
+				.findByCityAndNameOrderByRating(enumCity, name));
 		return ResponseEntity.of(maybeMuseums);
 	}
 	
@@ -47,29 +59,29 @@ public class MuseumController {
 			@RequestParam(required = false) Integer rating) {
 		
 		List<Museum> maybeMuseums = null;
-		
+		City enumCity = City.convertToEnum(city);
 		// TODO: filter by several types (for instance, historical + contemporary)
 		
 		if (type != null) {
-			maybeMuseums = museumRepo.findByCityAndTypeOrderByName(city, type);
+			maybeMuseums = museumRepo.findByCityAndTypeOrderByName(enumCity, type);
 		}
 		
 		// TODO: filter by several price levels (for instance, cheap + medium)
 		
 		if (maybeMuseums != null && priceLevel != null) {
 			maybeMuseums.retainAll(museumRepo
-					.findByCityAndPriceLevelOrderByPriceLevel(city, priceLevel));
+					.findByCityAndPriceLevelOrderByPriceLevel(enumCity, priceLevel));
 		} else if (priceLevel != null) {
 			maybeMuseums = museumRepo
-					.findByCityAndPriceLevelOrderByPriceLevel(city, priceLevel);
+					.findByCityAndPriceLevelOrderByPriceLevel(enumCity, priceLevel);
 		}
 		
 		if (maybeMuseums != null && rating != null) {
 			maybeMuseums.retainAll(museumRepo
-					.findByCityAndRatingOrderByName(city, rating));
+					.findByCityAndRatingOrderByName(enumCity, rating));
 		} else if (rating != null) {
 			maybeMuseums = museumRepo
-					.findByCityAndRatingOrderByName(city, rating);
+					.findByCityAndRatingOrderByName(enumCity, rating);
 		}
 		
 		return ResponseEntity.of(Optional.of(maybeMuseums));		
@@ -81,8 +93,9 @@ public class MuseumController {
 			@PathVariable String city,
 			@RequestBody @Valid Museum museum) {
 		
+		City enumCity = City.convertToEnum(city);
 		museum.setId(null);
-		museum.setCity(city);
+		museum.setCity(enumCity);
 		return museumRepo.save(museum);
 	}	
 	
@@ -92,9 +105,10 @@ public class MuseumController {
 			@RequestBody @Valid Museum museum, 
 			@PathVariable String city) {
 		
+		City enumCity = City.convertToEnum(city);
 		museum.setId(id);
-		museum.setCity(city);
-		if (museumRepo.findByCityAndId(city, id).isEmpty()) {
+		museum.setCity(enumCity);
+		if (museumRepo.findByCityAndId(enumCity, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		museumRepo.save(museum);
@@ -106,7 +120,8 @@ public class MuseumController {
 			@PathVariable Long id,
 			@PathVariable String city) {	
 		
-		if (museumRepo.findByCityAndId(city, id).isEmpty()) {
+		City enumCity = City.convertToEnum(city);
+		if (museumRepo.findByCityAndId(enumCity, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		museumRepo.deleteById(id);

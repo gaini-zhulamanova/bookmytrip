@@ -3,14 +3,13 @@ package bookmytrip.Repository;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import bookmytrip.Entity.Restaurant;
+import bookmytrip.Entity.*;
 
 public interface RestaurantRepository extends EntryRepository<Restaurant> {
 	
 	// TODO: implement a sorting functionality (according to different criteria - name, price level, rating etc.)
-	// TODO: adapt City enum
 	
-	default List<Restaurant> findByCityAndCuisineOrderByName(String city, String cuisine) {
+	default List<Restaurant> findByCityAndCuisineOrderByName(City city, String cuisine) {
 		return findByCity(city).stream()
 				.filter(r -> r.getCuisines().stream()
 						.anyMatch(c -> c.getType().equals(cuisine)))
@@ -18,5 +17,5 @@ public interface RestaurantRepository extends EntryRepository<Restaurant> {
 				.collect(Collectors.toList());
 	}
 	
-	List<Restaurant> findByCityAndPriceLevelOrderByPriceLevel(String city, Integer priceLevel);
+	List<Restaurant> findByCityAndPriceLevelOrderByPriceLevel(City city, Integer priceLevel);
 }

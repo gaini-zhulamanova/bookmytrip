@@ -7,7 +7,7 @@ import javax.validation.Valid;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
-import bookmytrip.Entity.Restaurant;
+import bookmytrip.Entity.*;
 import bookmytrip.Repository.RestaurantRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -18,15 +18,15 @@ import lombok.RequiredArgsConstructor;
 public class RestaurantController {
 	
 	// TODO: create tests
-	// TODO: adapt City enum
 	
 	private final RestaurantRepository restaurantRepo;
 	
 	@GetMapping
 	public ResponseEntity<?> index(@PathVariable String city) {
 		
+		City enumCity = City.convertToEnum(city);
 		var maybeRestaurants = Optional.of(restaurantRepo
-				.findByCity(city));		
+				.findByCity(enumCity));		
 		return ResponseEntity.of(maybeRestaurants);
 	}
 	
@@ -35,8 +35,9 @@ public class RestaurantController {
 			@PathVariable Long id,
 			@PathVariable String city) {
 		
+		City enumCity = City.convertToEnum(city);
 		var maybeRestaurant = Optional.of(restaurantRepo
-				.findByCityAndId(city, id));
+				.findByCityAndId(enumCity, id));
 		return ResponseEntity.of(maybeRestaurant);
 	}
 		
@@ -45,8 +46,9 @@ public class RestaurantController {
 			@PathVariable String city, 
 			@RequestParam(required = false) String name) {
 		
+		City enumCity = City.convertToEnum(city);
 		var maybeRestaurants = Optional.of(restaurantRepo
-				.findByCityAndNameOrderByRating(city, name));
+				.findByCityAndNameOrderByRating(enumCity, name));
 		return ResponseEntity.of(maybeRestaurants);
 	}
 	
@@ -58,29 +60,30 @@ public class RestaurantController {
 			@RequestParam(required = false) Integer rating) {
 		
 		List<Restaurant> maybeRestaurants = null;
+		City enumCity = City.convertToEnum(city);
 		
 		// TODO: filter by several cuisines (for instance, Italian + German)
 		
 		if (cuisine != null) {
-			maybeRestaurants = restaurantRepo.findByCityAndCuisineOrderByName(city, cuisine);
+			maybeRestaurants = restaurantRepo.findByCityAndCuisineOrderByName(enumCity, cuisine);
 		}
 		
 		// TODO: filter by several price levels (for instance, cheap + medium)
 		
 		if (maybeRestaurants != null && priceLevel != null) {
 			maybeRestaurants.retainAll(restaurantRepo
-					.findByCityAndPriceLevelOrderByPriceLevel(city, priceLevel));
+					.findByCityAndPriceLevelOrderByPriceLevel(enumCity, priceLevel));
 		} else if (priceLevel != null) {
 			maybeRestaurants = restaurantRepo
-					.findByCityAndPriceLevelOrderByPriceLevel(city, priceLevel);
+					.findByCityAndPriceLevelOrderByPriceLevel(enumCity, priceLevel);
 		}
 		
 		if (maybeRestaurants != null && rating != null) {
 			maybeRestaurants.retainAll(restaurantRepo
-					.findByCityAndRatingOrderByName(city, rating));
+					.findByCityAndRatingOrderByName(enumCity, rating));
 		} else if (rating != null) {
 			maybeRestaurants = restaurantRepo
-					.findByCityAndRatingOrderByName(city, rating);
+					.findByCityAndRatingOrderByName(enumCity, rating);
 		}
 		
 		return ResponseEntity.of(Optional.of(maybeRestaurants));		
@@ -92,8 +95,9 @@ public class RestaurantController {
 			@PathVariable String city,
 			@RequestBody @Valid Restaurant restaurant) {
 		
+		City enumCity = City.convertToEnum(city);
 		restaurant.setId(null);
-		restaurant.setCity(city);
+		restaurant.setCity(enumCity);
 		return restaurantRepo.save(restaurant);
 	}	
 	
@@ -103,9 +107,10 @@ public class RestaurantController {
 			@PathVariable String city, 
 			@RequestBody @Valid Restaurant restaurant) {
 		
+		City enumCity = City.convertToEnum(city);
 		restaurant.setId(id);
-		restaurant.setCity(city);
-		if (restaurantRepo.findByCityAndId(city, id).isEmpty()) {
+		restaurant.setCity(enumCity);
+		if (restaurantRepo.findByCityAndId(enumCity, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		restaurantRepo.save(restaurant);
@@ -117,7 +122,8 @@ public class RestaurantController {
 			@PathVariable Long id,
 			@PathVariable String city) {
 		
-		if (restaurantRepo.findByCityAndId(city, id).isEmpty()) {
+		City enumCity = City.convertToEnum(city);
+		if (restaurantRepo.findByCityAndId(enumCity, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		restaurantRepo.deleteById(id);
