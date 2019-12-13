@@ -10,6 +10,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FooterComponent } from './footer/footer.component';
 import { CityCardsComponent } from './city-cards/city-cards.component';
+import { DropdownButtonComponent } from './dropdown-button/dropdown-button.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CityCardsComponent } from './city-cards/city-cards.component';
     SidebarComponent,
     HomepageComponent,
     FooterComponent,
-    CityCardsComponent
+    CityCardsComponent,
+    DropdownButtonComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule],
