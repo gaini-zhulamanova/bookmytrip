@@ -11,6 +11,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { FooterComponent } from './footer/footer.component';
 import { CityCardsComponent } from './city-cards/city-cards.component';
 import { DropdownButtonComponent } from './dropdown-button/dropdown-button.component';
+import { PageWithFiltersComponent } from './page-with-filters/page-with-filters.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { DropdownButtonComponent } from './dropdown-button/dropdown-button.compo
     HomepageComponent,
     FooterComponent,
     CityCardsComponent,
-    DropdownButtonComponent
+    DropdownButtonComponent,
+    PageWithFiltersComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule],
