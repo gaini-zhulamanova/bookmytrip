@@ -13,7 +13,6 @@ import lombok.*;
 @Getter @Setter
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Entry {
-
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +33,7 @@ public class Entry {
 //	@NotBlank
 //	private String phoneNumber;
 //
-//	// TODO: NotNull we do later
+//	@NotNull
 //	@NotBlank
 //	private String address;
 }

@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/book-my-trip/{city}/museums")
+@CrossOrigin("http://localhost:4200")
 public class MuseumController {
 	
 	// TODO: create tests
@@ -52,11 +53,11 @@ public class MuseumController {
 	}
 	
 	@GetMapping("/filter")
-	public ResponseEntity<?> showByFilter(
+	public List<Museum> showByFilter(
 			@PathVariable String city, 
 			@RequestParam(required = false) String type, 
-			@RequestParam(required = false) Integer priceLevel,
-			@RequestParam(required = false) Integer rating) {
+			@RequestParam(required = false) String priceLevel,
+			@RequestParam(required = false) String rating) {
 		
 		List<Museum> maybeMuseums = null;
 		City enumCity = City.convertToEnum(city);
@@ -70,21 +71,21 @@ public class MuseumController {
 		
 		if (maybeMuseums != null && priceLevel != null) {
 			maybeMuseums.retainAll(museumRepo
-					.findByCityAndPriceLevelOrderByPriceLevel(enumCity, priceLevel));
+					.findByCityAndPriceLevelOrderByPriceLevel(enumCity, Integer.parseInt(priceLevel)));
 		} else if (priceLevel != null) {
 			maybeMuseums = museumRepo
-					.findByCityAndPriceLevelOrderByPriceLevel(enumCity, priceLevel);
+					.findByCityAndPriceLevelOrderByPriceLevel(enumCity, Integer.parseInt(priceLevel));
 		}
 		
 		if (maybeMuseums != null && rating != null) {
 			maybeMuseums.retainAll(museumRepo
-					.findByCityAndRatingOrderByName(enumCity, rating));
+					.findByCityAndRatingOrderByName(enumCity, Integer.parseInt(rating)));
 		} else if (rating != null) {
 			maybeMuseums = museumRepo
-					.findByCityAndRatingOrderByName(enumCity, rating);
+					.findByCityAndRatingOrderByName(enumCity, Integer.parseInt(rating));
 		}
 		
-		return ResponseEntity.of(Optional.of(maybeMuseums));		
+		return maybeMuseums;		
 	}
 	
 	@PostMapping
