@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { CardsComponent } from './cards/cards.component';
 import { DropdownButtonComponent } from './dropdown-button/dropdown-button.component';
 import { PageWithFiltersComponent } from './page-with-filters/page-with-filters.component';
+import { CarouselCardsComponent } from './carousel-cards/carousel-cards.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PageWithFiltersComponent } from './page-with-filters/page-with-filters.
     FooterComponent,
     CardsComponent,
     DropdownButtonComponent,
-    PageWithFiltersComponent
+    PageWithFiltersComponent,
+    CarouselCardsComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule],
