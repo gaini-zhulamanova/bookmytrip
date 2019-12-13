@@ -9,7 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FooterComponent } from './footer/footer.component';
-import { CityCardsComponent } from './city-cards/city-cards.component';
+import { EntryCardsComponent } from './entry-cards/entry-cards.component';
 import { DropdownButtonComponent } from './dropdown-button/dropdown-button.component';
 import { PageWithFiltersComponent } from './page-with-filters/page-with-filters.component';
 
@@ -21,7 +21,7 @@ import { PageWithFiltersComponent } from './page-with-filters/page-with-filters.
     SidebarComponent,
     HomepageComponent,
     FooterComponent,
-    CityCardsComponent,
+    EntryCardsComponent,
     DropdownButtonComponent,
     PageWithFiltersComponent
   ],
