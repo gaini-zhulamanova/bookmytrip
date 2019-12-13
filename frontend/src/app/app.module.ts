@@ -13,6 +13,7 @@ import { CardsComponent } from './cards/cards.component';
 import { DropdownButtonComponent } from './dropdown-button/dropdown-button.component';
 import { PageWithFiltersComponent } from './page-with-filters/page-with-filters.component';
 import { CarouselCardsComponent } from './carousel-cards/carousel-cards.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { CarouselCardsComponent } from './carousel-cards/carousel-cards.componen
     CarouselCardsComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, FormsModule],
+    BrowserModule, HttpClientModule, FormsModule, NgbModule],
   providers: [],
   bootstrap: [AppComponent]
 })

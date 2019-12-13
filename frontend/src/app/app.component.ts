@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Restaurant } from './restaurant/restaurant';
 import { RestaurantService } from './restaurant/restaurant.service';
+import { NgbSlideEvent, NgbSlideEventSource, NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -9,7 +10,9 @@ import { RestaurantService } from './restaurant/restaurant.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  
+
+  constructor(private restaurantService: RestaurantService){}
+
   restaurants: Restaurant[] = [];
 
   newRestaurantName: string = "";
@@ -19,7 +22,7 @@ export class AppComponent implements OnInit {
   restaurantToUpdate: number;
   restaurantToDelete: number;
 
-  constructor(private restaurantService: RestaurantService){}
+  @ViewChild('ngcarousel', { static: true }) ngCarousel: NgbCarousel;
 
   ngOnInit() {
     this.restaurantService.getAllRestaurants().subscribe(restaurantsFromBackend =>{
@@ -28,6 +31,40 @@ export class AppComponent implements OnInit {
       console.log(restaurantsFromBackend);
       this.restaurants = restaurantsFromBackend;
     });
+  }
+
+  slideActivate(ngbSlideEvent: NgbSlideEvent) {
+    console.log(ngbSlideEvent.source);
+    console.log(ngbSlideEvent.paused);
+    console.log(NgbSlideEventSource.INDICATOR);
+    console.log(NgbSlideEventSource.ARROW_LEFT);
+    console.log(NgbSlideEventSource.ARROW_RIGHT);
+  }
+
+  // Move to specific slide
+  navigateToSlide(item) {
+    this.ngCarousel.select(item);
+    console.log(item);
+  }
+
+  // Move to previous slide
+  getToPrev() {
+    this.ngCarousel.prev();
+  }
+
+  // Move to next slide
+  goToNext() {
+    this.ngCarousel.next();
+  }
+
+  // Pause slide
+  stopCarousel() {
+    this.ngCarousel.pause();
+  }
+
+  // Restart carousel
+  restartCarousel() {
+    this.ngCarousel.cycle();
   }
 
   createNewRestaurant(){
@@ -66,5 +103,4 @@ export class AppComponent implements OnInit {
         console.log('Es kam zu einem Fehler beim Entfernen');
       })
     }
-    
   }
