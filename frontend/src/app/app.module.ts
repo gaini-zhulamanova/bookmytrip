@@ -7,8 +7,8 @@ import {FormsModule} from '@angular/forms';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { EntryQuestionComponent } from './entry-question/entry-question.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +16,8 @@ import { HomepageComponent } from './homepage/homepage.component';
     RestaurantComponent,
     HeaderComponent,
     SidebarComponent,
-    EntryQuestionComponent,
-    HomepageComponent
+    HomepageComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule],
