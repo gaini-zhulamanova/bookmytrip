@@ -1,0 +1,33 @@
+<h2>Museums aus der DB:</h2>
+<ul>
+  <li *ngFor="let museum of museums">{{museum.name}} mit Id {{museum.id}} 
+      in der Stadt {{museum.city}} mit PriceLevel {{museum.priceLevel}} mit Type {{museum.type}}</li>
+</ul>
+
+<h4>Fügen Sie bitte Ihr Museum: </h4>
+<input type="text" [(ngModel)]="newMuseumName" placeholder="Museum name eingeben"/>
+<br/>
+<input type="text" [(ngModel)]="newCity" placeholder="Stadt eingeben"/>
+<br/>
+<input type="text" [(ngModel)]="newType" placeholder="Type eingeben"/>
+<br/>
+<input type="number" [(ngModel)]="newPriceLevel" placeholder="Preisstufe eingeben"/>
+<br/>
+<button (click)="createNewMuseum()">New Museum</button>
+<br/>
+
+<h2>Museums to filter:</h2>
+<ul>
+  <li *ngFor="let filteredMuseum of filteredMuseums">{{museum.name}} mit Id {{museum.id}} 
+      in der Stadt {{museum.city}} mit PriceLevel {{museum.priceLevel}} mit Type {{museum.type}}</li>
+</ul>
+
+<h4>Fügen Sie bitte Ihr Filter: </h4>
+<input type="text" [(ngModel)]="typeFilter" placeholder="Museum type eingeben"/>
+<br/>
+<input type="text" [(ngModel)]="priceLevelFilter" placeholder="Price eingeben"/>
+<br/>
+<input type="text" [(ngModel)]="ratingFilter" placeholder="Rating eingeben"/>
+<br/>
+<button (click)="filter()">Apply</button>
+<br/>
