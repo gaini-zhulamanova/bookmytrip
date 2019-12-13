@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FooterComponent } from './footer/footer.component';
+import { CityCardsComponent } from './city-cards/city-cards.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FooterComponent } from './footer/footer.component';
     HeaderComponent,
     SidebarComponent,
     HomepageComponent,
-    FooterComponent
+    FooterComponent,
+    CityCardsComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule],
