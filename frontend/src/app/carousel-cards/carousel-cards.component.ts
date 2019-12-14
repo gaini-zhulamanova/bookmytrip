@@ -16,21 +16,21 @@ export class CarouselCardsComponent implements OnInit {
      {
       city: ' City 1',
       location: 'Berlin',
-      description: 'Hier is Berlin',
+      description: 'Hier ist Berlin',
       img: '/assets/berlin.jpg',
      },
 
      {
       city: ' City 2',
       location: 'Frankfurt am Main',
-      description: 'Hier is Frankfurt',
+      description: 'Hier ist Frankfurt',
       img: '/assets/frankfurt.jpg',
      },
 
      {
       city: ' City 3',
       location: 'Hamburg',
-      description: 'Hier is Hamburg',
+      description: 'Hier ist Hamburg',
       img: '/assets/hamburg.jpg',
      }
    ]
