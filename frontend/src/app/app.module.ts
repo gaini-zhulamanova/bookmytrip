@@ -14,6 +14,10 @@ import { DropdownButtonComponent } from './dropdown-button/dropdown-button.compo
 import { PageWithFiltersComponent } from './page-with-filters/page-with-filters.component';
 import { CarouselCardsComponent } from './carousel-cards/carousel-cards.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from './modal/modal.component';
+import { ModalEntryQuestionComponent } from './modal-entry-question/modal-entry-question.component';
+import { SearchFieldCitiesComponent } from './search-field-cities/search-field-cities.component';
+import { SearchCitiesPipe } from './search-cities.pipe';
 
 @NgModule({
   declarations: [
@@ -26,11 +30,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CardsComponent,
     DropdownButtonComponent,
     PageWithFiltersComponent,
-    CarouselCardsComponent
+    CarouselCardsComponent,
+    ModalComponent,
+    ModalEntryQuestionComponent,
+    SearchFieldCitiesComponent,
+    SearchCitiesPipe
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, NgbModule],
-  providers: [],
+  providers: [SearchCitiesPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

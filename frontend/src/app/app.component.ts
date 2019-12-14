@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Restaurant } from './restaurant/restaurant';
 import { RestaurantService } from './restaurant/restaurant.service';
-import { NgbSlideEvent, NgbSlideEventSource, NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -22,7 +21,6 @@ export class AppComponent implements OnInit {
   restaurantToUpdate: number;
   restaurantToDelete: number;
 
-  @ViewChild('ngcarousel', { static: true }) ngCarousel: NgbCarousel;
 
   ngOnInit() {
     this.restaurantService.getAllRestaurants().subscribe(restaurantsFromBackend =>{
@@ -33,39 +31,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  slideActivate(ngbSlideEvent: NgbSlideEvent) {
-    console.log(ngbSlideEvent.source);
-    console.log(ngbSlideEvent.paused);
-    console.log(NgbSlideEventSource.INDICATOR);
-    console.log(NgbSlideEventSource.ARROW_LEFT);
-    console.log(NgbSlideEventSource.ARROW_RIGHT);
-  }
-
-  // Move to specific slide
-  navigateToSlide(item) {
-    this.ngCarousel.select(item);
-    console.log(item);
-  }
-
-  // Move to previous slide
-  getToPrev() {
-    this.ngCarousel.prev();
-  }
-
-  // Move to next slide
-  goToNext() {
-    this.ngCarousel.next();
-  }
-
-  // Pause slide
-  stopCarousel() {
-    this.ngCarousel.pause();
-  }
-
-  // Restart carousel
-  restartCarousel() {
-    this.ngCarousel.cycle();
-  }
+ 
 
   createNewRestaurant(){
     let newRestaurant = new Restaurant();

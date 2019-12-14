@@ -1,1 +1,19 @@
 
+.entry-question-wrapper {
+    text-align: center;
+    margin-top: 5%;
+
+}
+.entry-question{
+    border: dotted gray;
+    display: inline-block;
+}
+
+.rounded-circle {
+    width: 500px;
+    height: 170px;
+}
+
+.card-body{
+    margin: 20px;
+}

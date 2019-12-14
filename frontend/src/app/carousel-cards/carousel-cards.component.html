@@ -1,50 +1,17 @@
-<ngb-carousel
-#ngcarousel
-[showNavigationArrows]="true" 
-[showNavigationIndicators]="true"
-interval="5000"
-[keyboard]="true"
-[pauseOnHover]="true"
-[wrap]="true"
-[activeId]="'firstSlide'"
-(slide)="slideActivate($event)"
->
-    <ng-template ngbSlide id="firstSlide">
-      <div class="city-images">
-        <img src="assets/berlin.jpg" alt="Berlin">
-      </div>
-      <div class="carousel-caption">
-        <h3>Berlin</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </div>
-    </ng-template>
-    <ng-template ngbSlide id="secondSlide">
-      <div class="city-images">
-        <img src="assets/frankfurt.jpg" alt="Frankfurt">
-      </div>
-      <div class="carousel-caption">
-        <h3>Frankfurt</h3>
-        <p>Consectetur tortor volutpat pretium.</p>
-      </div>
-    </ng-template>
-    <ng-template ngbSlide id="thirdSlide">
-        <div class="city-images">
-          <img src="assets/hamburg.jpg" alt="Hamburg">
-        </div>
-        <div class="carousel-caption">
-          <h3>Hamburg</h3>
-          <p>Consectetur tortor volutpat pretium.</p>
-        </div>
-      </ng-template>
-  </ngb-carousel>
 
-  <hr>
-
-
-
-  <div class="text-center">
-    <button (click)="navigateToSlide('four')">Go to Slide Four</button>
-    <button (click)="getToPrev()">Prev</button>
-    <button (click)="goToNext()">Next</button>
-    <button (click)="stopCarousel()">Pause</button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 py-3">
+      <!-- <h2 class="carousel-title">Dein nächster toller Ausflug</h2> -->
+      <ngb-carousel *ngIf="city_list" [showNavigationArrows]="true" interval="5000">
+        <ng-template ngbSlide *ngFor="let city of city_list">
+          <img [src]="city.img" alt="Random slide">
+          <div class="carousel-caption">
+            <h3>{{ city.location }}</h3>
+            <p [innerText]="city.description"></p>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
   </div>
+</div>
