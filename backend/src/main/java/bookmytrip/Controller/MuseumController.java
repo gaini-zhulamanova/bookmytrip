@@ -22,16 +22,14 @@ public class MuseumController {
 	private final MuseumRepository museumRepo;
 	
 	@GetMapping
-	public ResponseEntity<?> index(@PathVariable String city) {
+	public List<Museum> index(@PathVariable String city) {
 		
 		City enumCity = City.convertToEnum(city);
-		var maybeMuseums = Optional.of(museumRepo
-				.findByCity(enumCity));		
-		return ResponseEntity.of(maybeMuseums);
+		return museumRepo.findByCity(enumCity);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?> show(
+	public ResponseEntity<?> showById(
 			@PathVariable Long id,
 			@PathVariable String city) {
 		
@@ -42,22 +40,20 @@ public class MuseumController {
 	}
 	
 	@GetMapping("/search")
-	public ResponseEntity<?> showByName(
+	public List<Museum> showByName(
 			@PathVariable String city, 
 			@RequestParam(required = false) String name) {
 		
 		City enumCity = City.convertToEnum(city);
-		var maybeMuseums = Optional.of(museumRepo
-				.findByCityAndNameOrderByRating(enumCity, name));
-		return ResponseEntity.of(maybeMuseums);
+		return museumRepo.findByCityAndNameOrderByRating(enumCity, name);
 	}
 	
 	@GetMapping("/filter")
 	public List<Museum> showByFilter(
 			@PathVariable String city, 
 			@RequestParam(required = false) String type, 
-			@RequestParam(required = false) String priceLevel,
-			@RequestParam(required = false) String rating) {
+			@RequestParam(required = false) Integer priceLevel,
+			@RequestParam(required = false) Integer rating) {
 		
 		List<Museum> maybeMuseums = null;
 		City enumCity = City.convertToEnum(city);
@@ -71,18 +67,18 @@ public class MuseumController {
 		
 		if (maybeMuseums != null && priceLevel != null) {
 			maybeMuseums.retainAll(museumRepo
-					.findByCityAndPriceLevelOrderByPriceLevel(enumCity, Integer.parseInt(priceLevel)));
+					.findByCityAndPriceLevelOrderByPriceLevel(enumCity,priceLevel));
 		} else if (priceLevel != null) {
 			maybeMuseums = museumRepo
-					.findByCityAndPriceLevelOrderByPriceLevel(enumCity, Integer.parseInt(priceLevel));
+					.findByCityAndPriceLevelOrderByPriceLevel(enumCity, priceLevel);
 		}
 		
 		if (maybeMuseums != null && rating != null) {
 			maybeMuseums.retainAll(museumRepo
-					.findByCityAndRatingOrderByName(enumCity, Integer.parseInt(rating)));
+					.findByCityAndRatingOrderByName(enumCity, rating));
 		} else if (rating != null) {
 			maybeMuseums = museumRepo
-					.findByCityAndRatingOrderByName(enumCity, Integer.parseInt(rating));
+					.findByCityAndRatingOrderByName(enumCity, rating);
 		}
 		
 		return maybeMuseums;		

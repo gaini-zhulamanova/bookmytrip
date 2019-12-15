@@ -22,16 +22,14 @@ public class HotelController {
 	private final HotelRepository hotelRepo;
 	
 	@GetMapping
-	public ResponseEntity<?> index(@PathVariable String city) {
+	public List<Hotel> index(@PathVariable String city) {
 		
 		City enumCity = City.convertToEnum(city);
-		var maybeHotels = Optional.of(hotelRepo
-				.findByCity(enumCity));		
-		return ResponseEntity.of(maybeHotels);
+		return hotelRepo.findByCity(enumCity);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?> show(
+	public ResponseEntity<?> showById(
 			@PathVariable Long id,
 			@PathVariable String city) {
 		
@@ -42,18 +40,16 @@ public class HotelController {
 	}
 	
 	@GetMapping("/search")
-	public ResponseEntity<?> showByName(
+	public List<Hotel> showByName(
 			@PathVariable String city, 
 			@RequestParam(required = false) String name) {
 		
 		City enumCity = City.convertToEnum(city);
-		var maybeHotels = Optional.of(hotelRepo
-				.findByCityAndNameOrderByRating(enumCity, name));
-		return ResponseEntity.of(maybeHotels);
+		return hotelRepo.findByCityAndNameOrderByRating(enumCity, name);
 	}
 	
 	@GetMapping("/filter")
-	public ResponseEntity<?> showByFilter(
+	public List<Hotel> showByFilter(
 			@PathVariable String city, 
 			@RequestParam(required = false) Boolean breakfast, 
 			@RequestParam(required = false) Integer stars,
@@ -84,7 +80,7 @@ public class HotelController {
 					.findByCityAndRatingOrderByName(enumCity, rating);
 		}
 		
-		return ResponseEntity.of(Optional.of(maybeHotels));		
+		return maybeHotels;		
 	}
 	
 	@PostMapping

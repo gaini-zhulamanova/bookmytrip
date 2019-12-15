@@ -23,16 +23,14 @@ public class RestaurantController {
 	private final RestaurantRepository restaurantRepo;
 	
 	@GetMapping
-	public ResponseEntity<?> index(@PathVariable String city) {
+	public List<Restaurant> index(@PathVariable String city) {
 		
 		City enumCity = City.convertToEnum(city);
-		var maybeRestaurants = Optional.of(restaurantRepo
-				.findByCity(enumCity));		
-		return ResponseEntity.of(maybeRestaurants);
+		return restaurantRepo.findByCity(enumCity);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<?> show(
+	public ResponseEntity<?> showById(
 			@PathVariable Long id,
 			@PathVariable String city) {
 		
@@ -43,18 +41,16 @@ public class RestaurantController {
 	}
 		
 	@GetMapping("/search")
-	public ResponseEntity<?> showByName(
+	public List<Restaurant> showByName(
 			@PathVariable String city, 
 			@RequestParam(required = false) String name) {
 		
 		City enumCity = City.convertToEnum(city);
-		var maybeRestaurants = Optional.of(restaurantRepo
-				.findByCityAndNameOrderByRating(enumCity, name));
-		return ResponseEntity.of(maybeRestaurants);
+		return restaurantRepo.findByCityAndNameOrderByRating(enumCity, name);
 	}
 	
 	@GetMapping("/filter")
-	public ResponseEntity<?> showByFilter(
+	public List<Restaurant> showByFilter(
 			@PathVariable String city, 
 			@RequestParam(required = false) String cuisine, 
 			@RequestParam(required = false) Integer priceLevel,
@@ -87,7 +83,7 @@ public class RestaurantController {
 					.findByCityAndRatingOrderByName(enumCity, rating);
 		}
 		
-		return ResponseEntity.of(Optional.of(maybeRestaurants));		
+		return maybeRestaurants;		
 	}
 	
 	@PostMapping
