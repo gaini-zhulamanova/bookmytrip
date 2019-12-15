@@ -18,6 +18,15 @@ import { ModalComponent } from './modal/modal.component';
 import { ModalEntryQuestionComponent } from './modal-entry-question/modal-entry-question.component';
 import { SearchFieldCitiesComponent } from './search-field-cities/search-field-cities.component';
 import { SearchCitiesPipe } from './search-cities.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SidebarFilterComponent } from './sidebar-filter/sidebar-filter.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+
 
 @NgModule({
   declarations: [
@@ -34,10 +43,12 @@ import { SearchCitiesPipe } from './search-cities.pipe';
     ModalComponent,
     ModalEntryQuestionComponent,
     SearchFieldCitiesComponent,
-    SearchCitiesPipe
+    SearchCitiesPipe,
+    SidebarFilterComponent,
   ],
   imports: [
-    BrowserModule, HttpClientModule, FormsModule, NgbModule],
+    // tslint:disable-next-line: max-line-length
+    BrowserModule, HttpClientModule, FormsModule, NgbModule, BrowserAnimationsModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,],
   providers: [SearchCitiesPipe],
   bootstrap: [AppComponent]
 })

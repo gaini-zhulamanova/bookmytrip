@@ -1,0 +1,31 @@
+
+.container {
+    border: dotted grey 1px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+}
+.flex-items {
+    border: dotted rgb(42, 165, 149) 1px;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+}
+
+.card {
+    border: dotted red 1px;
+    width: 300px;
+    height: 360px;
+}
+
+.card-body {
+    border: dotted gold 1px;
+    padding: 3px 5px;
+}
+
+a {
+    padding-bottom: 5px;
+}
+

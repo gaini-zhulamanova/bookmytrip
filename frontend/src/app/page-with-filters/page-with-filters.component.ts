@@ -7,7 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageWithFiltersComponent implements OnInit {
 
-  constructor() { }
+  showDiv = true;
+
+   toggleSidebar() {
+    if(this.showDiv === true){
+      this.showDiv = false;
+    } else {
+      this.showDiv = true;
+    }
+  }
+
+  constructor() {
+
+   }
+
 
   ngOnInit() {
   }

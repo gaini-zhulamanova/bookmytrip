@@ -1,22 +1,31 @@
+
+
+
 .main-content {
     border: dotted grey 1px;
-    margin: 10px 0;
+    margin: 5px 0;
     width: 100%;
+    position: relative;
+    min-height: 100vh;
+
+
+}
+
+
+.cards {
+    padding: 26px 5%;
+    width: 100%;
+}
+
+.cards .no-results-message {
+    display: none;
+    text-align: center;
 }
 
 h4 {
     text-align: center;
 }
 
-.sidebar {
-    border: dotted grey 1px;
-    margin: 10px 0;
-    padding: 10px;
-    width: 50%;
-}
 
-*, *::after, *::before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
+
+
