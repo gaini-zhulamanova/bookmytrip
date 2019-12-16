@@ -1,10 +1,10 @@
 
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport
+    <mat-sidenav #drawer class="sidenav" fixedInViewport = false
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="(isHandset$ | async) === false">
-      <!-- <mat-toolbar>Menu</mat-toolbar> -->
+      <mat-toolbar color="primary">Filter-Kategorien</mat-toolbar>
       <mat-nav-list>
           <app-sidebar></app-sidebar>
       </mat-nav-list>
@@ -17,10 +17,14 @@
           mat-icon-button
           (click)="drawer.toggle()"
           *ngIf="isHandset$ | async">
-          <mat-icon aria-label="Side nav toggle icon">Filter</mat-icon>
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
-        <span>
-        </span>
+        <span>Book My Trip</span>
+        <span class="spacer"></span>
+        <a href="#">Home</a>
+        <a href="#">Restaurants</a>
+        <a href="#">Hotels</a>
+        <a href="#">Museen</a>
       </mat-toolbar>
       <ng-content></ng-content>
       <!-- Add Content Here -->
@@ -31,7 +35,7 @@
             <div class="row">
 
                 <div class="col-12">
-
+                    <button type="button" mat-button (click)="drawer.toggle()">Filtern</button>
                     <h4>Stadtname</h4>
 
                     <div class="row cards">
