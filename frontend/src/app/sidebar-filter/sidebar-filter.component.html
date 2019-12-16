@@ -1,136 +1,171 @@
+
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-    <!-- <mat-toolbar>Menu</mat-toolbar> -->
-    <mat-nav-list>
-      <div class="filter">  
-        <form>
-                <!-- filter-block -->
-                <div class="filter-block">
-                    <h5>Küchen</h5>
+    <mat-sidenav #drawer class="sidenav" fixedInViewport
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="(isHandset$ | async) === false">
+      <!-- <mat-toolbar>Menu</mat-toolbar> -->
+      <mat-nav-list>
+        <div class="filter">  
+          <form>
+            <!-- filter-block -->
+            <div class="filter-block">
+                <h5>Küchen</h5>
+                <!-- filter-content -->
+                <ul class="filter-content filters list">
+                    <li>
+                        <input class="filter" data-filter="check" type="checkbox" id="checkbox1">
+                        <label class="checkbox-label" for="checkbox">Asiatisch</label>
+                    </li>
+
+                    <li>
+                        <input class="filter" data-filter="check" type="checkbox" id="checkbox2">
+                        <label class="checkbox-label" for="checkbox">Deutsch</label>
+                    </li>
+
+                    <li>
+                        <input class="filter" data-filter="check" type="checkbox" id="checkbox3">
+                        <label class="checkbox-label" for="checkbox">Tuerkisch</label>
+                    </li>
+
+                    <li>
+                        <input class="filter" data-filter="check" type="checkbox" id="checkbox3">
+                        <label class="checkbox-label" for="checkbox">Arabisch</label>
+                    </li>
+
+                </ul> <!-- filter-content -->
+            </div> <!-- filter-block -->
+
+            <!-- filter-block -->
+            <div class="filter-block">
+                <h5>Bewertung</h5>
+                <!-- filter-content -->
+                <ul class="filter-content filters list">
+                    <li class="rating best">
+                        <input class="filter" data-filter="check" type="checkbox" id="checkbox1">
+                        <span class="fa fa-star" style="color: orange;"></span>
+                        <span class="fa fa-star" style="color: orange;"></span>
+                        <span class="fa fa-star" style="color: orange;"></span>
+                        <span class="fa fa-star" style="color: orange;"></span>
+                        <span class="fa fa-star" style="color: orange;"></span>
+                    </li>
+
+                    <li class="rating very-good">
+                        <input class="filter" data-filter="check" type="checkbox" id="checkbox2">
+                        <span class="fa fa-star" style="color: orange;"></span>
+                        <span class="fa fa-star" style="color: orange;"></span>
+                        <span class="fa fa-star" style="color: orange;"></span>
+                        <span class="fa fa-star" style="color: orange;"></span>
+                        <span class="fa fa-star-o"></span>
+                    </li>
+
+                    <li class="rating good">
+                        <input class="filter" data-filter="check" type="checkbox" id="checkbox3">
+                        <span class="fa fa-star" style="color: orange;"></span>
+                        <span class="fa fa-star" style="color: orange;"></span>
+                        <span class="fa fa-star" style="color: orange;"></span>
+                        <span class="fa fa-star-o"></span>
+                        <span class="fa fa-star-o"></span>
+                    </li>
+
+                    <li class="rating ok">
+                        <input class="filter" data-filter="check" type="checkbox" id="checkbox3">
+                        <span class="fa fa-star" style="color: orange;"></span>
+                        <span class="fa fa-star" style="color: orange;"></span>
+                        <span class="fa fa-star-o"></span>
+                        <span class="fa fa-star-o"></span>
+                        <span class="fa fa-star-o"></span>
+                    </li>
+
+                    <li class="rating bad">
+                        <input class="filter" data-filter="check" type="checkbox" id="checkbox3">
+                        <span class="fa fa-star" style="color: orange;"></span>
+                        <span class="fa fa-star-o"></span>
+                        <span class="fa fa-star-o"></span>
+                        <span class="fa fa-star-o"></span>
+                        <span class="fa fa-star-o"></span>
+                    </li>
+                </ul> <!-- filter-content -->
+            </div> <!-- filter-block -->
+
+            <!-- filter-block -->
+            <div class="filter-block">
+                    <h5>Preisstufe</h5>
                     <!-- filter-content -->
                     <ul class="filter-content filters list">
                         <li>
                             <input class="filter" data-filter="check" type="checkbox" id="checkbox1">
-                            <label class="checkbox-label" for="checkbox">Asiatisch</label>
+                            <label class="checkbox-label" for="checkbox">Guenstig</label>
                         </li>
 
                         <li>
                             <input class="filter" data-filter="check" type="checkbox" id="checkbox2">
-                            <label class="checkbox-label" for="checkbox">Deutsch</label>
+                            <label class="checkbox-label" for="checkbox">Mittel</label>
                         </li>
 
                         <li>
                             <input class="filter" data-filter="check" type="checkbox" id="checkbox3">
-                            <label class="checkbox-label" for="checkbox">Tuerkisch</label>
-                        </li>
-
-                        <li>
-                            <input class="filter" data-filter="check" type="checkbox" id="checkbox3">
-                            <label class="checkbox-label" for="checkbox">Arabisch</label>
-                        </li>
-
-                    </ul> <!-- filter-content -->
-                </div> <!-- filter-block -->
-
-                <!-- filter-block -->
-                <div class="filter-block">
-                    <h5>Bewertung</h5>
-                    <!-- filter-content -->
-                    <ul class="filter-content filters list">
-                        <li class="rating best">
-                            <input class="filter" data-filter="check" type="checkbox" id="checkbox1">
-                            <span class="fa fa-star" style="color: orange;"></span>
-                            <span class="fa fa-star" style="color: orange;"></span>
-                            <span class="fa fa-star" style="color: orange;"></span>
-                            <span class="fa fa-star" style="color: orange;"></span>
-                            <span class="fa fa-star" style="color: orange;"></span>
-                        </li>
-
-                        <li class="rating very-good">
-                            <input class="filter" data-filter="check" type="checkbox" id="checkbox2">
-                            <span class="fa fa-star" style="color: orange;"></span>
-                            <span class="fa fa-star" style="color: orange;"></span>
-                            <span class="fa fa-star" style="color: orange;"></span>
-                            <span class="fa fa-star" style="color: orange;"></span>
-                            <span class="fa fa-star-o"></span>
-                        </li>
-
-                        <li class="rating good">
-                            <input class="filter" data-filter="check" type="checkbox" id="checkbox3">
-                            <span class="fa fa-star" style="color: orange;"></span>
-                            <span class="fa fa-star" style="color: orange;"></span>
-                            <span class="fa fa-star" style="color: orange;"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                        </li>
-
-                        <li class="rating ok">
-                            <input class="filter" data-filter="check" type="checkbox" id="checkbox3">
-                            <span class="fa fa-star" style="color: orange;"></span>
-                            <span class="fa fa-star" style="color: orange;"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                        </li>
-
-                        <li class="rating bad">
-                            <input class="filter" data-filter="check" type="checkbox" id="checkbox3">
-                            <span class="fa fa-star" style="color: orange;"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
-                            <span class="fa fa-star-o"></span>
+                            <label class="checkbox-label" for="checkbox">Teuer</label>
                         </li>
                     </ul> <!-- filter-content -->
+
+                    <div class="button-filter">
+                        <button class="apply">Filtern</button>
+                    </div>
                 </div> <!-- filter-block -->
+          </form>
+        </div>
+  
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">Filter</mat-icon>
+        </button>
+        <span>
+        </span>
+      </mat-toolbar>
+      <ng-content></ng-content>
+      <!-- Add Content Here -->
 
-                <!-- filter-block -->
-                <div class="filter-block">
-                        <h5>Preisstufe</h5>
-                        <!-- filter-content -->
-                        <ul class="filter-content filters list">
-                            <li>
-                                <input class="filter" data-filter="check" type="checkbox" id="checkbox1">
-                                <label class="checkbox-label" for="checkbox">Guenstig</label>
-                            </li>
+      <div class="container-fluid">
+        
+        <main class="main-content">
 
-                            <li>
-                                <input class="filter" data-filter="check" type="checkbox" id="checkbox2">
-                                <label class="checkbox-label" for="checkbox">Mittel</label>
-                            </li>
+            <div class="row">
 
-                            <li>
-                                <input class="filter" data-filter="check" type="checkbox" id="checkbox3">
-                                <label class="checkbox-label" for="checkbox">Teuer</label>
-                            </li>
-                        </ul> <!-- filter-content -->
+                <div class="col-12">
 
-                        <div class="button-filter">
-                            <button class="apply">Filtern</button>
+                    <h4>Stadtname</h4>
+
+                    <div class="row cards">
+                        <div class="col-12">
+                            <app-cards></app-cards>
+                            <div class="no-results-message">No results found</div>
                         </div>
-                    </div> <!-- filter-block -->
-        </form>
-</div>
+                    </div>
 
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">Filter</mat-icon>
-      </button>
-      <span>
-      </span>
-    </mat-toolbar>
-    <ng-content></ng-content>
-    <!-- Add Content Here -->
-  </mat-sidenav-content>
-</mat-sidenav-container>
+
+
+                </div>
+            </div>
+
+    </main>
+
+        <div class="row footer">
+            <div class="col-12 navbar navbar-expand-lg navbar-light bg-light">
+                <app-footer></app-footer>
+            </div>
+        </div>
+
+    </div>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
