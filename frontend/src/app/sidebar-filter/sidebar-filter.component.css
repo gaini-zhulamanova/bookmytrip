@@ -61,3 +61,7 @@ h4 {
   display: none;
   text-align: center;
 }
+
+.fa-star {
+  color: orange;
+}

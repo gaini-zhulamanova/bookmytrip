@@ -33,3 +33,7 @@ li {
   .button-filter {
       text-align: center;
   }
+
+  span .fa .fa-star {
+    color: orange;
+  }
