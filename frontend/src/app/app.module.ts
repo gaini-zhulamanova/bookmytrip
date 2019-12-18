@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, FormControl} from '@angular/forms';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -31,6 +31,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormComponent } from './form/form.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { StarRatingComponent } from './star-rating/star-rating.component';
+import { ReactiveFormsModule  } from "@angular/forms";
 
 
 @NgModule({
@@ -50,13 +52,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     SearchFieldCitiesComponent,
     SearchCitiesPipe,
     SidebarFilterComponent,
-    FormComponent
+    FormComponent,
+    StarRatingComponent
   ],
   imports: [
     // tslint:disable-next-line: max-line-length
     BrowserModule, HttpClientModule, FormsModule, NgbModule, BrowserAnimationsModule,
     LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule,
-    MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatFormFieldModule],
+    MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatFormFieldModule, 
+    ReactiveFormsModule],
   providers: [SearchCitiesPipe],
   bootstrap: [AppComponent]
 })
