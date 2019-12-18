@@ -1,3 +1,70 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+/* .sidenav .mat-toolbar {
+  background: inherit;
+} */
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.mat-toolbar {
+  font-size: medium;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar a {
+  display: inline-block;
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+  font-size: medium;
+}
+ol, ul {
+  border: dotted #808080 1px;
+  padding-left: 1rem;
+  list-style: none;
+}
+
+input[type='checkbox'] {
+  border: dotted #808080 1px;
+  margin: 5px 10px;
+
+}
+
+li {
+  padding-right: 20px;
+}
+
+.button-filter {
+    text-align: center;
+}
+
+h4 {
+  text-align: center;
+}
+
+.cards .no-results-message {
+  display: none;
+  text-align: center;
+}
+
+.fa-star {
+  color: orange;
+}
 
 .entry-question-wrapper {
     text-align: center;

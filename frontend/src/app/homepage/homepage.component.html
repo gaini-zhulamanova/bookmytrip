@@ -9,13 +9,36 @@
 </head>
 <body>
 
-    <div class="container-fluid">
+    <mat-sidenav-container class="sidenav-container">
+        <mat-sidenav #drawer class="sidenav" fixedInViewport = false>
+          <mat-toolbar color="primary">Filter-Kategorien</mat-toolbar>
+          <mat-nav-list>
+              <app-sidebar></app-sidebar>
+          </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+          <mat-toolbar color="primary">
+            <button
+              type="button"
+              aria-label="Toggle sidenav"
+              mat-icon-button
+              (click)="drawer.toggle()">
+              <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <span>        
+                <a class="navbar-brand d-none d-lg-inline-block" href="#"> Logo</a>
+            </span>
+            <span>Book My Trip</span>
+            <span class="spacer"></span>
+            <a href="#">Home</a>
+            <a href="#">Restaurants</a>
+            <a href="#">Hotels</a>
+            <a href="#">Museen</a>
+          </mat-toolbar>
+          <ng-content></ng-content>
+          <!-- Add Content Here -->
 
-        <div class="row">
-            <div class="col-12 header">
-                <app-header></app-header>
-            </div>
-        </div>
+    <div class="container-fluid">
 
         <div class="entry-question-wrapper">
             <div class="entry-question">
@@ -45,7 +68,8 @@
             </div>
         </div>
 
-
+    </mat-sidenav-content>
+</mat-sidenav-container>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
