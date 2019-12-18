@@ -1,37 +1,77 @@
-<form>
-    <div class="form-group">
-        <h2>Ihre Bewertung</h2>
-        <h4>Wie können Sie Ihren Aufenthalt insgesamt bewerten?</h4>
-        <app-star-rating></app-star-rating>
-        <label for="title">Titel Ihrer Bewertung</label>
-        <input 
-            type="text" 
-            class="form-control" 
-            ngModel 
-            name="title" 
-            #title="ngModel"
-            required 
-            maxlength="30"/>
-        <div 
-            class="alert alert-danger" 
-            *ngIf="title.touched && !title.valid">
-        <div *ngIf="title.errors.required">
-            Geben Sie bitte einen Titel ein.
+<div class="container">
+    <section class="title-rating row">
+        <div class="col">
+            <h4>Ihre Bewertung</h4>
+            <h5>Wie können Sie Ihren Aufenthalt insgesamt bewerten?</h5>
         </div>
-        <div *ngIf="title.errors.maxlength">
-            Titel-Feld darf maximal aus 30 Zeichen bestehen.
+    </section>
+
+    <section class="row">
+        <div class="col">
+            <app-star-rating></app-star-rating> 
         </div>
+    </section>
+    
+    <section class="text-rating row">
+
+        <div class="col">
+            <label for="title">Titel Ihrer Bewertung</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                ngModel 
+                name="title" 
+                #title="ngModel"
+                required 
+                maxlength="30"/>
+            <div class="alert alert-danger" *ngIf="title.touched && !title.valid">
+                <div *ngIf="title.errors.required">Geben Sie bitte einen Titel ein.</div>
+                <div *ngIf="title.errors.maxlength">Titel-Feld darf maximal aus 30 Zeichen bestehen.</div>
+            </div>
+        
+            <div class="from-group">
+                <label for="comment">Ihr Kommentar</label>
+                <textarea 
+                    class="form-control" 
+                    cols="5" 
+                    rows="3" 
+                    ngModel 
+                    name="comment">
+                </textarea>
+            </div>
         </div>
-    </div>
-    <div class="from-group">
-        <label for="comment">Ihr Kommentar</label>
-        <textarea 
-            class="form-control" 
-            cols="5" 
-            rows="3" 
-            ngModel 
-            name="comment">
-        </textarea>
-    </div>
-    <button class="btn btn-primary">Submit</button>
-</form>
+    </section>
+
+    <section class="row service">
+        <div class="col">
+            <h6>Wie bewerten Sie den Service?</h6>
+            <app-star-rating></app-star-rating> 
+        </div>
+    </section>
+
+    <section class="row essen">
+        <div class="col">
+            <h6>Wie bewerten Sie das Essen?</h6>
+            <app-star-rating></app-star-rating> 
+        </div>
+    </section>
+
+    <section class="row price">
+        <div class="col">
+            <h6>Wie bewerten Sie das Preis-Niveau?</h6>
+            <app-star-rating></app-star-rating> 
+        </div>
+    </section>
+
+    <section class="row date">
+        <div class="col">
+            <h6>Datum der Bewertung</h6>
+            <p>Hier steht dann das Datum</p>
+            <!-- <app-date></app-date> -->
+        </div>
+    </section>
+
+    <section class="row btn">
+        <button class="btn btn-primary">Submit</button>
+    </section>
+</div>

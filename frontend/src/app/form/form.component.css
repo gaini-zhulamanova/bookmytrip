@@ -1,6 +1,8 @@
 form {
     padding: 20px;
     margin: 70px 200px;
+    display: flex;
+    flex-direction: column;
 }
 
 .btn {
@@ -11,6 +13,7 @@ form {
     border: 1px solid red;
 }
 
-h2 {
-    margin-bottom: 20px;
+.title {
+    padding-top: 20px;
+    margin: 20px 0;
 }
