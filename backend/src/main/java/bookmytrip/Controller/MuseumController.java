@@ -14,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/book-my-trip/{city}/museums")
-@CrossOrigin("http://localhost:4200")
 public class MuseumController {
 	
 	// TODO: create tests
@@ -25,7 +24,7 @@ public class MuseumController {
 	public List<Museum> index(@PathVariable String city) {
 		
 		City enumCity = City.convertToEnum(city);
-		return museumRepo.findByCity(enumCity);
+		return museumRepo.findByContactCity(enumCity);
 	}
 	
 	@GetMapping("/{id}")
@@ -35,7 +34,7 @@ public class MuseumController {
 		
 		City enumCity = City.convertToEnum(city);
 		var maybeMuseums = Optional.of(museumRepo
-				.findByCityAndId(enumCity, id));
+				.findByContactCityAndId(enumCity, id));
 		return ResponseEntity.of(maybeMuseums);
 	}
 	
@@ -60,17 +59,17 @@ public class MuseumController {
 		// TODO: filter by several types (for instance, historical + contemporary)
 		
 		if (type != null) {
-			maybeMuseums = museumRepo.findByCityAndTypeOrderByName(enumCity, type);
+			maybeMuseums = museumRepo.findByContactCityAndTypeOrderByName(enumCity, type);
 		}
 		
 		// TODO: filter by several price levels (for instance, cheap + medium)
 		
 		if (maybeMuseums != null && priceLevel != null) {
 			maybeMuseums.retainAll(museumRepo
-					.findByCityAndPriceLevelOrderByPriceLevel(enumCity,priceLevel));
+					.findByContactCityAndPriceLevelOrderByPriceLevel(enumCity,priceLevel));
 		} else if (priceLevel != null) {
 			maybeMuseums = museumRepo
-					.findByCityAndPriceLevelOrderByPriceLevel(enumCity, priceLevel);
+					.findByContactCityAndPriceLevelOrderByPriceLevel(enumCity, priceLevel);
 		}
 		
 		if (maybeMuseums != null && rating != null) {
@@ -92,7 +91,7 @@ public class MuseumController {
 		
 		City enumCity = City.convertToEnum(city);
 		museum.setId(null);
-		museum.setCity(enumCity);
+		museum.getContact().setCity(enumCity);
 		return museumRepo.save(museum);
 	}	
 	
@@ -104,8 +103,8 @@ public class MuseumController {
 		
 		City enumCity = City.convertToEnum(city);
 		museum.setId(id);
-		museum.setCity(enumCity);
-		if (museumRepo.findByCityAndId(enumCity, id).isEmpty()) {
+		museum.getContact().setCity(enumCity);
+		if (museumRepo.findByContactCityAndId(enumCity, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		museumRepo.save(museum);
@@ -118,7 +117,7 @@ public class MuseumController {
 			@PathVariable String city) {	
 		
 		City enumCity = City.convertToEnum(city);
-		if (museumRepo.findByCityAndId(enumCity, id).isEmpty()) {
+		if (museumRepo.findByContactCityAndId(enumCity, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		museumRepo.deleteById(id);

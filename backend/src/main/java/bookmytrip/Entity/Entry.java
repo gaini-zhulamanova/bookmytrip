@@ -22,18 +22,11 @@ public class Entry {
 	@JsonBackReference
 	private List<Review> reviews;
 	
-	@NotNull
-	@Column(nullable = false)
-	private City city;
-	
 	@NotBlank
 	@Column(nullable = false)
 	private String name;
-
-//	@NotBlank
-//	private String phoneNumber;
-//
-//	@NotNull
-//	@NotBlank
-//	private String address;
+	
+	@Embedded
+	private Contact contact;
+	
 }

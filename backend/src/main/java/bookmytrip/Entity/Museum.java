@@ -12,7 +12,7 @@ import lombok.*;
 @PrimaryKeyJoinColumn(name = "museum_id")
 public class Museum extends Entry {
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinTable(
 			name = "museum_to_type",
 			joinColumns = @JoinColumn(name = "museum_id"),

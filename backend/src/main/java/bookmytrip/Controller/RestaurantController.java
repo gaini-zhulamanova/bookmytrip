@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/book-my-trip/{city}/restaurants")
-@CrossOrigin("http://localhost:4200")
 public class RestaurantController {
 	
 	// TODO: create tests
@@ -26,7 +25,7 @@ public class RestaurantController {
 	public List<Restaurant> index(@PathVariable String city) {
 		
 		City enumCity = City.convertToEnum(city);
-		return restaurantRepo.findByCity(enumCity);
+		return restaurantRepo.findByContactCity(enumCity);
 	}
 	
 	@GetMapping("/{id}")
@@ -36,7 +35,7 @@ public class RestaurantController {
 		
 		City enumCity = City.convertToEnum(city);
 		var maybeRestaurant = Optional.of(restaurantRepo
-				.findByCityAndId(enumCity, id));
+				.findByContactCityAndId(enumCity, id));
 		return ResponseEntity.of(maybeRestaurant);
 	}
 		
@@ -62,17 +61,17 @@ public class RestaurantController {
 		// TODO: filter by several cuisines (for instance, Italian + German)
 		
 		if (cuisine != null) {
-			maybeRestaurants = restaurantRepo.findByCityAndCuisineOrderByName(enumCity, cuisine);
+			maybeRestaurants = restaurantRepo.findByContactCityAndCuisineOrderByName(enumCity, cuisine);
 		}
 		
 		// TODO: filter by several price levels (for instance, cheap + medium)
 		
 		if (maybeRestaurants != null && priceLevel != null) {
 			maybeRestaurants.retainAll(restaurantRepo
-					.findByCityAndPriceLevelOrderByPriceLevel(enumCity, priceLevel));
+					.findByContactCityAndPriceLevelOrderByPriceLevel(enumCity, priceLevel));
 		} else if (priceLevel != null) {
 			maybeRestaurants = restaurantRepo
-					.findByCityAndPriceLevelOrderByPriceLevel(enumCity, priceLevel);
+					.findByContactCityAndPriceLevelOrderByPriceLevel(enumCity, priceLevel);
 		}
 		
 		if (maybeRestaurants != null && rating != null) {
@@ -94,7 +93,7 @@ public class RestaurantController {
 		
 		City enumCity = City.convertToEnum(city);
 		restaurant.setId(null);
-		restaurant.setCity(enumCity);
+		restaurant.getContact().setCity(enumCity);
 		return restaurantRepo.save(restaurant);
 	}	
 	
@@ -106,8 +105,8 @@ public class RestaurantController {
 		
 		City enumCity = City.convertToEnum(city);
 		restaurant.setId(id);
-		restaurant.setCity(enumCity);
-		if (restaurantRepo.findByCityAndId(enumCity, id).isEmpty()) {
+		restaurant.getContact().setCity(enumCity);
+		if (restaurantRepo.findByContactCityAndId(enumCity, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		restaurantRepo.save(restaurant);
@@ -120,7 +119,7 @@ public class RestaurantController {
 			@PathVariable String city) {
 		
 		City enumCity = City.convertToEnum(city);
-		if (restaurantRepo.findByCityAndId(enumCity, id).isEmpty()) {
+		if (restaurantRepo.findByContactCityAndId(enumCity, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		restaurantRepo.deleteById(id);

@@ -19,7 +19,7 @@ public class MuseumType {
 
 	@ManyToMany(
 			mappedBy = "types",
-			cascade = CascadeType.ALL)
+			cascade = CascadeType.MERGE)
 	@JsonBackReference
 	private Set<Museum> museums;
 

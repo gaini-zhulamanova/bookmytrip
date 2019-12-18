@@ -35,7 +35,7 @@ public class ReviewController {
 		if (rating != null) {
 			return reviewRepo.filterByRating(enumCity, entries, entryId, rating);
 		} else {
-			return reviewRepo.findAllByCityAndEntryId(enumCity, entries, entryId);
+			return reviewRepo.findAllByContactCityAndEntryId(enumCity, entries, entryId);
 		}	
 	}
 

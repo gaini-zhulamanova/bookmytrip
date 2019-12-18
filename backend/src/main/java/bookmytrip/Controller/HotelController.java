@@ -25,7 +25,7 @@ public class HotelController {
 	public List<Hotel> index(@PathVariable String city) {
 		
 		City enumCity = City.convertToEnum(city);
-		return hotelRepo.findByCity(enumCity);
+		return hotelRepo.findByContactCity(enumCity);
 	}
 	
 	@GetMapping("/{id}")
@@ -35,7 +35,7 @@ public class HotelController {
 		
 		City enumCity = City.convertToEnum(city);
 		var maybeHotels = Optional.of(hotelRepo
-				.findByCityAndId(enumCity, id));
+				.findByContactCityAndId(enumCity, id));
 		return ResponseEntity.of(maybeHotels);
 	}
 	
@@ -59,17 +59,17 @@ public class HotelController {
 		City enumCity = City.convertToEnum(city);	
 		
 		if (breakfast != null) {
-			maybeHotels = hotelRepo.findByCityAndBreakfastInclOrderByName(enumCity, breakfast);
+			maybeHotels = hotelRepo.findByContactCityAndBreakfastInclOrderByName(enumCity, breakfast);
 		}
 		
 		// TODO: filter by several stars (for instance, 3* + 4*)
 		
 		if (maybeHotels != null && stars != null) {
 			maybeHotels.retainAll(hotelRepo
-					.findByCityAndStarsOrderByName(enumCity, stars));
+					.findByContactCityAndStarsOrderByName(enumCity, stars));
 		} else if (stars != null) {
 			maybeHotels = hotelRepo
-					.findByCityAndStarsOrderByName(enumCity, stars);
+					.findByContactCityAndStarsOrderByName(enumCity, stars);
 		}
 		
 		if (maybeHotels != null && rating != null) {
@@ -91,7 +91,7 @@ public class HotelController {
 		
 		City enumCity = City.convertToEnum(city);
 		hotel.setId(null);
-		hotel.setCity(enumCity);
+		hotel.getContact().setCity(enumCity);
 		return hotelRepo.save(hotel);
 	}	
 	
@@ -103,8 +103,8 @@ public class HotelController {
 		
 		City enumCity = City.convertToEnum(city);	
 		hotel.setId(id);
-		hotel.setCity(enumCity);
-		if (hotelRepo.findByCityAndId(enumCity, id).isEmpty()) {
+		hotel.getContact().setCity(enumCity);
+		if (hotelRepo.findByContactCityAndId(enumCity, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		hotelRepo.save(hotel);
@@ -117,7 +117,7 @@ public class HotelController {
 			@PathVariable String city) {	
 		
 		City enumCity = City.convertToEnum(city);
-		if (hotelRepo.findByCityAndId(enumCity, id).isEmpty()) {
+		if (hotelRepo.findByContactCityAndId(enumCity, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		hotelRepo.deleteById(id);

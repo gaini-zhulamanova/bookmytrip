@@ -13,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/book-my-trip")
-@CrossOrigin("http://localhost:4200")
 public class EntryController {	
 	
 	private final EntryRepository<Entry> entryRepository;
@@ -30,6 +29,6 @@ public class EntryController {
 	public List<Entry> showEntriesByCity(@PathVariable String city) {
 		
 		City enumCity = City.convertToEnum(city);
-		return entryRepository.findByCity(enumCity);
+		return entryRepository.findByContactCity(enumCity);
 	}	
 }

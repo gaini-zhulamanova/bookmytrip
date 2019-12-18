@@ -19,7 +19,7 @@ public class Cuisine {
 
 	@ManyToMany(
 			mappedBy = "cuisines",
-			cascade = CascadeType.ALL)
+			cascade = CascadeType.MERGE)
 	@JsonBackReference
 	private Set<Restaurant> restaurants;
 }
