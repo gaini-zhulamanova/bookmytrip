@@ -29,6 +29,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { FormComponent } from './form/form.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
@@ -48,10 +50,13 @@ import { MatMenuModule } from '@angular/material/menu';
     SearchFieldCitiesComponent,
     SearchCitiesPipe,
     SidebarFilterComponent,
+    FormComponent
   ],
   imports: [
     // tslint:disable-next-line: max-line-length
-    BrowserModule, HttpClientModule, FormsModule, NgbModule, BrowserAnimationsModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule,],
+    BrowserModule, HttpClientModule, FormsModule, NgbModule, BrowserAnimationsModule,
+    LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule,
+    MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatFormFieldModule],
   providers: [SearchCitiesPipe],
   bootstrap: [AppComponent]
 })
