@@ -11,15 +11,16 @@ import lombok.*;
 
 @Entity
 @Getter @Setter
-public class Cuisine {
+public class MuseumType {
 	
 	@Id
 	@NotBlank
 	private String type;	
 
 	@ManyToMany(
-			mappedBy = "cuisines",
+			mappedBy = "types",
 			cascade = CascadeType.MERGE)
 	@JsonBackReference
-	private Set<Restaurant> restaurants;
+	private Set<Museum> museums;
+
 }

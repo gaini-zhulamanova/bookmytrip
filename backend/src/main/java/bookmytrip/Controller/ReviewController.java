@@ -17,41 +17,38 @@ import lombok.RequiredArgsConstructor;
 public class ReviewController {
 
 	// TODO: create tests
+	
+	// TODO: make sure 404 error is thrown when we try to access reviews of the entry
+	// that doesn't exist (id isn't valid)
 
 	private final ReviewRepository reviewRepo;
 
 	@GetMapping
-	public ResponseEntity<?> index(
+	public List<Review> index(
 			@PathVariable String city,
 			@PathVariable String entries,
 			@PathVariable Long entryId,
 			@RequestParam(required = false) Integer rating) {
-		
-		List<Review> maybeReviews= null;
+
 		City enumCity = City.convertToEnum(city);
 		
 		if (rating != null) {
-			maybeReviews = reviewRepo
-					.filterByRating(enumCity, entries, entryId, rating);
+			return reviewRepo.filterByRating(enumCity, entries, entryId, rating);
 		} else {
-			maybeReviews = reviewRepo
-					.findAllByCityAndEntryId(enumCity, entries, entryId);
-		}
-		
-		return ResponseEntity.of(Optional.of(maybeReviews));		
+			return reviewRepo.findAllByContactCityAndEntryId(enumCity, entries, entryId);
+		}	
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> show(
+	public ResponseEntity<?> showById(
 			@PathVariable String city,
 			@PathVariable String entries,
 			@PathVariable Long entryId,
 			@PathVariable Long id) {
 		
 		City enumCity = City.convertToEnum(city);
-		Optional<Review> maybeReview = reviewRepo
-				.findByIdLimited(enumCity, entries, entryId, id);
-		return ResponseEntity.of(maybeReview);
+		return ResponseEntity.of(reviewRepo
+				.findByIdLimited(enumCity, entries, entryId, id));
 	}
 
 	@PostMapping

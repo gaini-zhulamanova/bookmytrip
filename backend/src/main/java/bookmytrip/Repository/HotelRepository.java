@@ -8,7 +8,7 @@ public interface HotelRepository extends EntryRepository<Hotel> {
 	
 	// TODO: implement a sorting functionality (according to different criteria - name, price level, rating etc.)
 	
-	List<Hotel> findByCityAndBreakfastInclOrderByName(City city, Boolean breakfastIncl);
+	List<Hotel> findByContactCityAndBreakfastInclOrderByName(City city, Boolean breakfastIncl);
 	
-	List<Hotel> findByCityAndStarsOrderByName(City city, Integer stars);	
+	List<Hotel> findByContactCityAndStarsOrderByName(City city, Integer stars);	
 }

@@ -36,6 +36,9 @@ import { ReactiveFormsModule  } from "@angular/forms";
 import { EntryItemComponent } from './entry-item/entry-item.component';
 
 
+import { CityComponent } from './city/city.component';
+import { MuseumComponent } from './museum/museum.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +58,9 @@ import { EntryItemComponent } from './entry-item/entry-item.component';
     SidebarFilterComponent,
     FormComponent,
     StarRatingComponent,
-    EntryItemComponent
+    EntryItemComponent,
+    CityComponent,
+    MuseumComponent
   ],
   imports: [
     // tslint:disable-next-line: max-line-length

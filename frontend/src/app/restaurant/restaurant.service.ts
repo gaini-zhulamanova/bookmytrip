@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RestaurantService {
 
-  private url = 'http://localhost:8080/book-my-trip/Berlin/restaurants';
+  private url = 'http://localhost:8081/book-my-trip/Berlin/restaurants';
   constructor(private http: HttpClient) {}
 
   public addRestaurant(restaurants: Restaurant): Observable<Restaurant>{
