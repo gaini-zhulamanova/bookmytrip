@@ -1,6 +1,7 @@
 <mat-sidenav-container class="sidenav-container">
 
     <mat-sidenav-content>
+
       <mat-toolbar color="primary">
         <span>        
             <a class="navbar-brand d-none d-lg-inline-block" href="#"> Logo</a>
@@ -12,6 +13,7 @@
         <a href="#">Hotels</a>
         <a href="#">Museen</a>
       </mat-toolbar>
+
       <ng-content></ng-content>
       <!-- Add Content Here -->
 
@@ -21,13 +23,13 @@
 
                 <section class="col-6">
 
-                    <div class="row">
+                    <div class="row nested">
                         <div class="entry-item-name">
                             <h4>Restaurant XY</h4>
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row nested">
                         <div class="entry-item-details">
                             <h4>Adresse</h4>
                         </div>
@@ -42,6 +44,8 @@
 
                     <div class="row">
                         <div class="entry-comments">
+                            <div></div>
+
                             <h4>Kommentare</h4>
                         </div>
                     </div>
