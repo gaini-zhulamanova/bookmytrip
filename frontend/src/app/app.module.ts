@@ -33,6 +33,7 @@ import { FormComponent } from './form/form.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { StarRatingComponent } from './star-rating/star-rating.component';
 import { ReactiveFormsModule  } from "@angular/forms";
+import { EntryItemComponent } from './entry-item/entry-item.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { ReactiveFormsModule  } from "@angular/forms";
     SearchCitiesPipe,
     SidebarFilterComponent,
     FormComponent,
-    StarRatingComponent
+    StarRatingComponent,
+    EntryItemComponent
   ],
   imports: [
     // tslint:disable-next-line: max-line-length

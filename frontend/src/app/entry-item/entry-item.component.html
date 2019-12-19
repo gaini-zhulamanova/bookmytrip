@@ -1,0 +1,66 @@
+<mat-sidenav-container class="sidenav-container">
+
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <span>        
+            <a class="navbar-brand d-none d-lg-inline-block" href="#"> Logo</a>
+        </span>
+        <span>Book My Trip</span>
+        <span class="spacer"></span>
+        <a href="#">Home</a>
+        <a href="#">Restaurants</a>
+        <a href="#">Hotels</a>
+        <a href="#">Museen</a>
+      </mat-toolbar>
+      <ng-content></ng-content>
+      <!-- Add Content Here -->
+
+        <div class="container">
+
+            <div class="row">
+
+                <section class="col-6">
+
+                    <div class="row">
+                        <div class="entry-item-name">
+                            <h4>Restaurant XY</h4>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="entry-item-details">
+                            <h4>Adresse</h4>
+                        </div>
+                        <div class="entry-item-open-hours">
+                            <h4>Open Hours</h4>
+                        </div>
+                    </div>
+
+                </section>
+
+                <section class="col-6">
+
+                    <div class="row">
+                        <div class="entry-comments">
+                            <h4>Kommentare</h4>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+
+            <section class="row btn">
+                <button class="btn btn-primary">Zurück</button>
+            </section>
+
+        </div>
+
+        <div class="row footer">
+            <div class="col-12 navbar navbar-expand-lg navbar-light bg-light">
+                <app-footer></app-footer>
+            </div>
+        </div>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

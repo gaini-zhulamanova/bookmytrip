@@ -17,7 +17,7 @@ form {
 
 .title-rating {
     text-align: center;
-    margin: 40px 0;
+    margin-top: 40px;
 }
 
 h6 {
@@ -27,6 +27,10 @@ h6 {
 .rating-labels {
     font-size: 14px;
 }
+
+/* .star-rating {
+    margin-top: 0;
+} */
 /* Navigation Styling */
 
 .sidenav-container {
@@ -77,5 +81,6 @@ input[type='checkbox'] {
 li {
   padding-right: 20px;
 }
+
 
 
