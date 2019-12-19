@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,13 +23,20 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalEntryQuestionComponent implements OnInit {
 
-  constructor(private modalService: NgbModal) { }
+  city: string;
+
+  constructor(private modalService: NgbModal,
+              private router: Router) { }
 
   openVerticallyCentered(content) {
     this.modalService.open(content, { centered: true });
   }
 
   ngOnInit() {
+  }
+
+  toSidebarFilter(city: string) {
+    this.router.navigate(['book-my-trip', city, 'restaurants']);
   }
 
 }

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
-import { Museum } from './museum';
 import { Observable } from 'rxjs';
+import { Museum } from '../entity/museum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MuseumService {
 
-  private url = 'http://localhost:8081/book-my-trip/Berlin/museums';
+  private url = 'http://localhost:8080/book-my-trip/Berlin/museums';
   constructor(private http: HttpClient) {}
 
   public index(): Observable<Museum[]> {

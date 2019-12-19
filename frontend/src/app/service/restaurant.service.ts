@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Restaurant } from './restaurant';
 import { HttpClient } from '@angular/common/http';
+import { Restaurant } from '../entity/restaurant';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestaurantService {
 
-  private url = 'http://localhost:8081/book-my-trip/Berlin/restaurants';
+  private url = 'http://localhost:8080/book-my-trip/Berlin/restaurants';
   constructor(private http: HttpClient) {}
 
   public addRestaurant(restaurants: Restaurant): Observable<Restaurant>{

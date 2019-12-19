@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CityService {
 
-  private url = 'http://localhost:8081/book-my-trip';
+  private url = 'http://localhost:8080/book-my-trip';
   constructor(private http: HttpClient) { }
 
   public getAllCities(): Observable<string[]> {
