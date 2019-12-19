@@ -4,10 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import { HotelComponent } from './hotel/hotel.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HotelComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule],

@@ -1,0 +1,36 @@
+
+<h1 style="background: rgb(195, 195, 240) ">Hotels aus der DB:</h1>
+
+<ul>
+    <li *ngFor="let hotel of hotels">
+      {{hotel.name}} mit id = {{hotel.id}} in der Stadt {{hotel.city}} mit Stars {{hotel.stars}}
+    </li>
+  </ul>
+<h1>Fügen Sie bitte hier Ihr Hotel: </h1>
+
+<input type="text" [(ngModel)]="newHotelName" placeholder="Name eingeben" />
+<br />
+<input type="text" [(ngModel)]="newCity" placeholder="Stadt eingeben" />
+<br />
+<input type="number" [(ngModel)]="newHotelStars" placeholder="Stars eingeben" />
+<br />
+
+
+
+<input type="boolean" [(ngModel)]="newHotelBreakfast" placeholder="true oder false eingeben" />
+<br />
+<button (click)="createNewHotel()" style="background: rgb(195, 195, 240) ">New Hotel</button>
+
+
+
+<h4>Bitte ID eingeben</h4>
+<input type="number" [(ngModel)]="hotelToUpdate" />
+<br />
+<button (click)="updateHotel()" style="background: rgb(195, 195, 240) ">Update Hotel</button>
+<br />
+<h4>Bitte ID eingeben</h4>
+<input type="number" [(ngModel)]="hotelToDelete" />
+<br />
+<button (click)="deleteHotel()" style="background: rgb(195, 195, 240) ">Delete Hotel</button>
+<br>
+<br>

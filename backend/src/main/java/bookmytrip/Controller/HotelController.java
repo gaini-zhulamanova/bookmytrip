@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/book-my-trip/{city}/hotels")
+@CrossOrigin("http://localhost:4200")
 public class HotelController {
 	
 	// TODO: create tests
@@ -87,8 +88,8 @@ public class HotelController {
 	@PutMapping("/{id}")
 	public ResponseEntity<?> update(
 			@PathVariable Long id,
-			@RequestBody @Valid Hotel hotel, 
-			@PathVariable String city) {
+			@PathVariable String city,
+			@RequestBody @Valid Hotel hotel) {
 		
 		hotel.setId(id);
 		hotel.setCity(city);

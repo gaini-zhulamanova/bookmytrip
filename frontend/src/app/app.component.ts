@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Restaurant } from './restaurant';
 import { RestaurantService } from './restaurant.service';
+import { Hotel } from './hotel/Hotel';
+
 
 @Component({
   selector: 'app-root',
@@ -8,9 +10,8 @@ import { RestaurantService } from './restaurant.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  
-  restaurants: Restaurant[] = [];
 
+  restaurants: Restaurant[] = [];
   newRestaurantName: string = "";
   newCity: string = "";
   newPriceLevel: number;
@@ -18,18 +19,21 @@ export class AppComponent implements OnInit {
   restaurantToUpdate: number;
   restaurantToDelete: number;
 
-  constructor(private restaurantService: RestaurantService){}
+  
+
+  constructor(private restaurantService: RestaurantService) { }
 
   ngOnInit() {
-    this.restaurantService.getAllRestaurants().subscribe(restaurantsFromBackend =>{
+    this.restaurantService.getAllRestaurants().subscribe(restaurantsFromBackend => {
       console.log("Restaurants von Backend empfangen");
       console.log("Ich möchte daten sehen")
       console.log(restaurantsFromBackend);
       this.restaurants = restaurantsFromBackend;
     });
+
   }
 
-  createNewRestaurant(){
+  createNewRestaurant() {
     let newRestaurant = new Restaurant();
     newRestaurant.name = this.newRestaurantName;
     newRestaurant.city = this.newCity;
@@ -39,11 +43,12 @@ export class AppComponent implements OnInit {
       console.log("Neues Restaurant wurde hinzugefügt");
       this.restaurants.push(newAddedRestaurant);
     });
+
   }
 
   updateRestaurant() {
     let restaurant = this.restaurants.find(restaurantToFilter => restaurantToFilter.id === this.restaurantToUpdate);
-    if(restaurant){
+    if (restaurant) {
       console.log(restaurant)
       restaurant.name = restaurant.name + 'ABC';
     }
@@ -57,13 +62,12 @@ export class AppComponent implements OnInit {
     });
   }
 
-    deleteRestaurant(){
-      this.restaurantService.deleteRestaurant(this.restaurantToDelete).subscribe(ok => {
-        console.log('Entfernen hat funktioniert');
-        this.restaurants = this.restaurants.filter(restaurantsToFilter => restaurantsToFilter.id !== this.restaurantToDelete);
-      }, error => {
-        console.log('Es kam zu einem Fehler beim Entfernen');
-      })
-    }
-    
+  deleteRestaurant() {
+    this.restaurantService.deleteRestaurant(this.restaurantToDelete).subscribe(ok => {
+      console.log('Entfernen hat funktioniert');
+      this.restaurants = this.restaurants.filter(restaurantsToFilter => restaurantsToFilter.id !== this.restaurantToDelete);
+    }, error => {
+      console.log('Es kam zu einem Fehler beim Entfernen');
+    })
   }
+}
