@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -25,6 +24,11 @@ export class SidebarFilterComponent {
 
 
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver,
+              private route: ActivatedRoute) {}
+  city: string;
 
+  ngOnInit() {
+    this.city = this.route.snapshot.paramMap.get('city');
+  }
 }

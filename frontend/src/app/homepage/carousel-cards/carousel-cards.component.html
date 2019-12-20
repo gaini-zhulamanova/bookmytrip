@@ -1,0 +1,17 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 py-3">
+      <!-- <h2 class="carousel-title">Dein nächster toller Ausflug</h2> -->
+      <ngb-carousel *ngIf="city_list" [showNavigationArrows]="true" interval="5000">
+        <ng-template ngbSlide *ngFor="let city of city_list">
+          <img (click)="onCitySelectionByImg(city.city)" [src]="city.img" alt="Random slide">
+          <div class="carousel-caption">
+            <h3>{{ city.location }}</h3>
+            <p [innerText]="city.description"></p>
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+  </div>
+</div>

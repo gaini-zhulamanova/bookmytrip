@@ -21,32 +21,88 @@
 
             <div class="row">
 
-                <section class="col-6">
+                <section class="col-6 column">
 
-                    <div class="row nested">
-                        <div class="entry-item-name">
-                            <h4>Restaurant XY</h4>
-                        </div>
-                    </div>
+                        <div class="row nested">
 
-                    <div class="row nested">
-                        <div class="entry-item-details">
-                            <h4>Adresse</h4>
+                            <div class="col">
+
+                                <div class="entry-item-name">
+                                    <h4>Restaurant XY</h4>
+                                    <img src="/assets/placeholder_restaurant.jpg" alt="Restaurant Image" width="500px">
+                                </div>
+
+                            </div>
+
+                            <div class="col">
+
+                                <div class="entry-item-details">
+                                    <div class="entry-item-address">
+                                        <h4>Adresse</h4>
+                                        <p>Beispielstraße 9, Frankfurt am Main</p>
+                                    </div>
+                                </div>
+
+                                <div class="entry-item-details">
+                                    <div class="entry-item-open-hours">
+                                        <h4>Open Hours</h4>
+                                            <table class="table table-borderless">
+                                                <thead>
+                                                  <tr>
+                                                    <th scope="col">Tag der Woche</th>
+                                                    <th scope="col">Öffnungszeiten</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <tr>
+                                                    <td>Montag</td>
+                                                    <td>16:00 - 21:00</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>Dienstag</td>
+                                                    <td>10:00 - 21:00</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>Mittwoch</td>
+                                                    <td>10:00 - 21:00</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>Donnerstag</td>
+                                                    <td>10:00 - 21:00</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>Freitag</td>
+                                                    <td>10:00 - 21:00</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>Samstag</td>
+                                                    <td>10:00 - 21:00</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>Sunday</td>
+                                                    <td>10:00 - 17:00</td>
+                                                  </tr>
+                                                  
+                                                </tbody>
+                                              </table>                                        
+                                    </div>
+                                </div>
+
+                            </div>
+                
                         </div>
-                        <div class="entry-item-open-hours">
-                            <h4>Open Hours</h4>
-                        </div>
-                    </div>
 
                 </section>
 
-                <section class="col-6">
+                <section class="col-6 columns">
 
-                    <div class="row">
+                    <div class="col">
                         <div class="entry-comments">
-                            <div></div>
 
-                            <h4>Kommentare</h4>
+                            <div class="row nested comment">
+                                
+                                <app-comment></app-comment>
+                            </div>
                         </div>
                     </div>
 
