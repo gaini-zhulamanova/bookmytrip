@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule, FormControl} from '@angular/forms';
-import { HeaderComponent } from './header/header.component';
+import {FormsModule } from '@angular/forms';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FooterComponent } from './footer/footer.component';
 import { CardsComponent } from './cards/cards.component';
@@ -35,6 +34,7 @@ import { PageWithFiltersComponent } from './old stuff/page-with-filters/page-wit
 import { CarouselCardsComponent } from './homepage/carousel-cards/carousel-cards.component';
 import { SidebarComponent } from './sidebar-filter/sidebar/sidebar.component';
 import { StarRatingComponent } from './form/star-rating/star-rating.component';
+import { HeaderComponent } from './old stuff/header/header.component';
 
 @NgModule({
   declarations: [

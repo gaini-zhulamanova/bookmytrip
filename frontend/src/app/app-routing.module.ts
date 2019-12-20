@@ -6,7 +6,7 @@ import { SidebarFilterComponent } from './sidebar-filter/sidebar-filter.componen
 const routes: Routes = [
   {path: "", redirectTo: "/book-my-trip", pathMatch: "full"},
   {path: "book-my-trip", component: HomepageComponent},
-  {path: "book-my-trip/:city/restaurants", component: SidebarFilterComponent}
+  {path: "book-my-trip/:city/:entries", component: SidebarFilterComponent}
 ];
 
 @NgModule({

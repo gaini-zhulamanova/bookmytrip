@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 
@@ -24,6 +24,7 @@ import { Router } from '@angular/router';
 export class ModalEntryQuestionComponent implements OnInit {
 
   city: string;
+  chosenCity: string;
 
   constructor(private modalService: NgbModal,
               private router: Router) { }
@@ -35,8 +36,13 @@ export class ModalEntryQuestionComponent implements OnInit {
   ngOnInit() {
   }
 
-  toSidebarFilter(city: string) {
-    this.router.navigate(['book-my-trip', city, 'restaurants']);
+  setChosenCity(city: string) {
+    this.chosenCity = city;
+  }
+
+  toSidebarFilter() {
+    this.modalService.dismissAll('content');
+    this.router.navigate(['book-my-trip', this.chosenCity, 'restaurants']);
   }
 
 }

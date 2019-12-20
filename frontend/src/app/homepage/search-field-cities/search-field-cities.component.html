@@ -4,19 +4,9 @@
 <div class="columns">
 <ul *ngFor="let city of cities | search:searchText">
     <li>
-        <input type="radio" (change)="chooseCity(city)">
+        <input type="radio" name="checkedCity" (change)="chooseCity(city)">
         <label class="toggle"></label>
         {{city}}
     </li>
 </ul>
-<button type="button" class="btn btn-light" (click)="toSidebarFilter()">Submit</button>
-
-<!-- <form [formGroup]="form" (ngSubmit)="submit()">
-    <label formArrayName="citiesForm" *ngFor="let city of form.controls.citiesForm.controls; let i = index">
-      <input type="radio" [formControlName]="i">
-      {{cities[i]}}
-    </label>
-  
-    <button>submit</button>
-</form> -->
 </div>

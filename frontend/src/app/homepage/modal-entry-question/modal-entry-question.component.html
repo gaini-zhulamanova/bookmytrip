@@ -6,10 +6,12 @@
       </button>
     </div>
     <div class="modal-body">
-      <app-search-field-cities></app-search-field-cities>
+      <app-search-field-cities
+      (chosenCity)="setChosenCity($event)"
+      ></app-search-field-cities>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      <button type="button" class="btn btn-light" (click)="toSidebarFilter()">Auswählen</button>
     </div>
   </ng-template>
   

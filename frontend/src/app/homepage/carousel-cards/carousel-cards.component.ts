@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carousel-cards',
@@ -8,37 +9,37 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class CarouselCardsComponent implements OnInit {
 
-  constructor() {
-    
-   }
+  constructor(private router: Router) {}
 
    city_list = [
      {
-      city: ' City 1',
+      city: 'Berlin',
       location: 'Berlin',
       description: 'Hier ist Berlin',
-      img: '/assets/berlin.jpg',
+      img: '/assets/Berlin.jpg',
      },
 
      {
-      city: ' City 2',
+      city: 'Frankfurt',
       location: 'Frankfurt am Main',
       description: 'Hier ist Frankfurt',
-      img: '/assets/frankfurt.jpg',
+      img: '/assets/Frankfurt.jpg',
      },
 
      {
-      city: ' City 3',
+      city: 'Hamburg',
       location: 'Hamburg',
       description: 'Hier ist Hamburg',
-      img: '/assets/hamburg.jpg',
+      img: '/assets/Hamburg.jpg',
      }
    ]
   ngOnInit() {
    
   }
 
-
+  onCitySelectionByImg(city: string) {
+    this.router.navigate(['book-my-trip', city, 'restaurants']);
+  }
 
 
 }

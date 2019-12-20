@@ -1,8 +1,6 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CityService } from 'src/app/service/city.service';
-import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-search-field-cities',
@@ -12,12 +10,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class SearchFieldCitiesComponent implements OnInit {
 
   cities: string[];
-
-  chosenCity: string;
-
+  @Output() chosenCity = new EventEmitter<string>();
   searchText: string;
 
-  constructor(private modalService: NgbModal, private cityService: CityService,
+  constructor(private cityService: CityService,
               private router: Router) { }
 
   ngOnInit() {
@@ -26,10 +22,6 @@ export class SearchFieldCitiesComponent implements OnInit {
   }
 
   chooseCity(city: string) {
-    this.chosenCity = city;
-  }
-
-  toSidebarFilter() {
-    this.router.navigate(['book-my-trip', this.chosenCity, 'restaurants']);
+    this.chosenCity.emit(city);
   }
 }
