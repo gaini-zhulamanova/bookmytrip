@@ -38,6 +38,7 @@ import { HeaderComponent } from './old stuff/header/header.component';
 import { CommentComponent } from './entry-item/comment/comment.component';
 import { ThankYouModalComponent } from './form/thank-you-modal/thank-you-modal.component';
 import { SearchFieldComponent } from './sidebar-filter/search-field/search-field.component';
+import { FormEntityComponent } from './form-entity/form-entity.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { SearchFieldComponent } from './sidebar-filter/search-field/search-field
     CommentComponent,
     ThankYouModalComponent,
     SearchFieldComponent,
+    FormEntityComponent,
   ],
   imports: [
     // tslint:disable-next-line: max-line-length

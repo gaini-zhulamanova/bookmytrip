@@ -42,19 +42,14 @@ ol, ul {
 input[type='checkbox'] {
   border: dotted #808080 1px;
   margin: 5px 10px;
-
 }
 
-li {
+/* li {
   padding-right: 20px;
-}
+} */
 
 .button-filter {
     text-align: center;
-}
-
-h4 {
-  text-align: center;
 }
 
 .cards .no-results-message {
@@ -64,4 +59,15 @@ h4 {
 
 .fa-star {
   color: orange;
+}
+
+.search-field {
+  float: right;
+  border: 1px dotted coral;
+}
+
+.city-name {
+  border: 1px dotted rgb(80, 200, 255);
+  text-align: center;
+  margin: 10px 0;
 }

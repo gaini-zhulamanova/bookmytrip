@@ -1,20 +1,9 @@
-input[type=text] {
-    width: 130px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
+.btn {
+    background: linear-gradient(40deg, #ffd86f, #fc6262) !important;
+    margin: .375rem
+    
 }
-  
-  /* When the input field gets focus, change its width to 100% */
-/*   input[type=text]:focus {
-    width: 100%;
-} */
 
-  .btn {
-      background: linear-gradient(40deg, #ffd86f, #fc6262) !important;
-      margin: .375rem
-      
-  }
-
-  .btn-rounded {
-      border-radius: 10em;
-  }
+.btn-rounded {
+    border-radius: 10em;
+}

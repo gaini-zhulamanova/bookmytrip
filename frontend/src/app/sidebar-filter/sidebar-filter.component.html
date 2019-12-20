@@ -12,14 +12,16 @@
           aria-label="Toggle sidenav"
           mat-icon-button
           (click)="drawer.toggle()">
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+          <mat-icon aria-label="Side nav toggle icon">filter_list</mat-icon>
         </button>
         <span>        
-            <a class="navbar-brand d-none d-lg-inline-block" href="#"> Logo</a>
+            <a class="navbar-brand d-none d-lg-inline-block" href="#">
+                <img src="/assets/cover.png" width="95" height="40" alt="Logo">
+            </a>
         </span>
-        <span>Book My Trip</span>
+        <!-- <span>Book My Trip</span> -->
+        <app-search-field></app-search-field>
         <span class="spacer"></span>
-        <a href="#">Home</a>
         <a href="/book-my-trip/{{city}}/restaurants">Restaurants</a>
         <a href="/book-my-trip/{{city}}/hotels">Hotels</a>
         <a href="/book-my-trip/{{city}}/museen">Museen</a>
@@ -31,18 +33,28 @@
         <main class="main-content">
 
             <div class="row">
-                <!-- <app-search-field></app-search-field> -->
-                <div class="col-12">
-                    <!-- <button type="button" mat-button (click)="drawer.toggle()">Filtern</button> -->
-                    <app-search-field></app-search-field>
-                    <h4>Stadtname</h4>
 
-                    <div class="row cards">
-                        <div class="col-12">
-                            <app-cards></app-cards>
-                            <div class="no-results-message">No results found</div>
+                
+<!--                     <div class="col-12 search-field">
+                        <div class="row justify-content-end">
+                            <app-search-field></app-search-field>
                         </div>
+                    </div> -->
+                
+                <div class="col-12 city-name">
+                    <!-- <button type="button" mat-button (click)="drawer.toggle()">Filtern</button> -->
+                    <div class="row justify-content-center">
+                        <h4>Stadtname</h4>
                     </div>
+                </div>
+
+                <div class="col-12">
+                        <div class="row cards">
+                            <div class="col-12">
+                                <app-cards></app-cards>
+                                <div class="no-results-message">No results found</div>
+                            </div>
+                        </div>
                 </div>
             </div>
     </main>
