@@ -29,3 +29,8 @@ a {
     padding-bottom: 5px;
 }
 
+ul {
+    list-style: none;
+    text-align: left;
+    padding-left: 10px;
+}

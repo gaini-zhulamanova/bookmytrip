@@ -25,7 +25,7 @@ public class RestaurantController {
 	public List<Restaurant> index(@PathVariable String city) {
 		
 		City enumCity = City.convertToEnum(city);
-		return restaurantRepo.findByContactCity(enumCity);
+		return restaurantRepo.findByContactCityOrderByName(enumCity);
 	}
 	
 	@GetMapping("/{id}")
@@ -105,7 +105,10 @@ public class RestaurantController {
 		
 		City enumCity = City.convertToEnum(city);
 		restaurant.setId(id);
-		restaurant.getContact().setCity(enumCity);
+		restaurant.getContact().setCity(enumCity);	
+		restaurant.setNumOfReviews(restaurantRepo.updateNumOfReviews(enumCity, id));
+		restaurant.setAvrgRating(restaurantRepo.updateAvrgRating(enumCity, id));
+
 		if (restaurantRepo.findByContactCityAndId(enumCity, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		

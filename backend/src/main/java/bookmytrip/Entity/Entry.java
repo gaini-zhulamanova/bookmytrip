@@ -1,5 +1,6 @@
 package bookmytrip.Entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -20,7 +21,7 @@ public class Entry {
 	
 	@OneToMany(mappedBy = "entry")
 	@JsonBackReference
-	private List<Review> reviews;
+	private List<Review> reviews = new ArrayList<Review>();
 	
 	@NotBlank
 	@Column(nullable = false)
@@ -28,5 +29,9 @@ public class Entry {
 	
 	@Embedded
 	private Contact contact;
+	
+	private Long avrgRating;
+	
+	private Integer numOfReviews = 0;
 	
 }
