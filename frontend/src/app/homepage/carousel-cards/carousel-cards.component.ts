@@ -16,21 +16,21 @@ export class CarouselCardsComponent implements OnInit {
       city: 'Berlin',
       location: 'Berlin',
       description: 'Hier ist Berlin',
-      img: '/assets/Berlin.jpg',
+      img: '/assets/berlin.jpg',
      },
 
      {
       city: 'Frankfurt',
       location: 'Frankfurt am Main',
       description: 'Hier ist Frankfurt',
-      img: '/assets/Frankfurt.jpg',
+      img: '/assets/frankfurt.jpg',
      },
 
      {
       city: 'Hamburg',
       location: 'Hamburg',
       description: 'Hier ist Hamburg',
-      img: '/assets/Hamburg.jpg',
+      img: '/assets/hamburg.jpg',
      }
    ]
   ngOnInit() {
