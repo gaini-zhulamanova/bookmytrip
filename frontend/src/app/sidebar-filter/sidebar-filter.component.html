@@ -34,8 +34,10 @@
                 <!-- <app-search-field></app-search-field> -->
                 <div class="col-12">
                     <!-- <button type="button" mat-button (click)="drawer.toggle()">Filtern</button> -->
-                    <app-search-field></app-search-field>
-                    <h4>Stadtname</h4>
+                    <h4>{{city}}</h4>
+                    <app-cards
+                        [entries]="entries"
+                    ></app-cards>                  
 
                     <div class="row cards">
                         <div class="col-12">

@@ -17,7 +17,7 @@ public interface EntryRepository<T extends Entry> extends JpaRepository<T, Long>
 	
 	List<T> findByContactCityOrderByName(City city);
 	
-	List<T> findByContactCityAndId(City enumCity, Long id);
+	Optional<T> findByContactCityAndId(City enumCity, Long id);
 	
 	default List<T> findByCityAndNameOrderByRating(City city, String name) {
 		return findByContactCity(city).stream()
@@ -37,9 +37,23 @@ public interface EntryRepository<T extends Entry> extends JpaRepository<T, Long>
 	}
 	
 	default Long calculateAvrgRating(T entry) {
+		entry.setNumOfReviews(entry.getReviews().size());
+		
 		return Math.round(entry.getReviews().stream()
 				.map(review -> review.getRating())
 				.mapToInt(rating -> rating)
 				.average().orElse(0));
+	}
+	
+	default Long updateAvrgRating(City enumCity, Long id) {
+		
+		T entry = findByContactCityAndId(enumCity, id).get();
+		return calculateAvrgRating(entry);
+	}
+	
+	default Integer updateNumOfReviews(City enumCity, Long id) {
+		
+		T entry = findByContactCityAndId(enumCity, id).get();
+		return entry.getReviews().size();
 	}
 }

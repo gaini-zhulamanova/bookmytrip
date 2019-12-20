@@ -9,7 +9,6 @@ import { FooterComponent } from './footer/footer.component';
 import { CardsComponent } from './cards/cards.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './modal/modal.component';
-import { SearchCitiesPipe } from './search-cities.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarFilterComponent } from './sidebar-filter/sidebar-filter.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -38,6 +37,8 @@ import { HeaderComponent } from './old stuff/header/header.component';
 import { CommentComponent } from './entry-item/comment/comment.component';
 import { ThankYouModalComponent } from './form/thank-you-modal/thank-you-modal.component';
 import { SearchFieldComponent } from './sidebar-filter/search-field/search-field.component';
+import { SearchCitiesPipe } from './pipe/search-cities.pipe';
+import { ShowCuisinesPipe } from './pipe/show-cuisines.pipe';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { SearchFieldComponent } from './sidebar-filter/search-field/search-field
     CommentComponent,
     ThankYouModalComponent,
     SearchFieldComponent,
+    ShowCuisinesPipe,
   ],
   imports: [
     // tslint:disable-next-line: max-line-length

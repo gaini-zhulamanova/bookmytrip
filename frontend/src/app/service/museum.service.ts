@@ -8,11 +8,11 @@ import { Museum } from '../entity/museum';
 })
 export class MuseumService {
 
-  private url = 'http://localhost:8080/book-my-trip/Berlin/museums';
+  private url = 'http://localhost:8080/book-my-trip/';
   constructor(private http: HttpClient) {}
 
-  public index(): Observable<Museum[]> {
-    return this.http.get<Museum[]>(this.url);
+  public getAll(city: string, entries: string): Observable<Museum[]>{
+    return this.http.get<Museum[]>(this.url + city + '/' + 'museums');
   }
 
   public show(id: number): Observable<Museum> {
