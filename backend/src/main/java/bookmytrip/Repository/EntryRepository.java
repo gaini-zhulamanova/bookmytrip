@@ -25,13 +25,13 @@ public interface EntryRepository<T extends Entry> extends JpaRepository<T, Long>
 					r.getName().toLowerCase().contains(name.toLowerCase()) ||
 					name.toLowerCase().contains(r.getName().toLowerCase()) 
 				)
-				.sorted((r1, r2) -> calculateAvrgRating(r2).compareTo(calculateAvrgRating(r1)))
+				.sorted((r1, r2) -> r2.getAvrgRating().compareTo(r1.getAvrgRating()))
 				.collect(Collectors.toList());	
 	}
 	
 	default List<T> findByCityAndRatingOrderByName(City city, Integer avgRating) {
 		return findByContactCity(city).stream()
-				.filter(restaurant -> calculateAvrgRating(restaurant) >= avgRating)
+				.filter(restaurant -> restaurant.getAvrgRating() >= avgRating)
 				.sorted((r1, r2) -> r1.getName().compareTo(r2.getName()))
 				.collect(Collectors.toList());
 	}

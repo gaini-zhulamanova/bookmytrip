@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RestaurantService } from '../service/restaurant.service';
-import { Restaurant } from '../entity/restaurant';
 import { MuseumService } from '../service/museum.service';
 import { HotelService } from '../service/hotel.service';
 
@@ -18,10 +17,13 @@ export class SidebarFilterComponent {
 
   city: string;
   entriesURL: string;
+  nameOfEntry: string;
 
   entries: any[];
+  service: any;
 
   constructor(private breakpointObserver: BreakpointObserver,
+              private router: Router,
               private route: ActivatedRoute,
               private restService: RestaurantService,
               private museumService: MuseumService,
@@ -37,35 +39,47 @@ export class SidebarFilterComponent {
       shareReplay()
     ); */  
 
-  ngOnInit() {
-    this.city = this.route.snapshot.paramMap.get('city');
-    this.entriesURL = this.route.snapshot.paramMap.get('entries');
+  ngOnInit() {    
+    this.city = this.route.snapshot.params.city;
+    this.entriesURL = this.route.snapshot.params.entries;
+    this.nameOfEntry = this.route.snapshot.queryParams.name;
 
-    // this.showAll();
-    this.setEntryType();
+    this.getEntryType();
+
+    if(this.nameOfEntry) {
+      this.showByName(this.nameOfEntry);
+    } else {
+      this.getAll();
+    }
+  
   }
 
-  showAll() {
-    this.restService.getAll(this.city, this.entriesURL)
-      .subscribe(r => this.entries = r);
-  }
-
-  setEntryType() {
+  getEntryType() {
     switch(this.entriesURL) {
       case "restaurants":
-        this.restService.getAll(this.city, this.entriesURL)
-          .subscribe(r => this.entries = r);
+        this.service = this.restService;
         break;
       case "museen":
-        this.museumService.getAll(this.city, this.entriesURL)
-          .subscribe(r => this.entries = r);
+        this.service = this.museumService;
         break;
-      // case "hotels":
-      //   this.hotelService.getAll(this.city, this.entriesURL)
-      //     .subscribe(r => this.entries = r);
-      //   break;
+      case "hotels":
+        this.service = this.hotelService;
+        break;
       default:
         break;
     }
+  }
+
+  getAll(){
+    this.service.getAll(this.city)
+      .subscribe(e => this.entries = e);
+  }
+
+  showByName(searchText: string) {
+    this.router.navigate(['book-my-trip', this.city, this.entriesURL], 
+    {queryParams: {name: searchText}})
+
+    this.service.showByName(this.city, searchText)
+      .subscribe(e => this.entries = e);
   }
 }

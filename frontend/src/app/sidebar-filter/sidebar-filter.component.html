@@ -15,12 +15,14 @@
           <mat-icon aria-label="Side nav toggle icon">filter_list</mat-icon>
         </button>
         <span>        
-            <a class="navbar-brand d-none d-lg-inline-block" href="#">
-                <img src="/assets/cover.png" width="95" height="40" alt="Logo">
+            <a class="navbar-brand d-none d-lg-inline-block" href="/book-my-trip">
+                <img src="/assets/logo.svg" height="36" alt="Logo">
             </a>
         </span>
         <!-- <span>Book My Trip</span> -->
-        <app-search-field></app-search-field>
+        <app-search-field
+            (searchedName)="showByName($event)"
+        ></app-search-field>
         <span class="spacer"></span>
         <a href="/book-my-trip/{{city}}/restaurants">Restaurants</a>
         <a href="/book-my-trip/{{city}}/hotels">Hotels</a>
@@ -36,22 +38,20 @@
                 <!-- <app-search-field></app-search-field> -->
                 <div class="col-12">
                     <!-- <button type="button" mat-button (click)="drawer.toggle()">Filtern</button> -->
-                    <h4>{{city}}</h4>
-                    <app-cards
-                        [entries]="entries"
-                    ></app-cards>                  
-<!--                     <div class="col-12 search-field">
+                    <div class="col-12 city-name">
+                        <!-- <button type="button" mat-button (click)="drawer.toggle()">Filtern</button> -->
+                        <div class="row justify-content-center">
+                            <h4>{{city}}</h4>
+                        </div>
+                    </div>
+                    <!-- <div class="col-12 search-field">
                         <div class="row justify-content-end">
                             <app-search-field></app-search-field>
                         </div>
                     </div> -->
-                
-                <div class="col-12 city-name">
-                    <!-- <button type="button" mat-button (click)="drawer.toggle()">Filtern</button> -->
-                    <div class="row justify-content-center">
-                        <h4>Stadtname</h4>
-                    </div>
-                </div>
+                    <app-cards
+                        [entries]="entries"
+                    ></app-cards>             
 
                 <div class="col-12">
                         <div class="row cards">

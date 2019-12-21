@@ -6,7 +6,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule } from '@angular/forms';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FooterComponent } from './footer/footer.component';
-import { CardsComponent } from './cards/cards.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './modal/modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -40,6 +39,7 @@ import { SearchFieldComponent } from './sidebar-filter/search-field/search-field
 import { FormEntityComponent } from './form-entity/form-entity.component';
 import { SearchCitiesPipe } from './pipe/search-cities.pipe';
 import { ShowCuisinesPipe } from './pipe/show-cuisines.pipe';
+import { CardsComponent } from './sidebar-filter/cards/cards.component';
 
 @NgModule({
   declarations: [

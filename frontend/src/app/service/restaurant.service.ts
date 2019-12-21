@@ -11,23 +11,22 @@ export class RestaurantService {
   private url = 'http://localhost:8080/book-my-trip/';
   constructor(private http: HttpClient) {}
 
-  public getAll(city: string, entries: string): Observable<Restaurant[]>{
-    return this.http.get<Restaurant[]>(this.url + city + '/' + entries);
+  public getAll(city: string): Observable<Restaurant[]>{
+    return this.http.get<Restaurant[]>(this.url + city + '/restaurants');
   }
 
-  public showById(id: number, city: string, entries: string): Observable<Restaurant> {
-    return this.http.get<Restaurant>(this.url + city + '/' + entries + '/' + id);
+  public showById(city: string, id: number): Observable<Restaurant> {
+    return this.http.get<Restaurant>(this.url + city + '/restaurants/' + id);
   }
 
-  public showByName(name: string): Observable<Restaurant> {
-    return this.http.get<Restaurant>(this.url + '/search?name=' + name);
+  public showByName(city: string, name: string): Observable<Restaurant[]> {
+    return this.http.get<Restaurant[]>(this.url + city + '/restaurants/search?name=' + name);
   }
 
-  public showByFilter(
-    type: string,
-    priceLevel: string,
-    rating: string
-  ): Observable<Restaurant[]> {
+  public showByFilter(city: string,
+                      type: string,
+                      priceLevel: string,
+                      rating: string): Observable<Restaurant[]> {
 
     let params = new HttpParams();
     if (type) {
@@ -39,18 +38,18 @@ export class RestaurantService {
     if (rating) {
       params = params.append('rating', rating);
     }    
-    return this.http.get<Restaurant[]>(this.url + '/filter', {params: params});
+    return this.http.get<Restaurant[]>(this.url + city + '/restaurants/filter', {params: params});
   }
 
-  public addRestaurant(restaurants: Restaurant): Observable<Restaurant>{
-    return this.http.post<Restaurant>(this.url, restaurants);
+  public add(city: string, restaurants: Restaurant): Observable<Restaurant>{
+    return this.http.post<Restaurant>(this.url + city + '/restaurants', restaurants);
   }
 
-  public updateRestaurant(id: number, restaurant: Restaurant, city: string, entries: string): Observable<any> {
-    return this.http.put<any>(this.url + city + '/' + entries + '/' + id, restaurant);
+  public update(city: string, id: number, restaurant: Restaurant): Observable<any> {
+    return this.http.put<any>(this.url + city + '/restaurants/' + id, restaurant);
   }
 
-  public deleteRestaurant(id: number, city: string, entries: string): Observable<any> {
-    return this.http.delete<any>(this.url + city + '/' + entries + '/' + id);
+  public delete(city: string, id: number): Observable<any> {
+    return this.http.delete<any>(this.url + city + '/restaurants/' + id);
   }
 }

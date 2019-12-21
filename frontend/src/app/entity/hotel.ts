@@ -1,11 +1,11 @@
-import { Cuisine } from './cuisine';
+import { MuseumType } from './museumType';
 
-export interface Restaurant {
+export interface Hotel {
     id: number;
     city: string;
     name: string;
     priceLevel: number;
-    cuisines: Cuisine[];
+    types: MuseumType[];
     avrgRating: number;
     numOfReviews: number;
 }

@@ -30,7 +30,7 @@ public class Entry {
 	@Embedded
 	private Contact contact;
 	
-	private Long avrgRating;
+	private Long avrgRating = (long) 0;
 	
 	private Integer numOfReviews = 0;
 	

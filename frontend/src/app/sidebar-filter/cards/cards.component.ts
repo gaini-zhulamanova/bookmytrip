@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Restaurant } from '../entity/restaurant';
 
 @Component({
   selector: 'app-cards',
