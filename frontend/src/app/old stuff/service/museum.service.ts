@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Museum } from '../entity/museum';
+import { Museum } from 'src/app/entity/museum';
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +23,13 @@ export class MuseumService {
     return this.http.get<Museum>(this.url + city + '/museums/search?name=' + name);
   }
 
-  public showByFilter(city: string, 
-                      type: string,
+  public showByFilter(city: string,
+                      cuisine: string,
+                      rating: string,
                       priceLevel: string,
-                      rating: string): Observable<Museum[]> {
+                      breakfast: string,
+                      stars: string,
+                      type: string): Observable<Museum[]> {
 
     let params = new HttpParams();
     if (type) {

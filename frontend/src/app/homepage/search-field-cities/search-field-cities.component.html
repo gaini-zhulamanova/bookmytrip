@@ -4,9 +4,10 @@
 <div class="columns">
 <ul *ngFor="let city of cities | search:searchText">
     <li>
-        <input type="radio" name="checkedCity" (change)="chooseCity(city)">
-        <label class="toggle"></label>
-        {{city}}
+        <label class="toggle">
+            <input type="radio" name="checkedCity" (change)="chooseCity(city)">
+            {{city}}
+        </label>
     </li>
 </ul>
 </div>

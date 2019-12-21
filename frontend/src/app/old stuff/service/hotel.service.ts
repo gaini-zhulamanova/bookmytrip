@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Hotel } from '../entity/hotel';
+import { Hotel } from 'src/app/entity/hotel';
 
 @Injectable({
   providedIn: 'root'
@@ -24,13 +24,16 @@ export class HotelService {
   }
 
   public showByFilter(city: string,
-                      type: string,
+                      cuisine: string,
+                      rating: string,
                       priceLevel: string,
-                      rating: string): Observable<Hotel[]> {
+                      breakfast: string,
+                      stars: string,
+                      type: string): Observable<Hotel[]> {
 
     let params = new HttpParams();
-    if (type) {
-      params = params.append('type', type);
+    if (breakfast) {
+      params = params.append('breakfast', breakfast);
     }
     if (priceLevel) {
       params = params.append('priceLevel', priceLevel);
