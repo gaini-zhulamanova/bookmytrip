@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cards',
@@ -8,10 +9,16 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardsComponent implements OnInit {
 
   @Input() entries: any[];
+  entriesURL: string;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.entriesURL = this.route.snapshot.params.entries;
+  }
+
+  entryTypeMatches(entryType: string): boolean {
+    return this.entriesURL === entryType;
   }
 
 }

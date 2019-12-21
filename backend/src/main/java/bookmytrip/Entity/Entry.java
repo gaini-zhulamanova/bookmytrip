@@ -30,8 +30,12 @@ public class Entry {
 	@Embedded
 	private Contact contact;
 	
+	@NotNull
+	@Column(nullable = false)
 	private Long avrgRating = (long) 0;
 	
+	@NotNull
+	@Column(nullable = false)
 	private Integer numOfReviews = 0;
 	
 }

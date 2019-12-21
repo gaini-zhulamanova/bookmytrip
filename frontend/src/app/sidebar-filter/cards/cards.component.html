@@ -3,13 +3,18 @@
     <div class="row no-gutters">
         <div class="col flex-items" *ngFor="let entry of entries">
             <div class="card" *ngIf="entry">
-                <img src="assets/placeholder_restaurant.jpg" class="card-img-top" alt="...">
+                <img *ngIf="entryTypeMatches('restaurants')" src="assets/placeholder_restaurant.jpg" class="card-img-top" alt="...">
+                <img *ngIf="entryTypeMatches('museen')" src="assets/placeholder_museum.png" class="card-img-top" alt="...">
+                <img *ngIf="entryTypeMatches('hotels')" src="assets/placeholder_hotel.png" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{entry.name}}</h5>
                         <ul>
-                            <li><span class="card-text">Preisstufe</span>: {{entry.priceLevel}}</li>
-                            <li><span class="card-text">Küchen</span>: {{entry.cuisines | showCuisines}}</li>
-                            <li><span class="card-text">Rating</span>: {{entry.avrgRating}} ({{entry.numOfReviews}}) </li>
+                            <li *ngIf="false"><span class="card-text"><b>Preisstufe</b></span>: {{entry.priceLevel}}</li>
+                            <li *ngIf="entry.cuisines.length !== 0"><span class="card-text"><b>Küchen</b></span>: {{entry.cuisines | showCuisines}}</li>
+                            <li><span class="card-text"><b>Bewertung</b></span>: 
+                                <span class="fa fa-star" style="color: orange;" *ngFor="let i of [1,2,3,4,5] | slice:0:entry.avrgRating;"></span>
+                                <span class="fa fa-star-o" *ngFor="let i of [1,2,3,4,5] | slice:entry.avrgRating:5;"></span>
+                                 ({{entry.numOfReviews}}) </li>
                         </ul>
                         <!-- <p class="card-text"></p> -->
                         <a href="#" class="card-link">Details</a>
@@ -17,4 +22,4 @@
             </div>
         </div>
     </div>
-    </div>
+</div>

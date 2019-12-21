@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/book-my-trip/{city}/museums")
+@RequestMapping("/book-my-trip/{city}/museen")
 public class MuseumController {
 	
 	// TODO: create tests

@@ -1,115 +1,51 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="filter">  
-        <form>
-        <!-- filter-block -->
-        <div class="filter-block">
-            <h6>Küchen</h6>
-            <!-- filter-content -->
-            <ul class="filter-content filters list">
-                <li>
+    <form>
+    <!-- filter-block -->
+    <div class="filter-block" *ngIf="cuisines">
+        <h6>Küchen</h6>
+        <!-- filter-content -->
+        <ul class="filter-content filters list" *ngIf="cuisines">
+            <li *ngFor="let cuisine of cuisines | slice:0:3;"> 
+                <label class="checkbox-label" for="checkbox">
                     <input class="filter" data-filter="check" type="checkbox">
-                    <label class="checkbox-label" for="checkbox">Asiatisch</label>
-                </li>
+                    {{cuisine}}</label>
+            </li> 
+            <div class="more-cuisines">
+                <app-modal-more-options></app-modal-more-options>
+            </div>
+        </ul> <!-- filter-content -->
+    </div> <!-- filter-block -->
 
-                <li>
+    <!-- filter-block -->
+    <div class="filter-block">
+        <h6>Bewertung</h6>
+        <!-- filter-content -->
+        <ul class="filter-content filters list">
+            <li class="rating best" *ngFor="let n of [5,4,3,2,1]">
+                <input class="filter" data-filter="check" type="checkbox">
+                <span class="fa fa-star" style="color: orange;" *ngFor="let i of [1,2,3,4,5] | slice:0:n;"></span>
+                <span class="fa fa-star-o" *ngFor="let i of [1,2,3,4,5] | slice:(n):5;"></span>
+            </li>
+        </ul> <!-- filter-content -->
+    </div> <!-- filter-block -->
+
+    <!-- filter-block -->
+    <div class="filter-block" *ngIf="!museumTypes">
+        <h6>Preisstufe</h6>
+        <!-- filter-content -->
+        <ul class="filter-content filters list">
+            <li *ngFor="let priceLevel of priceLevels">
+                <label class="checkbox-label" for="checkbox">
                     <input class="filter" data-filter="check" type="checkbox">
-                    <label class="checkbox-label" for="checkbox">Deutsch</label>
-                </li>
+                    {{priceLevel}}</label>
+            </li>
+        </ul> <!-- filter-content -->
 
-                <li>
-                    <input class="filter" data-filter="check" type="checkbox">
-                    <label class="checkbox-label" for="checkbox">Tuerkisch</label>
-                </li>
-
-                <li>
-                    <input class="filter" data-filter="check" type="checkbox">
-                    <label class="checkbox-label" for="checkbox">Arabisch</label>
-                </li>
-
-                <div class="more-cuisines">
-                    <app-modal-more-options></app-modal-more-options>
-                </div>
-
-            </ul> <!-- filter-content -->
-        </div> <!-- filter-block -->
-
-        <!-- filter-block -->
-        <div class="filter-block">
-            <h6>Bewertung</h6>
-            <!-- filter-content -->
-            <ul class="filter-content filters list">
-                <li class="rating best">
-                    <input class="filter" data-filter="check" type="checkbox" id="checkbox1">
-                    <span class="fa fa-star" style="color: orange;"></span>
-                    <span class="fa fa-star" style="color: orange;"></span>
-                    <span class="fa fa-star" style="color: orange;"></span>
-                    <span class="fa fa-star" style="color: orange;"></span>
-                    <span class="fa fa-star" style="color: orange;"></span>
-                </li>
-
-                <li class="rating very-good">
-                    <input class="filter" data-filter="check" type="checkbox" id="checkbox2">
-                    <span class="fa fa-star" style="color: orange;"></span>
-                    <span class="fa fa-star" style="color: orange;"></span>
-                    <span class="fa fa-star" style="color: orange;"></span>
-                    <span class="fa fa-star" style="color: orange;"></span>
-                    <span class="fa fa-star-o"></span>
-                </li>
-
-                <li class="rating good">
-                    <input class="filter" data-filter="check" type="checkbox" id="checkbox3">
-                    <span class="fa fa-star" style="color: orange;"></span>
-                    <span class="fa fa-star" style="color: orange;"></span>
-                    <span class="fa fa-star" style="color: orange;"></span>
-                    <span class="fa fa-star-o"></span>
-                    <span class="fa fa-star-o"></span>
-                </li>
-
-                <li class="rating ok">
-                    <input class="filter" data-filter="check" type="checkbox" id="checkbox3">
-                    <span class="fa fa-star" style="color: orange;"></span>
-                    <span class="fa fa-star" style="color: orange;"></span>
-                    <span class="fa fa-star-o"></span>
-                    <span class="fa fa-star-o"></span>
-                    <span class="fa fa-star-o"></span>
-                </li>
-
-                <li class="rating bad">
-                    <input class="filter" data-filter="check" type="checkbox" id="checkbox3">
-                    <span class="fa fa-star" style="color: orange;"></span>
-                    <span class="fa fa-star-o"></span>
-                    <span class="fa fa-star-o"></span>
-                    <span class="fa fa-star-o"></span>
-                    <span class="fa fa-star-o"></span>
-                </li>
-            </ul> <!-- filter-content -->
-        </div> <!-- filter-block -->
-
-        <!-- filter-block -->
-        <div class="filter-block">
-                <h6>Preisstufe</h6>
-                <!-- filter-content -->
-                <ul class="filter-content filters list">
-                    <li>
-                        <input class="filter" data-filter="check" type="checkbox" id="checkbox1">
-                        <label class="checkbox-label" for="checkbox">Guenstig</label>
-                    </li>
-
-                    <li>
-                        <input class="filter" data-filter="check" type="checkbox" id="checkbox2">
-                        <label class="checkbox-label" for="checkbox">Mittel</label>
-                    </li>
-
-                    <li>
-                        <input class="filter" data-filter="check" type="checkbox" id="checkbox3">
-                        <label class="checkbox-label" for="checkbox">Teuer</label>
-                    </li>
-                </ul> <!-- filter-content -->
-
-                <div class="filter-button">
-                    <button class="btn btn-rounded">Filtern</button>
-                </div>
-            </div> <!-- filter-block -->
-        </form>
+        <div class="filter-button">
+            <button class="btn btn-rounded">Filtern</button>
+        </div>
+    </div> <!-- filter-block -->
+    </form>
 </div>
