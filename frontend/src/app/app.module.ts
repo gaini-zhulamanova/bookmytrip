@@ -45,6 +45,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { ButtonNewEntryItemComponent } from './form-entity/button-new-entry-item/button-new-entry-item.component';
+import { ModalMoreOptionsComponent } from './sidebar-filter/modal-more-options/modal-more-options.component';
+import { FilterMoreOptionsComponent } from './sidebar-filter/filter-more-options/filter-more-options.component';
 
 @NgModule({
   declarations: [
@@ -71,13 +73,17 @@ import { ButtonNewEntryItemComponent } from './form-entity/button-new-entry-item
     FormEntityComponent,
     ShowCuisinesPipe,
     ButtonNewEntryItemComponent,
+    ModalMoreOptionsComponent,
+    FilterMoreOptionsComponent,
+  
   ],
   imports: [
     // tslint:disable-next-line: max-line-length
     BrowserModule, HttpClientModule, FormsModule, NgbModule, BrowserAnimationsModule,
     LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule,
-    MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatFormFieldModule, 
-    ReactiveFormsModule, AppRoutingModule, ReactiveFormsModule, MatInputModule, MatRadioModule, MatAutocompleteModule, MatSelectModule],
+    MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatFormFieldModule,
+    ReactiveFormsModule, AppRoutingModule, ReactiveFormsModule, MatInputModule, MatRadioModule,
+    MatAutocompleteModule, MatSelectModule],
   providers: [SearchCitiesPipe],
   bootstrap: [AppComponent]
 })

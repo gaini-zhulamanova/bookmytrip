@@ -24,6 +24,9 @@
             (searchedName)="showByName($event)"
         ></app-search-field>
         <span class="spacer"></span>
+        <!-- Button to create a new entry item -->
+        <app-button-new-entry-item></app-button-new-entry-item>
+        <span class="spacer"></span>
         <a href="/book-my-trip/{{city}}/restaurants">Restaurants</a>
         <a href="/book-my-trip/{{city}}/hotels">Hotels</a>
         <a href="/book-my-trip/{{city}}/museen">Museen</a>
@@ -60,12 +63,6 @@
                                 <div class="no-results-message">No results found</div>
                             </div>
                         </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="row justify-content-end">
-                    <app-button-new-entry-item></app-button-new-entry-item>
                 </div>
             </div>
         </div>
