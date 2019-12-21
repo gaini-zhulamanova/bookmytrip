@@ -1,1 +1,135 @@
-<p>form-entity works!</p>
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  
+    <mat-card class="info-card">
+  
+          <mat-card-header>
+            <h4>Tragen Sie bitte hier Ihre Daten ein</h4>
+          </mat-card-header>
+  
+      <mat-card-content>
+  
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Name Ihres Geschäftes" formControlName="company" required>
+              <mat-error *ngIf="addressForm.controls['company'].hasError('required')">
+                <strong>Pflichtfeld</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <textarea matInput placeholder="Straße und Hausnummer" formControlName="address" required></textarea>
+              <mat-error *ngIf="addressForm.controls['address'].hasError('required')">
+                <strong>Pflichtfeld</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Stadt" formControlName="city" matInput [formControl]="myControl" [matAutocomplete]="auto" required>
+              <mat-error *ngIf="addressForm.controls['city'].hasError('required')">
+                <strong>Pflichtfeld</strong>
+              </mat-error>
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+        </div>
+          
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-select placeholder="Bundesland" formControlName="state" required>
+                <mat-option *ngFor="let state of states" [value]="state.abbreviation">
+                  {{ state.name }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="addressForm.controls['state'].hasError('required')">
+                <strong>Pflichtfeld</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput #postalCode maxlength="5" placeholder="PLZ" type="number" formControlName="postalCode" required>
+              <mat-error *ngIf="addressForm.controls['postalCode'].hasError('required')">
+                <strong>Pflichtfeld</strong>
+              </mat-error>
+              <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+        
+  
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput type="tel" id="phone" placeholder="Telefonnummer">
+              <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col">
+            <p>Wählen Sie bitte Ihr Preis-Segment aus:</p>
+            <mat-radio-group aria-label="Select an option" class="radio-buttons">
+              <mat-radio-button value="cheap">Guenstige Preise</mat-radio-button>
+              <mat-radio-button value="middle">Mittlere Preise</mat-radio-button>
+              <mat-radio-button value="expensive">Teure Preise</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col">
+            <div class="stars"></div>
+            <p>Wählen Sie bitte aus, wie viele Sterne Ihr Hotel hat:</p>
+            <mat-radio-group aria-label="Select an option">
+              <mat-radio-button value="one-star">1</mat-radio-button>
+              <mat-radio-button value="two-stars">2</mat-radio-button>
+              <mat-radio-button value="three-stars">3</mat-radio-button>
+              <mat-radio-button value="four-stars">4</mat-radio-button>
+              <mat-radio-button value="five-stars">5</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col breakfastIncl">
+            <p>Wählen Sie bitte aus, ob Sie das Frühstück inklusive anbieten:</p>
+            <mat-radio-group aria-label="Select an option" class="radio-buttons">
+              <mat-radio-button value="true">Ja</mat-radio-button>
+              <mat-radio-button value="false">Nein</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="museum-type full-width">
+              <textarea matInput placeholder="Geben Sie bitte die Art Ihres Museums ein"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+  
+    <button mat-raised-button color="primary" type="submit">Erstellen und abschicken</button>
+  
+  </mat-card-content>
+  </mat-card>
+  
+  </form>
+  

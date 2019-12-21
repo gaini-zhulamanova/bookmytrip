@@ -40,6 +40,11 @@ import { FormEntityComponent } from './form-entity/form-entity.component';
 import { SearchCitiesPipe } from './pipe/search-cities.pipe';
 import { ShowCuisinesPipe } from './pipe/show-cuisines.pipe';
 import { CardsComponent } from './sidebar-filter/cards/cards.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
+import { ButtonNewEntryItemComponent } from './form-entity/button-new-entry-item/button-new-entry-item.component';
 
 @NgModule({
   declarations: [
@@ -65,13 +70,14 @@ import { CardsComponent } from './sidebar-filter/cards/cards.component';
     SearchFieldComponent,
     FormEntityComponent,
     ShowCuisinesPipe,
+    ButtonNewEntryItemComponent,
   ],
   imports: [
     // tslint:disable-next-line: max-line-length
     BrowserModule, HttpClientModule, FormsModule, NgbModule, BrowserAnimationsModule,
     LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule,
     MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatFormFieldModule, 
-    ReactiveFormsModule, AppRoutingModule, ReactiveFormsModule],
+    ReactiveFormsModule, AppRoutingModule, ReactiveFormsModule, MatInputModule, MatRadioModule, MatAutocompleteModule, MatSelectModule],
   providers: [SearchCitiesPipe],
   bootstrap: [AppComponent]
 })
