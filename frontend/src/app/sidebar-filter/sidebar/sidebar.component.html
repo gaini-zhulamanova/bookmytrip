@@ -3,18 +3,33 @@
 <div class="filter">  
     <form>
     <!-- filter-block -->
-    <div class="filter-block" *ngIf="cuisines">
-        <h6>Küchen</h6>
+    <div class="filter-block" *ngIf="options">
+        <h6>{{optionsTitle}}</h6>
         <!-- filter-content -->
-        <ul class="filter-content filters list" *ngIf="cuisines">
-            <li *ngFor="let cuisine of cuisines | slice:0:3;"> 
+        <ul class="filter-content filters list">
+            <li *ngFor="let option of options | slice:0:3;"> 
                 <label class="checkbox-label" for="checkbox">
                     <input class="filter" data-filter="check" type="checkbox">
-                    {{cuisine}}</label>
+                    {{option}}</label>
             </li> 
             <div class="more-cuisines">
-                <app-modal-more-options></app-modal-more-options>
+                <app-modal-more-options
+                [options]="options"
+                ></app-modal-more-options>
             </div>
+        </ul> <!-- filter-content -->
+    </div> <!-- filter-block -->
+
+    <!-- filter-block -->
+    <div class="filter-block" *ngIf="isHotelCategory">
+        <h6>Sterne</h6>
+        <!-- filter-content -->
+        <ul class="filter-content filters list">
+            <li *ngFor="let star of stars"> 
+                <label class="checkbox-label" for="checkbox">
+                    <input class="filter" data-filter="check" type="checkbox">
+                    {{star}}</label>
+            </li> 
         </ul> <!-- filter-content -->
     </div> <!-- filter-block -->
 
@@ -26,13 +41,13 @@
             <li class="rating best" *ngFor="let n of [5,4,3,2,1]">
                 <input class="filter" data-filter="check" type="checkbox">
                 <span class="fa fa-star" style="color: orange;" *ngFor="let i of [1,2,3,4,5] | slice:0:n;"></span>
-                <span class="fa fa-star-o" *ngFor="let i of [1,2,3,4,5] | slice:(n):5;"></span>
+                <span class="fa fa-star-o" *ngFor="let i of [1,2,3,4,5] | slice:n:5;"></span>
             </li>
         </ul> <!-- filter-content -->
     </div> <!-- filter-block -->
 
     <!-- filter-block -->
-    <div class="filter-block" *ngIf="!museumTypes">
+    <div class="filter-block" *ngIf="showPriceLevel">
         <h6>Preisstufe</h6>
         <!-- filter-content -->
         <ul class="filter-content filters list">
@@ -46,6 +61,18 @@
         <div class="filter-button">
             <button class="btn btn-rounded">Filtern</button>
         </div>
+    </div> <!-- filter-block -->
+
+    <!-- filter-block -->
+    <div class="filter-block" *ngIf="isHotelCategory">
+        <h6>Früchstück</h6>
+        <!-- filter-content -->
+        <ul class="filter-content filters list">
+            <label class="checkbox-label" for="checkbox">
+                <input class="filter" data-filter="check" type="checkbox">
+                inklusive
+            </label> 
+        </ul> <!-- filter-content -->
     </div> <!-- filter-block -->
     </form>
 </div>

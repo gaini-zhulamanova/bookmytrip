@@ -16,7 +16,7 @@ public class CuisineController {
 	private final CuisineRepository cuisineRepo;
 	
 	@GetMapping
-	public List<String> showAllCities() {
+	public List<String> showAllCuisines() {
 		
 		return cuisineRepo.findAll().stream()
 				.map(c -> c.getType())

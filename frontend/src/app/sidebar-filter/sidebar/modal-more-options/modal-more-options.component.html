@@ -1,0 +1,26 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Wählen Sie bitte die {{choice}} aus</h4> <!-- TODO: dynamische Anpassung implementieren -->
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="columns">
+    <ul *ngFor="let option of options">
+      <li>
+          <label class="toggle">
+            <input type="radio" name="checkedOption" (change)="chooseOption(option)">
+            {{option}}
+          </label>
+      </li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Auswählen</button>
+  </div>
+</ng-template>
+  
+<span class="more-link" (click)="openVerticallyCentered(content)">Mehr anzeigen</span>
+<!-- <span class="expand-icon">
+    <mat-icon>expand_more</mat-icon>
+</span> -->
