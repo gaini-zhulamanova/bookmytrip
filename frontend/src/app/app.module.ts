@@ -26,7 +26,6 @@ import { EntryItemComponent } from './entry-item/entry-item.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ModalEntryQuestionComponent } from './homepage/modal-entry-question/modal-entry-question.component';
-import { SearchFieldCitiesComponent } from './homepage/search-field-cities/search-field-cities.component';
 import { DropdownButtonComponent } from './old stuff/dropdown-button/dropdown-button.component';
 import { PageWithFiltersComponent } from './old stuff/page-with-filters/page-with-filters.component';
 import { CarouselCardsComponent } from './homepage/carousel-cards/carousel-cards.component';
@@ -45,8 +44,9 @@ import { MatRadioModule } from '@angular/material/radio';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { ButtonNewEntryItemComponent } from './form-entity/button-new-entry-item/button-new-entry-item.component';
-import { ModalMoreOptionsComponent } from './sidebar-filter/modal-more-options/modal-more-options.component';
 import { FilterMoreOptionsComponent } from './sidebar-filter/filter-more-options/filter-more-options.component';
+import { ModalMoreOptionsComponent } from './sidebar-filter/sidebar/modal-more-options/modal-more-options.component';
+import { SearchFieldCitiesComponent } from './homepage/modal-entry-question/search-field-cities/search-field-cities.component';
 
 @NgModule({
   declarations: [
