@@ -1,0 +1,16 @@
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+
+[class*="entypo-"]:before {
+    font-family: 'entypo', sans-serif;
+    color: red;
+}
+
+.footer-content {
+    color: white;
+    float: right;
+}
+
+li {
+    list-style: none;
+}
+

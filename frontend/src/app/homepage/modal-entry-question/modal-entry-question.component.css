@@ -1,6 +1,10 @@
 .close-icon {
     font-size: larger;
-    color: rebeccapurple;
+    color: #BF417C;
     font-weight: bold;
+}
+
+button :focus {
+    outline: none;
 }
 

@@ -1,0 +1,11 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$bookmytrip-primary: mat-palette($mat-mulberry);
+$bookmytrip-accent: mat-palette($mat-yellow, A200, A100, A700);
+$bookmytrip-warn: mat-palette($mat-red);
+
+$bookmytrip-theme: mat-light-theme($bookmytrip-primary, $bookmytrip-accent, $bookmytrip-warn);
+
+@include angular-material-theme($bookmytrip-theme);

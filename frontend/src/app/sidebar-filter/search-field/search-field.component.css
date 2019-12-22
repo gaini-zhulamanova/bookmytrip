@@ -1,9 +1,3 @@
-.btn {
-    background: linear-gradient(40deg, #ffd86f, #fc6262) !important;
-    margin: .375rem
-    
-}
-
-.btn-rounded {
-    border-radius: 10em;
+.buttons {
+    margin-left: 7px;
 }
