@@ -4,15 +4,20 @@
     /* background: linear-gradient(50deg, #fc6262,  #ffd86f); */
     text-align: center;
     color: #26130C;
-    background: linear-gradient(to right bottom, #bf417c, #d54670,
-     #e65061, #f1604f, #f6743c, #f78131, #f68e25, #f39b17, #f3a212,
-      #f3a90e, #f3b009, #f2b705);
+    background: rgb(246, 248, 171);
     border-radius: 4px;
     border: none;
     height: 38px;
     width: fit-content;
+    font-weight: 500;
+}
 
+.buttons:hover {
+    background: rgb(250, 121, 121);
+}
 
+ul {
+    list-style: none;
 }
 
 /* .btn-rounded {

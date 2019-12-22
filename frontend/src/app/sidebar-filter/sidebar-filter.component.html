@@ -7,29 +7,33 @@
     </mat-sidenav>
     <mat-sidenav-content>
       <mat-toolbar color="primary">
-        <button
-          type="button"
-          aria-label="Toggle sidenav"
-          mat-icon-button
-          (click)="drawer.toggle()">
-          <mat-icon aria-label="Side nav toggle icon">filter_list</mat-icon>
-        </button>
         <span>        
             <a class="navbar-brand d-none d-lg-inline-block" href="/book-my-trip">
                 <img src="/assets/logo.svg" height="36" alt="Logo">
             </a>
         </span>
+        <span class="spacer"></span>
+        <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()">
+        <i class="fa fa-filter fa-2x"></i>
+        <!-- <mat-icon aria-label="Side nav toggle icon">filter_list</mat-icon> -->
+      </button>
         <!-- <span>Book My Trip</span> -->
         <app-search-field
             (searchedName)="showByName($event)"
         ></app-search-field>
         <span class="spacer"></span>
-        <!-- Button to create a new entry item -->
-        <app-button-new-entry-item></app-button-new-entry-item>
-        <span class="spacer"></span>
         <a href="/book-my-trip/{{city}}/restaurants">Restaurants</a>
         <a href="/book-my-trip/{{city}}/hotels">Hotels</a>
         <a href="/book-my-trip/{{city}}/museen">Museen</a>
+
+        <span class="spacer"></span>
+        <!-- Button to create a new entry item -->
+        <app-button-new-entry-item></app-button-new-entry-item>
+        <!-- <span class="spacer"></span> -->
       </mat-toolbar>
       <ng-content></ng-content>
       <!-- Add Content Here -->
