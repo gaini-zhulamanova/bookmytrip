@@ -5,8 +5,18 @@ html, body {
 
 body{
     margin: 0;
+    background-color: aquamarine;
 }
 
+
+
+/* .buttons {
+    text-align: center;
+    border-radius: 8px;
+    border: none;
+    height: 38px;
+    width: fit-content;
+} */
 
 
 html, body { height: 100%; }
