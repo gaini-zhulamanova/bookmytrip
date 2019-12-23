@@ -4,6 +4,6 @@ export interface Museum {
     city: string;
     // phoneNumber: string;
     // address: string;
-    type: string;
+    museumTypes: string;
     priceLevel: number;
 }

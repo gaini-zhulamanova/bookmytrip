@@ -17,7 +17,7 @@ public class Museum extends Entry {
 			name = "museum_to_type",
 			joinColumns = @JoinColumn(name = "museum_id"),
 			inverseJoinColumns = @JoinColumn(name = "type_id"))
-	private Set<MuseumType> types;
+	private Set<MuseumType> museumTypes;
 	
 	@NotNull
 	@Min(1) @Max(3)

@@ -25,6 +25,10 @@
     padding: 3px 5px;
 }
 
+.card:hover {
+    background: #e4cddb;
+}
+
 a {
     padding-bottom: 5px;
 }

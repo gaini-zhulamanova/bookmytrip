@@ -18,7 +18,7 @@ public class MuseumType {
 	private String type;	
 
 	@ManyToMany(
-			mappedBy = "types",
+			mappedBy = "museumTypes",
 			cascade = CascadeType.MERGE)
 	@JsonBackReference
 	private Set<Museum> museums;
