@@ -29,9 +29,8 @@ html, body {
 .buttons:hover {
     border: 2px solid #F2B705 !important;
     background-color:#FFD857;
-    border-radius: 20px;
+    border-radius: 8px;
     display: inline-block;
     transition: all 0.4s ease 0s;
 }
-
 

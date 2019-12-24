@@ -5,12 +5,20 @@
     color: red;
 }
 
+/* .footer {
+    border: 1px dotted green;
+} */
+
 .footer-content {
     color: white;
-    float: right;
+    /* border: 1px dotted yellow; */
 }
 
 li {
     list-style: none;
+}
+
+p {
+    margin-top: 20px;
 }
 
