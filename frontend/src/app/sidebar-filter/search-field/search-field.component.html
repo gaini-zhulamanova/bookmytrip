@@ -1,8 +1,10 @@
-<div class="input-group">
-  <input type="text" class="form-control" placeholder="Suchen...">
-  <div class="input-group-append">
-    <button class="search-button" type="button">
-      <i class="fa fa-search"></i>
-    </button>
+<form class="form-inline ml-auto" [formGroup]="form" (ngSubmit)="handleSubmit()">
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Suchen..." formControlName="searchText">
+    <div class="input-group-append">
+      <button class="search-button" type="button" (click)="handleSubmit()">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
   </div>
-</div>
+</form>

@@ -5,22 +5,22 @@
                 <img *ngIf="entryTypeMatches('restaurants')" src="assets/placeholder_restaurant.jpg" class="card-img-top" alt="...">
                 <img *ngIf="entryTypeMatches('museen')" src="assets/placeholder_museum.png" class="card-img-top" alt="...">
                 <img *ngIf="entryTypeMatches('hotels')" src="assets/placeholder_hotel.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{entry.name}}</h5>
-                        <ul>
-                            <li *ngIf="!entryTypeMatches('hotels')"><span class="card-text"><b>Preisstufe</b></span>: {{entry.priceLevel}}</li>
-                            <li *ngIf="entryTypeMatches('restaurants')"><span class="card-text"><b>Küchen</b></span>: {{entry.cuisines | showTypes}}</li>
-                            <li><span class="card-text"><b>Bewertung</b></span>: 
-                                <span class="fa fa-star" style="color: orange;" *ngFor="let i of [1,2,3,4,5] | slice:0:entry.avrgRating;"></span>
-                                <span class="fa fa-star-o" *ngFor="let i of [1,2,3,4,5] | slice:entry.avrgRating:5;"></span>
-                                 ({{entry.numOfReviews}})
-                            </li>
-                            <li *ngIf="entryTypeMatches('museen')"><span class="card-text"><b>Museumsarten</b></span>: {{entry.museumTypes | showTypes}}</li>
-                            <li *ngIf="entryTypeMatches('hotels')"><span class="card-text"><b>Sterne</b></span>: {{entry.stars}}</li>
-                            <li *ngIf="entryTypeMatches('hotels')"><span class="card-text"><b>Frühstück</b></span>: {{entry.breakfastIncl | showInclusive}}</li>
-                        </ul>
-                        <!-- <p class="card-text"></p> -->
-                    </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{entry.name}}</h5>
+                    <ul style="list-style-type:none">
+                        <li *ngIf="!entryTypeMatches('hotels')"><span class="card-text"><b>Preisstufe</b></span>: {{entry.priceLevel}}</li>
+                        <li *ngIf="entryTypeMatches('restaurants')"><span class="card-text"><b>Küchen</b></span>: {{entry.cuisines | showTypes}}</li>
+                        <li><span class="card-text"><b>Bewertung</b></span>: 
+                            <span class="fa fa-star" style="color: orange;" *ngFor="let i of [1,2,3,4,5] | slice:0:entry.avrgRating;"></span>
+                            <span class="fa fa-star-o" *ngFor="let i of [1,2,3,4,5] | slice:entry.avrgRating:5;"></span>
+                            ({{entry.numOfReviews}})
+                        </li>
+                        <li *ngIf="entryTypeMatches('museen')"><span class="card-text"><b>Museumsarten</b></span>: {{entry.museumTypes | showTypes}}</li>
+                        <li *ngIf="entryTypeMatches('hotels')"><span class="card-text"><b>Sterne</b></span>: {{entry.stars}}</li>
+                        <li *ngIf="entryTypeMatches('hotels')"><span class="card-text"><b>Frühstück</b></span>: {{entry.breakfastIncl | showInclusive}}</li>
+                    </ul>
+                    <!-- <p class="card-text"></p> -->
+                </div>
             </div>
         </div>
     </div>

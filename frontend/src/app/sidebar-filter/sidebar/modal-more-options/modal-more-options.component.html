@@ -6,17 +6,17 @@
     </button>
   </div>
   <div class="columns">
-    <ul *ngFor="let option of options">
+    <ul style="list-style-type:none" *ngFor="let option of options">
       <li>
-          <label class="toggle">
-            <input type="radio" name="checkedOption" (change)="chooseOption(option)">
-            {{option}}
-          </label>
+        <label>
+          <input type="radio" name="checkedOption" value={{option}} [(ngModel)]="checkedOptionIn" >
+          {{option}}
+        </label>
       </li>
     </ul>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Auswählen</button>
+    <button type="button" class="buttons" (click)="handleChoice()">Auswählen</button>
   </div>
 </ng-template>
   
