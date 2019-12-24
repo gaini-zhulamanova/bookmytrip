@@ -8,13 +8,15 @@
         <!-- filter-content -->
         <ul class="filter-content filters list">
             <li *ngFor="let option of options | slice:0:3;"> 
-                <label>
-                    <input  class="filter" data-filter="radio" type="radio" name="checkedOption">
+                <label (click)="onToggle(option)">
+                    <input type="radio" name="checkedOption" value={{option}} [(ngModel)]="checkedOption">
                     {{option}}</label>
             </li> 
             <div class="more-cuisines">
                 <app-modal-more-options
                 [options]="options"
+                [checkedOptionIn]="checkedOption"
+                (checkedOptionOut)="handleChoice($event)"
                 ></app-modal-more-options>
             </div>
         </ul> <!-- filter-content -->
@@ -25,10 +27,10 @@
         <h6>Sterne</h6>
         <!-- filter-content -->
         <ul class="filter-content filters list">
-            <li *ngFor="let star of stars"> 
+            <li *ngFor="let stars of starsArray"> 
                 <label>
-                    <input class="filter" data-filter="radio" type="radio" name="checkedStar">
-                    {{star}}</label>
+                    <input type="radio" name="checkedStars" value={{stars.charAt(0)}} [(ngModel)]="checkedStars">
+                    {{stars}}</label>
             </li> 
         </ul> <!-- filter-content -->
     </div> <!-- filter-block -->
@@ -40,9 +42,10 @@
         <ul class="filter-content filters list">
             <li class="rating best" *ngFor="let n of [5,4,3,2,1]">
                 <label>
-                    <input class="filter" data-filter="radio" type="radio" name="checkedRating">
+                    <input type="radio" name="checkedRating" value={{n}} [(ngModel)]="checkedRating">
                     <span class="fa fa-star" style="color: orange;" *ngFor="let i of [1,2,3,4,5] | slice:0:n;"></span>
                     <span class="fa fa-star-o" *ngFor="let i of [1,2,3,4,5] | slice:n:5;"></span>
+                    <span *ngIf="!isHighestRating(n)"> &nbsp; & mehr</span>
                 </label>
             </li>
         </ul> <!-- filter-content -->
@@ -53,16 +56,12 @@
         <h6>Preisstufe</h6>
         <!-- filter-content -->
         <ul class="filter-content filters list">
-            <li *ngFor="let priceLevel of priceLevels">
+            <li *ngFor="let priceLevel of priceLevelArray, let i = index">
                 <label>
-                    <input class="filter" data-filter="radio" type="radio" name="checkedPriceLevel">
+                    <input type="radio" name="checkedPriceLevel" value={{i+1}} [(ngModel)]="checkedPriceLevel">
                     {{priceLevel}}</label>
             </li>
         </ul> <!-- filter-content -->
-
-        <div class="filter-button">
-            <button class="buttons">Filtern</button>
-        </div>
     </div> <!-- filter-block -->
 
     <!-- filter-block -->
@@ -71,10 +70,14 @@
         <!-- filter-content -->
         <ul class="filter-content filters list">
             <label>
-                <input class="filter" data-filter="radio" type="radio" name="checkedBreakfastIncl">
+                <input type="radio" name="checkedBreakfastIncl" value="true" [(ngModel)]="checkedBreakfastIncl">
                 inklusive
             </label> 
         </ul> <!-- filter-content -->
     </div> <!-- filter-block -->
+
+    <div class="filter-button">
+        <button class="buttons" (click)="handleFilter()">Filtern</button>
+    </div>
     </form>
 </div>

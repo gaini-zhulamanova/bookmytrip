@@ -22,7 +22,7 @@ export class SidebarFilterComponent {
   cuisine: string;
   breakfast: string;
   stars: string;
-  type:string;
+  museumType:string;
 
   entries: any[];
 
@@ -52,18 +52,17 @@ export class SidebarFilterComponent {
       this.cuisine = params['küche'];
       this.breakfast = params['frühstück'];
       this.stars = params['sterne'];
-      this.type = params['museumsart'];
+      this.museumType = params['museumsart'];
     });
 
     if(this.nameOfEntry) {
       this.showByName(this.nameOfEntry);
     } else if (this.rating || this.priceLevel || this.cuisine ||
-               this.breakfast || this.stars || this.type) {
+               this.breakfast || this.stars || this.museumType) {
       this.showByFilter();
     } else {
       this.getAll();
     }
-  
   }
 
   getAll(){
@@ -82,10 +81,10 @@ export class SidebarFilterComponent {
   showByFilter() {
     this.router.navigate(['book-my-trip', this.city, this.entriesURL], 
       {queryParams: {küche: this.cuisine, bewertung: this.rating, preisstufe: this.priceLevel,
-                     frühstück: this.breakfast, sterne: this.stars, museumsart: this.type}});
+                     frühstück: this.breakfast, sterne: this.stars, museumsart: this.museumType}});
 
     this.entryService.showByFilter(this.city, this.entriesURL, this.cuisine, 
-      this.rating, this.priceLevel, this.breakfast, this.stars, this.type)
+      this.rating, this.priceLevel, this.breakfast, this.stars, this.museumType)
       .subscribe(e => this.entries = e);
   }
 }

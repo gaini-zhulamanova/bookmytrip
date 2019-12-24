@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
 
@@ -25,6 +25,8 @@ export class ModalMoreOptionsComponent implements OnInit {
   entries: string;
   choice: string;
   @Input() options: string[];
+  @Input() checkedOptionIn: string;
+  @Output() checkedOptionOut = new EventEmitter<string>();
 
   constructor(private modalService: NgbModal,
               private route: ActivatedRoute) { }
@@ -42,8 +44,8 @@ export class ModalMoreOptionsComponent implements OnInit {
     }
   }
 
-  chooseOption(option: string) {
-    
+  handleChoice() {
+    this.checkedOptionOut.emit(this.checkedOptionIn);
+    this.modalService.dismissAll('content');
   }
-
 }

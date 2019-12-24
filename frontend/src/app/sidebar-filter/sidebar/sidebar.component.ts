@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CuisineService } from 'src/app/service/cuisine.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MuseumTypeService } from 'src/app/service/museum-type.service';
 
 @Component({
@@ -12,31 +12,39 @@ export class SidebarComponent implements OnInit {
 
   options: string[];
   optionsTitle: string;
-  optionsType: string;
-  priceLevels: string[];
-  stars: string[];
+  priceLevelArray: string[];
+  starsArray: string[];
   entries: string;
+  city: string;
 
-  chosenOption: string;
+  //Query params
+  checkedOption: string;
+  cuisine: string;
+  museumType:string;
+  checkedRating: string;
+  checkedPriceLevel: string;
+  checkedStars: string;
+  checkedBreakfastIncl: string;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private cuisineService: CuisineService,
               private museumTypeService: MuseumTypeService) { }
 
   ngOnInit() {
-    this.entries = this.route.snapshot.params.entries
-    
+    this.entries = this.route.snapshot.params.entries;
+    this.city = this.route.snapshot.params.city;
+
     this.initiliseFilter();
   }
-  
 
   initiliseFilter() {
     if(!this.entryTypeMatches('hotels')) {
-      this.priceLevels = ['Günstig','Mittel','Teuer'];
+      this.priceLevelArray = ['Günstig','Mittel','Teuer'];
     }
     
     if(this.entryTypeMatches('hotels')) {
-      this.stars = ['1 Stern','2 Sterne','3 Sterne','4 Sterne','5 Sterne'];
+      this.starsArray = ['1 Stern','2 Sterne','3 Sterne','4 Sterne','5 Sterne'];
     }
 
     if(this.entryTypeMatches('restaurants')) {
@@ -56,5 +64,30 @@ export class SidebarComponent implements OnInit {
     return this.entries === entries;
   }
 
+  chooseOption() {
+    if(this.entryTypeMatches('restaurants')) {
+      this.cuisine = this.checkedOption;
+    } else if(this.entryTypeMatches('museen')) {
+      this.museumType = this.checkedOption;
+    }
+  }
+
+  handleChoice(option: string) {
+
+    this.checkedOption = option;
+  }
+
+  handleFilter() {
+    this.chooseOption();
+
+    this.router.navigate(['book-my-trip', this.city, this.entries], 
+      {queryParams: {küche: this.cuisine, bewertung: this.checkedRating, preisstufe: this.checkedPriceLevel,
+                     frühstück: this.checkedBreakfastIncl, sterne: this.checkedStars, museumsart: this.museumType}})
+      .then(() => window.location.reload());        
+  }
+
+  isHighestRating(rating: number): boolean {
+    return rating === 5;
+  }
 
 }
