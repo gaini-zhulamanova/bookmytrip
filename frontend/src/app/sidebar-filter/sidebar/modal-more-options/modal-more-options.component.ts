@@ -36,9 +36,9 @@ export class ModalMoreOptionsComponent implements OnInit {
   ngOnInit() {
     this.entries = this.route.snapshot.params.entries;
     if(this.entries === "restaurants") {
-      this.choice = "Küchen";
+      this.choice = "Küche";
     } else if (this.entries === "museen") {
-      this.choice = "Museumsarten";
+      this.choice = "Museumsart";
     }
   }
 

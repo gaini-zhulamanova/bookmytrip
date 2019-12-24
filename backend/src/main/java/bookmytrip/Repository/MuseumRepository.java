@@ -13,7 +13,7 @@ public interface MuseumRepository extends EntryRepository<Museum> {
 	
 	default List<Museum> findByContactCityAndTypeOrderByName(City city, String type) {
 		return findByContactCity(city).stream()
-				.filter(m -> m.getTypes().stream()
+				.filter(m -> m.getMuseumTypes().stream()
 						.anyMatch(t -> t.getType().equals(type)))
 				.sorted((m1, m2) -> m1.getName().compareTo(m2.getName()))
 				.collect(Collectors.toList());

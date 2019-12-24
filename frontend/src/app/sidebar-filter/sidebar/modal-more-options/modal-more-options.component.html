@@ -9,7 +9,7 @@
     <ul *ngFor="let option of options">
       <li>
           <label class="toggle">
-            <input type="checkbox" name="checkedOption" (change)="chooseOption(option)">
+            <input type="radio" name="checkedOption" (change)="chooseOption(option)">
             {{option}}
           </label>
       </li>

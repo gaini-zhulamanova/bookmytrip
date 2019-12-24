@@ -1,11 +1,14 @@
-import { MuseumType } from './museumType';
+import { Contact } from './contact';
+import { Review } from './review';
 
 export interface Hotel {
     id: number;
-    city: string;
     name: string;
-    priceLevel: number;
-    types: MuseumType[];
+    contact: Contact;
+    reviews: Review[];
     avrgRating: number;
     numOfReviews: number;
+
+    stars: number;
+    breakfastIncl: boolean;
 }

@@ -37,7 +37,6 @@ import { ThankYouModalComponent } from './form/thank-you-modal/thank-you-modal.c
 import { SearchFieldComponent } from './sidebar-filter/search-field/search-field.component';
 import { FormEntityComponent } from './form-entity/form-entity.component';
 import { SearchCitiesPipe } from './pipe/search-cities.pipe';
-import { ShowCuisinesPipe } from './pipe/show-cuisines.pipe';
 import { CardsComponent } from './sidebar-filter/cards/cards.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
@@ -47,6 +46,8 @@ import { ButtonNewEntryItemComponent } from './form-entity/button-new-entry-item
 import { FilterMoreOptionsComponent } from './sidebar-filter/filter-more-options/filter-more-options.component';
 import { ModalMoreOptionsComponent } from './sidebar-filter/sidebar/modal-more-options/modal-more-options.component';
 import { SearchFieldCitiesComponent } from './homepage/modal-entry-question/search-field-cities/search-field-cities.component';
+import { ShowTypesPipe } from './pipe/show-types.pipe';
+import { ShowInclusivePipe } from './pipe/show-inclusive.pipe';
 
 @NgModule({
   declarations: [
@@ -71,10 +72,11 @@ import { SearchFieldCitiesComponent } from './homepage/modal-entry-question/sear
     ThankYouModalComponent,
     SearchFieldComponent,
     FormEntityComponent,
-    ShowCuisinesPipe,
+    ShowTypesPipe,
     ButtonNewEntryItemComponent,
     ModalMoreOptionsComponent,
     FilterMoreOptionsComponent,
+    ShowInclusivePipe,
   
   ],
   imports: [

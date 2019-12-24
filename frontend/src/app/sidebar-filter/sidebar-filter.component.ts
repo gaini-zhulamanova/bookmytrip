@@ -52,7 +52,7 @@ export class SidebarFilterComponent {
       this.cuisine = params['küche'];
       this.breakfast = params['frühstück'];
       this.stars = params['sterne'];
-      this.type = params['typ'];
+      this.type = params['museumsart'];
     });
 
     if(this.nameOfEntry) {
@@ -82,7 +82,7 @@ export class SidebarFilterComponent {
   showByFilter() {
     this.router.navigate(['book-my-trip', this.city, this.entriesURL], 
       {queryParams: {küche: this.cuisine, bewertung: this.rating, preisstufe: this.priceLevel,
-                     frühstück: this.breakfast, sterne: this.stars, typ: this.type}});
+                     frühstück: this.breakfast, sterne: this.stars, museumsart: this.type}});
 
     this.entryService.showByFilter(this.city, this.entriesURL, this.cuisine, 
       this.rating, this.priceLevel, this.breakfast, this.stars, this.type)

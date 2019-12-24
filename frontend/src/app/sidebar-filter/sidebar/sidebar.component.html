@@ -8,8 +8,8 @@
         <!-- filter-content -->
         <ul class="filter-content filters list">
             <li *ngFor="let option of options | slice:0:3;"> 
-                <label class="checkbox-label" for="checkbox">
-                    <input class="filter" data-filter="check" type="checkbox">
+                <label>
+                    <input  class="filter" data-filter="radio" type="radio" name="checkedOption">
                     {{option}}</label>
             </li> 
             <div class="more-cuisines">
@@ -21,13 +21,13 @@
     </div> <!-- filter-block -->
 
     <!-- filter-block -->
-    <div class="filter-block" *ngIf="isHotelCategory">
+    <div class="filter-block" *ngIf="entryTypeMatches('hotels')">
         <h6>Sterne</h6>
         <!-- filter-content -->
         <ul class="filter-content filters list">
             <li *ngFor="let star of stars"> 
-                <label class="checkbox-label" for="checkbox">
-                    <input class="filter" data-filter="check" type="checkbox">
+                <label>
+                    <input class="filter" data-filter="radio" type="radio" name="checkedStar">
                     {{star}}</label>
             </li> 
         </ul> <!-- filter-content -->
@@ -39,21 +39,23 @@
         <!-- filter-content -->
         <ul class="filter-content filters list">
             <li class="rating best" *ngFor="let n of [5,4,3,2,1]">
-                <input class="filter" data-filter="check" type="checkbox">
-                <span class="fa fa-star" style="color: orange;" *ngFor="let i of [1,2,3,4,5] | slice:0:n;"></span>
-                <span class="fa fa-star-o" *ngFor="let i of [1,2,3,4,5] | slice:n:5;"></span>
+                <label>
+                    <input class="filter" data-filter="radio" type="radio" name="checkedRating">
+                    <span class="fa fa-star" style="color: orange;" *ngFor="let i of [1,2,3,4,5] | slice:0:n;"></span>
+                    <span class="fa fa-star-o" *ngFor="let i of [1,2,3,4,5] | slice:n:5;"></span>
+                </label>
             </li>
         </ul> <!-- filter-content -->
     </div> <!-- filter-block -->
 
     <!-- filter-block -->
-    <div class="filter-block" *ngIf="showPriceLevel">
+    <div class="filter-block" *ngIf="!entryTypeMatches('hotels')">
         <h6>Preisstufe</h6>
         <!-- filter-content -->
         <ul class="filter-content filters list">
             <li *ngFor="let priceLevel of priceLevels">
-                <label class="checkbox-label" for="checkbox">
-                    <input class="filter" data-filter="check" type="checkbox">
+                <label>
+                    <input class="filter" data-filter="radio" type="radio" name="checkedPriceLevel">
                     {{priceLevel}}</label>
             </li>
         </ul> <!-- filter-content -->
@@ -64,12 +66,12 @@
     </div> <!-- filter-block -->
 
     <!-- filter-block -->
-    <div class="filter-block" *ngIf="isHotelCategory">
+    <div class="filter-block" *ngIf="entryTypeMatches('hotels')">
         <h6>Früchstück</h6>
         <!-- filter-content -->
         <ul class="filter-content filters list">
-            <label class="checkbox-label" for="checkbox">
-                <input class="filter" data-filter="check" type="checkbox">
+            <label>
+                <input class="filter" data-filter="radio" type="radio" name="checkedBreakfastIncl">
                 inklusive
             </label> 
         </ul> <!-- filter-content -->
