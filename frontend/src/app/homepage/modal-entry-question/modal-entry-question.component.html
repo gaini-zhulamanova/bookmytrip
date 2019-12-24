@@ -1,18 +1,18 @@
 <ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title">Wählen Sie bitte Ihr Wunschziel aus</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span class="close-icon" aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <app-search-field-cities
+  <div class="modal-header">
+    <h4 class="modal-title">Wählen Sie bitte Ihr Wunschziel aus</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span class="close-icon" aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-search-field-cities
       (chosenCity)="setChosenCity($event)"
-      ></app-search-field-cities>
-    </div>
-    <div class="modal-footer">
-      <button class="buttons" (click)="toSidebarFilter()">Auswählen</button>
-    </div>
-  </ng-template>
+    ></app-search-field-cities>
+  </div>
+  <div class="modal-footer">
+    <button class="buttons" (click)="toSidebarFilter()">Auswählen</button>
+  </div>
+</ng-template>
   
-  <button class="buttons" (click)="openVerticallyCentered(content)">Bitte die Stadt auswählen</button>
+<button class="buttons" (click)="openVerticallyCentered(content)">Bitte die Stadt auswählen</button>

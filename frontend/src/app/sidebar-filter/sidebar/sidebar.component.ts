@@ -12,11 +12,12 @@ export class SidebarComponent implements OnInit {
 
   options: string[];
   optionsTitle: string;
+  optionsType: string;
   priceLevels: string[];
-  showPriceLevel: boolean = false;
-  stars: number[];
-  isHotelCategory: boolean = false;
+  stars: string[];
   entries: string;
+
+  chosenOption: string;
 
   constructor(private route: ActivatedRoute,
               private cuisineService: CuisineService,
@@ -29,27 +30,30 @@ export class SidebarComponent implements OnInit {
   }
 
   initiliseFilter() {
-    if(this.entries === 'restaurants' || this.entries === 'museen') {
+    if(!this.entryTypeMatches('hotels')) {
       this.priceLevels = ['Günstig','Mittel','Teuer'];
-      this.showPriceLevel = true;
     }
     
-    if(this.entries === 'hotels') {
-      this.isHotelCategory = true;
-      this.stars = [1,2,3,4,5];
+    if(this.entryTypeMatches('hotels')) {
+      this.stars = ['1 Stern','2 Sterne','3 Sterne','4 Sterne','5 Sterne'];
     }
 
-    if(this.entries === 'restaurants') {
+    if(this.entryTypeMatches('restaurants')) {
       this.optionsTitle = 'Küchen';
       this.cuisineService.getAll()
         .subscribe(cuisines => this.options = cuisines);
     }
 
-    if(this.entries === 'museen') {
+    if(this.entryTypeMatches('museen')) {
       this.optionsTitle = 'Museumsarten';
       this.museumTypeService.getAll()
         .subscribe(museumTypes => this.options = museumTypes);
     }
   }
+
+  entryTypeMatches(entries: string): boolean {
+    return this.entries === entries;
+  }
+
 
 }
