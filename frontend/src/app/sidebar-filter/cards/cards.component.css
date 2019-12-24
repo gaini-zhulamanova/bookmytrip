@@ -25,6 +25,12 @@
     padding: 3px 5px;
 }
 
+.card:hover,
+.card:focus {
+  transform: scale(1.02);
+  background: #e4cddb;
+}
+
 a {
     padding-bottom: 5px;
 }
