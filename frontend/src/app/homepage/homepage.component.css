@@ -1,14 +1,6 @@
-.sidenav-container {
-  height: 100%;
-}
-
 .sidenav {
   width: 200px;
 }
-
-/* .sidenav .mat-toolbar {
-  background: inherit;
-} */
 
 .mat-toolbar.mat-primary {
   position: sticky;
@@ -32,13 +24,11 @@
   font-size: medium;
 }
 ol, ul {
-  border: dotted #808080 1px;
   padding-left: 1rem;
   list-style: none;
 }
 
 input[type='checkbox'] {
-  border: dotted #808080 1px;
   margin: 5px 10px;
 
 }
@@ -70,7 +60,6 @@ h4 {
 
 }
 .entry-question{
-   /*  border: dotted gray; */
     display: inline-block;
 }
 
@@ -82,3 +71,4 @@ h4 {
 .card-body{
     margin: 20px;
 }
+

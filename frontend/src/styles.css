@@ -1,26 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 html, body {
     height: 100%;
+    width: 100%;
 }
 
-body{
-    margin: 0;
-    background-color: aquamarine;
+.main-content {
+    min-height: calc(100vh - 60px);
 }
 
-
-
-/* .buttons {
+ 
+.buttons {
     text-align: center;
-    border-radius: 8px;
     border: none;
     height: 38px;
     width: fit-content;
-} */
+    background-color:#F2B705;
+    border-radius: 4px;
+    font-size: medium;
+    display: inline-block;
+    transition: all 0.4s ease 0s;
+}
+
+.buttons:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.buttons:hover {
+    border: 2px solid #F2B705 !important;
+    background-color:#FFD857;
+    border-radius: 20px;
+    display: inline-block;
+    transition: all 0.4s ease 0s;
+}
 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

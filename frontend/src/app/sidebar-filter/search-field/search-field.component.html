@@ -1,7 +1,8 @@
-<form class="form-inline ml-auto" [formGroup]="form" (ngSubmit)="handleSubmit()">
-  <div class="md-form my-0">
-    <i class="fa fa-search"></i>
-    <input class="form-control input-field" placeholder="Suchen" type="text" aria-label="Search" formControlName="searchText">
+<div class="input-group">
+  <input type="text" class="form-control" placeholder="Suchen...">
+  <div class="input-group-append">
+    <button class="search-button" type="button">
+      <i class="fa fa-search"></i>
+    </button>
   </div>
-  <!-- <button class="buttons" type="submit">Suchen</button> -->
-</form>
+</div>

@@ -27,6 +27,7 @@ export class SidebarComponent implements OnInit {
     
     this.initiliseFilter();
   }
+  
 
   initiliseFilter() {
     if(this.entries === 'restaurants' || this.entries === 'museen') {
