@@ -1,19 +1,22 @@
 <mat-sidenav-container class="sidenav-container">
-
     <mat-sidenav-content>
-      <mat-toolbar color="primary">
-        <span>        
-            <a class="navbar-brand d-none d-lg-inline-block" href="#">
-                <img src="/assets/cover.png" width="95" height="40" alt="Logo">
-            </a>
-        </span>
-        <span class="spacer"></span>
-        <a href="#">Restaurants</a>
-        <a href="#">Hotels</a>
-        <a href="#">Museen</a>
-      </mat-toolbar>
-      <ng-content></ng-content>
-      <!-- Add Content Here -->
+        <mat-toolbar color="primary">
+            <span>        
+                <a class="navbar-brand d-none d-lg-inline-block" href="/book-my-trip">
+                    <img src="/assets/logo.svg" height="36" alt="Logo">
+                </a>
+            </span>
+            <span class="spacer"></span>
+            <nav class="stroke">
+                <ul>
+                    <li><a href="/book-my-trip/{{city}}/restaurants">Restaurants</a></li>
+                    <li><a href="/book-my-trip/{{city}}/hotels">Hotels</a></li>
+                    <li><a href="/book-my-trip/{{city}}/museen">Museen</a></li>
+                </ul>
+            </nav>
+        </mat-toolbar>
+        <ng-content></ng-content>
+        <!-- Add Content Here -->
 
         <div class="container">
             <section class="row">
@@ -36,6 +39,19 @@
             <section class="text-rating row">
 
                 <div class="col">
+                    <label class="rating-labels" for="reviewer">Ihr Name</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        ngModel 
+                        name="reviewer" 
+                        #reviewer="ngModel"
+                        required 
+                        maxlength="30"/>
+                    <div class="alert alert-danger" *ngIf="reviewer.touched && !reviewer.valid">
+                        <div *ngIf="reviewer.errors.required">Geben Sie bitte Ihren Namen ein.</div>
+                    </div>
+
                     <label class="rating-labels" for="title">Titel Ihrer Bewertung</label>
                     <input 
                         type="text" 
@@ -47,7 +63,6 @@
                         maxlength="30"/>
                     <div class="alert alert-danger" *ngIf="title.touched && !title.valid">
                         <div *ngIf="title.errors.required">Geben Sie bitte einen Titel ein.</div>
-                        <div *ngIf="title.errors.maxlength">Titel-Feld darf maximal aus 30 Zeichen bestehen.</div>
                     </div>
                 
                     <div class="from-group">
@@ -63,54 +78,23 @@
                 </div>
             </section>
 
-            <section class="row service">
+            <section class="row date">
                 <div class="col">
-                    <h6>Wie bewerten Sie den Service?</h6>
-                    <div class="star-rating">
-                        <app-star-rating></app-star-rating> 
-                    </div>
-                </div>
-            </section>
-
-            <section class="row essen">
-                <div class="col">
-                    <h6>Wie bewerten Sie das Essen?</h6>
-                    <div class="star-rating">
-                        <app-star-rating></app-star-rating> 
-                    </div>
-                </div>
-            </section>
-
-            <section class="row price">
-                <div class="col">
-                    <h6>Wie bewerten Sie das Preis-Niveau?</h6>
-                    <div class="star-rating">
-                        <app-star-rating></app-star-rating> 
-                    </div>
+                    <label class="rating-labels" for="title">Heute ist der </label>
                 </div>
             </section>
 
             <section class="row btn">
-                <button class="buttons">Submit</button>
+                <button class="buttons" style="margin-right:0.5cm" (click)="submit()">Abschicken</button>
+                <button class="buttons" (click)="cancel()">Abbrechen</button>
                 <app-thank-you-modal></app-thank-you-modal>
             </section>
-
-            <section class="row date">
-                <div class="col">
-                    <h6>Datum der Bewertung</h6>
-                    <p>Hier steht dann das Datum</p>
-                    <div class="star-rating">
-                        <!-- <app-date></app-date> -->
-                    </div>
-                </div>
-            </section>
-
         </div>
 
-        <div class="row footer">
-            <div class="col-12 navbar navbar-expand-lg navbar-light bg-light">
+        <footer class="row">
+            <mat-toolbar color="primary">
                 <app-footer></app-footer>
-            </div>
-        </div>
+            </mat-toolbar>
+        </footer>
     </mat-sidenav-content>
 </mat-sidenav-container>

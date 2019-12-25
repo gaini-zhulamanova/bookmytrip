@@ -7,3 +7,9 @@
     margin: 10px 10px;
     text-align: center;
 }
+
+.close-icon {
+    font-size: larger;
+    color: #BF417C;
+    font-weight: bold;
+}
