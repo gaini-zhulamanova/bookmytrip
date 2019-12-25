@@ -8,7 +8,7 @@
         <!-- filter-content -->
         <ul class="filter-content filters list">
             <li *ngFor="let option of options | slice:0:3;"> 
-                <label (click)="onToggle(option)">
+                <label>
                     <input type="radio" name="checkedOption" value={{option}} [(ngModel)]="checkedOption">
                     {{option}}</label>
             </li>
