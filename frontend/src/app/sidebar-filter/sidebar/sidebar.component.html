@@ -11,7 +11,10 @@
                 <label (click)="onToggle(option)">
                     <input type="radio" name="checkedOption" value={{option}} [(ngModel)]="checkedOption">
                     {{option}}</label>
-            </li> 
+            </li>
+            <div style="line-height: 6px" *ngIf="!hideChoice()">
+                <span style="font-weight:bold" style="font-size: 60%">*Es wurde {{checkedOption}} gewählt.</span>
+            </div>
             <div class="more-cuisines">
                 <app-modal-more-options
                 [options]="options"

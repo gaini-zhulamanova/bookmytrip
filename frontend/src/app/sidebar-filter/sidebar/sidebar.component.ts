@@ -73,7 +73,6 @@ export class SidebarComponent implements OnInit {
   }
 
   handleChoice(option: string) {
-
     this.checkedOption = option;
   }
 
@@ -83,11 +82,19 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['book-my-trip', this.city, this.entries], 
       {queryParams: {küche: this.cuisine, bewertung: this.checkedRating, preisstufe: this.checkedPriceLevel,
                      frühstück: this.checkedBreakfastIncl, sterne: this.checkedStars, museumsart: this.museumType}})
-      .then(() => window.location.reload());        
+      .then(() => window.location.reload())
+      .then(() => window.scroll(0,0));        
   }
 
   isHighestRating(rating: number): boolean {
     return rating === 5;
+  }
+
+  hideChoice(): boolean {
+    return this.options[0] === this.checkedOption 
+            || this.options[1] === this.checkedOption
+            || this.options[2] === this.checkedOption
+            || this.checkedOption === undefined;
   }
 
 }
