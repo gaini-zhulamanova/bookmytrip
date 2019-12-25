@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 html, body {
     height: 100%;
     width: 100%;
@@ -7,7 +6,6 @@ html, body {
 .main-content {
     min-height: calc(100vh - 60px);
 }
-
  
 .buttons {
     text-align: center;
@@ -23,15 +21,18 @@ html, body {
 }
 
 .buttons:focus {
-    outline: none !important;
-    box-shadow: none !important;
+    outline: none;
+    box-shadow: none;
 }
 
 .buttons:hover {
-    border: 2px solid #F2B705 !important;
     background-color:#FFD857;
+    box-shadow: inset 0 0 0 2px #F2B705;
     border-radius: 8px;
     display: inline-block;
     transition: all 0.4s ease 0s;
 }
 
+li {
+    list-style: none;
+}

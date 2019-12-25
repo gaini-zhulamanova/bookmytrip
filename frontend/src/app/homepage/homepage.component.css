@@ -1,11 +1,8 @@
-.sidenav {
-  width: 200px;
-}
-
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
   z-index: 1;
+  padding-left: 16px;
 }
 
 .mat-toolbar {
@@ -16,50 +13,12 @@
   flex: 1 1 auto;
 }
 
-.mat-toolbar a {
-  display: inline-block;
-  margin: 0 10px;
-  color: white;
-  text-decoration: none;
-  font-size: medium;
-}
-ol, ul {
-  padding-left: 1rem;
-  list-style: none;
-}
-
-input[type='checkbox'] {
-  margin: 5px 10px;
-
-}
-
-li {
-  padding-right: 20px;
-}
-
-.button-filter {
-    text-align: center;
-}
-
-h4 {
-  text-align: center;
-}
-
-.cards .no-results-message {
-  display: none;
-  text-align: center;
-}
-
-.fa-star {
-  color: orange;
-}
-
 .entry-question-wrapper {
     text-align: center;
     margin-top: 5%;
-
 }
-.entry-question{
+
+.entry-question {
     display: inline-block;
 }
 
@@ -68,7 +27,10 @@ h4 {
     height: 170px;
 }
 
-.card-body{
+.card-body {
     margin: 20px;
 }
 
+footer {
+  width: 100%;
+}

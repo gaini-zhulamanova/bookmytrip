@@ -5,20 +5,19 @@
     color: red;
 }
 
+.footer-content {
+    color: white;
+    /* border: 1px dotted yellow; */
+ }
+
+
+/* This makes problems with scrolling (the second scrollbar appears) */
+
 /* .footer {
     border: 1px dotted green;
 } */
 
-.footer-content {
-    color: white;
-    /* border: 1px dotted yellow; */
-}
-
-li {
-    list-style: none;
-}
-
-p {
+/* p {
     margin-top: 20px;
-}
+} */
 

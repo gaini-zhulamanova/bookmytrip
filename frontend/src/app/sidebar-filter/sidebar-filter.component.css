@@ -6,6 +6,7 @@
   position: sticky;
   top: 0;
   z-index: 1;
+  padding-right: 16px;
 }
 
 .mat-toolbar {
@@ -88,10 +89,9 @@ input[type='checkbox'] {
   margin: 5px 10px;
 }
 
-
-.button-filter {
+/* .button-filter {
   text-align: center;
-}
+} */
 
 .cards .no-results-message {
   display: none;
@@ -111,6 +111,11 @@ input[type='checkbox'] {
 .filter-toggle-icon {
   margin-top: 10px;
   margin-left: 0;
+}
+
+.filter-toggle-icon:focus {
+  outline: none;
+  box-shadow: none;
 }
 
 .fa-filter {
