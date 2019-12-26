@@ -13,6 +13,8 @@ public class Contact {
 	private String phoneNumber;
 	
 	@NotBlank
+	@NotNull
+	@Column(nullable = false)
 	private String address;
 	
 	@Enumerated(EnumType.STRING)

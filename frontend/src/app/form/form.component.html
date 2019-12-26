@@ -69,7 +69,7 @@
                     <input 
                         type="text" 
                         class="form-control" 
-                        ngModel 
+                        [(ngModel)]="reviewerName"  
                         name="reviewer" 
                         #reviewer="ngModel"
                         maxlength="30"/>
@@ -78,7 +78,7 @@
                     <input 
                         type="text" 
                         class="form-control" 
-                        ngModel 
+                        [(ngModel)]="reviewTitle"
                         name="title" 
                         #title="ngModel"
                         required
@@ -93,7 +93,7 @@
                             class="form-control" 
                             cols="5" 
                             rows="3" 
-                            ngModel 
+                            [(ngModel)]="comment"
                             name="comment">
                         </textarea>
                     </div>
@@ -101,7 +101,10 @@
             </section>
 
             <section class="row btn">
-                <app-thank-you-modal></app-thank-you-modal>
+                <app-thank-you-modal
+                [successfulPostIn]="valideUserInput()"
+                (successfulPostOut)="handleSubmission()"
+                ></app-thank-you-modal>
                 <button class="buttons" style="margin-left:0.5cm" (click)="cancel()">Abbrechen</button>
             </section>
         </div>

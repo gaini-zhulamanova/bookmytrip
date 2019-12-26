@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -9,13 +9,21 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ThankYouModalComponent implements OnInit {
 
+  @Input() successfulPostIn: boolean;
+  @Output() successfulPostOut = new EventEmitter<void>();
+
   constructor(private modalService: NgbModal) { }
 
-  openVerticallyCentered(content) {
-    this.modalService.open(content, {centered: true});
+  ngOnInit() {
   }
 
-  ngOnInit() {
+  openVerticallyCentered(content) {
+    if(this.successfulPostIn) {
+      this.successfulPostOut.emit();
+      this.modalService.open(content, {centered: true});
+    } else {
+      window.scroll(0, 0);
+    }
   }
 
 }
