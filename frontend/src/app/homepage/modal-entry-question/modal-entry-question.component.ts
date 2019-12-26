@@ -30,7 +30,7 @@ export class ModalEntryQuestionComponent implements OnInit {
               private router: Router) { }
 
   openVerticallyCentered(content) {
-    this.modalService.open(content, { centered: true });
+    this.modalService.open(content, {centered: true});
   }
 
   ngOnInit() {

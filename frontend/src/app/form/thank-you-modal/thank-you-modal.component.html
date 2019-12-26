@@ -1,10 +1,15 @@
 <ng-template #content let-modal>
-    <div class="modal-body">
-        <p>Vielen Dank für Ihr Feedback und Ihre Zeit!</p>
+    <div class="modal-body" style="text-align: center">
+        <p>Vielen Dank für Ihr Feedback und Ihre Zeit!
+            <br/> Sie werden zurück geleitet.
+        </p>
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="buttons" (click)="modal.close('Close click')">Close</button>
-    </div>
+
 </ng-template>
+
+<button class="buttons" (click)="openVerticallyCentered(content)">Abschicken</button>
   
   

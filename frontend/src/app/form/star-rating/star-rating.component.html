@@ -1,18 +1,11 @@
 <div class="form-group">
-  <ngb-rating [(rate)]="currentRate">
+  <ngb-rating [(ngModel)]="currentRate" (click)="onClick()">
     <ng-template let-fill="fill" let-index="index">
       <span class="star" [class.filled]="fill === 100">&#9733;</span>
     </ng-template>
   </ngb-rating>
   <div class="form-text small">
-    <div *ngIf="ctrl.valid" class="text-success">Vielen Dank!</div>
-    <div *ngIf="ctrl.invalid" class="text-danger">Wir freuen uns auf Ihr Feedback!</div>
+    <div *ngIf="currentRate" class="text-success">Vielen Dank!</div>
+    <div *ngIf="!currentRate" class="text-danger">Wir freuen uns auf Ihr Feedback!</div>
   </div>
 </div>
-<!-- 
-<hr>
-<pre>Model: <b>{{ ctrl.value }}</b></pre>
-<button class="btn btn-sm btn-outline-{{ ctrl.disabled ? 'danger' : 'success'}} mr-2" (click)="toggle()">
-  {{ ctrl.disabled ? "control disabled" : " control enabled" }}
-</button>
-<button class="btn btn-sm btn-outline-primary mr-2" (click)="ctrl.setValue(null)">Löschen</button> -->

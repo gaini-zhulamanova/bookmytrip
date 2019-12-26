@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
-import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-star-rating',
@@ -9,22 +8,17 @@ import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 })
 export class StarRatingComponent implements OnInit {
 
-    ctrl = new FormControl(null, Validators.required);
-
-  toggle() {
-    if (this.ctrl.disabled) {
-      this.ctrl.enable();
-    } else {
-      this.ctrl.disable();
-    }
-  }
+  currentRate: string;
+  @Output() rating = new EventEmitter<string>();
 
   constructor(config: NgbRatingConfig) {
     config.max = 5;
-    config.readonly = false;
    }
 
   ngOnInit() {
   }
 
+  onClick() {
+    this.rating.emit(this.currentRate);
+  }
 }

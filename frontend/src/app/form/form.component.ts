@@ -15,6 +15,8 @@ export class FormComponent implements OnInit {
   entryId: string;
   reviewId: string;
 
+  rating: string;
+
   constructor(private modalService: NgbModal,
               private route: ActivatedRoute,
               private router: Router) { }
@@ -28,6 +30,11 @@ export class FormComponent implements OnInit {
 
   openVerticallyCentered(content) {
     this.modalService.open(content, {centered: true});
+  }
+
+  setRating(rating: string) {
+    this.rating = rating;
+    console.log(this.rating);
   }
 
   cancel() {

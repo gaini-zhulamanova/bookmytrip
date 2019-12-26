@@ -12,7 +12,7 @@ export class ThankYouModalComponent implements OnInit {
   constructor(private modalService: NgbModal) { }
 
   openVerticallyCentered(content) {
-    this.modalService.open(content, { centered: true });
+    this.modalService.open(content, {centered: true});
   }
 
   ngOnInit() {

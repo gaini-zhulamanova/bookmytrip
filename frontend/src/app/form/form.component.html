@@ -32,12 +32,13 @@
 
             <section class="row">
                 <div class="col">
-                    <app-star-rating></app-star-rating> 
+                    <app-star-rating
+                    (rating)="setRating($event)"
+                    ></app-star-rating> 
                 </div>
             </section>
             
             <section class="text-rating row">
-
                 <div class="col">
                     <label class="rating-labels" for="reviewer">Ihr Name</label>
                     <input 
@@ -85,9 +86,8 @@
             </section>
 
             <section class="row btn">
-                <button class="buttons" style="margin-right:0.5cm" (click)="submit()">Abschicken</button>
-                <button class="buttons" (click)="cancel()">Abbrechen</button>
                 <app-thank-you-modal></app-thank-you-modal>
+                <button class="buttons" style="margin-left:0.5cm" (click)="cancel()">Abbrechen</button>
             </section>
         </div>
 
