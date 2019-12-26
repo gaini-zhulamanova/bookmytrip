@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -6,10 +6,11 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './star-rating.component.html',
   styleUrls: ['./star-rating.component.css'],
 })
-export class StarRatingComponent implements OnInit {
+export class StarRatingComponent implements OnInit, OnChanges {
 
   currentRate: string;
-  @Output() rating = new EventEmitter<string>();
+  @Input() ratingIn: string;
+  @Output() ratingOut = new EventEmitter<string>();
 
   constructor(config: NgbRatingConfig) {
     config.max = 5;
@@ -18,7 +19,16 @@ export class StarRatingComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClick() {
-    this.rating.emit(this.currentRate);
+  ngOnChanges(changes: SimpleChanges) {
+    this.currentRate = this.ratingIn;
   }
+
+  isLastStar(index: number) {
+    return index === 4;
+  }
+
+  onClick() {
+    this.ratingOut.emit(this.currentRate);
+  }
+
 }

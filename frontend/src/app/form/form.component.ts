@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EntryService } from '../service/entry.service';
 import { ReviewService } from '../service/review.service';
 import { Review } from '../entity/review';
-import { resolve } from 'url';
 
 @Component({
   selector: 'app-form',
@@ -19,6 +18,7 @@ export class FormComponent implements OnInit {
   entryId: number;
   reviewId: number;
 
+  reviewToUpdate: Review;
   entry: any;
   entryType: string;
 
@@ -48,6 +48,7 @@ export class FormComponent implements OnInit {
       .subscribe(entry => this.entry = entry);
 
     this.setEntryType();
+    this.getReviewToUpdate();
   }
 
   setEntryType() {
@@ -58,6 +59,23 @@ export class FormComponent implements OnInit {
     } else if(this.entries === 'museen') {
       this.entryType = 'Museum';
     }
+  }
+
+  getReviewToUpdate() {
+    if(this.reviewId) {
+      this.reviewService.showById(this.city, this.entries, this.entryId, this.reviewId)
+        .subscribe(review => {this.reviewToUpdate = review;
+                              this.setForm()});
+    }
+  }
+
+  setForm() {
+      this.rating = <string><unknown>this.reviewToUpdate.rating;
+      this.comment = this.reviewToUpdate.comment;
+      this.reviewerName = this.reviewToUpdate.reviewerName;
+      this.reviewTitle = this.reviewToUpdate.reviewTitle;
+      this.dateTime = this.reviewToUpdate.dateTime;
+      this.rating = <string><unknown>this.reviewToUpdate.rating;
   }
 
   valideUserInput(): boolean {
@@ -109,9 +127,15 @@ export class FormComponent implements OnInit {
     this.setDateTime();
     this.setReviewerName();
 
-    this.reviewService.add(this.city, this.entries, this.entryId, this.buildReview())
+    if(this.reviewId) {
+      this.reviewService.update(this.city, this.entries, this.entryId, this.reviewId, this.buildReview())
+        .subscribe(review => {this.updateEntry();
+                              this.navigateAfterSuccessfulSubmission()});
+    } else {
+      this.reviewService.add(this.city, this.entries, this.entryId, this.buildReview())
       .subscribe(review => {this.updateEntry();
-        this.navigateAfterSuccessfulSubmission()});
+                            this.navigateAfterSuccessfulSubmission()});
+    }
   }
 
   cancel() {

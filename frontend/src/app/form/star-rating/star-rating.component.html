@@ -2,6 +2,7 @@
   <ngb-rating [(ngModel)]="currentRate" (click)="onClick()">
     <ng-template let-fill="fill" let-index="index">
       <span class="star" [class.filled]="fill === 100">&#9733;</span>
+      <span *ngIf="isLastStar(index)"> *</span>
     </ng-template>
   </ngb-rating>
   <div class="form-text small">

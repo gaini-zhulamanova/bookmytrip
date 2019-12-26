@@ -39,9 +39,9 @@
                             <td><h6>Adresse:</h6></td>
                             <td>{{entry.contact | showAddress}}</td>
                         </tr>
-                        <tr>
+                        <tr *ngIf="reviewId">
                             <td style="width: 35%"><h6>letzter Stand:</h6></td>
-                            <td>Datum</td>
+                            <td>{{dateTime}}</td>
                         </tr>
                     </table>
                 </div>
@@ -51,6 +51,7 @@
                 <div class="col">
                     <div class="general-rating" style="margin-bottom: 16px">
                         <h6>Wie können Sie Ihren Aufenthalt insgesamt bewerten?</h6>
+                        <div class="text-danger" style="font-size: 13px;" *ngIf="!rating || !reviewTitle">Füllen Sie bitte die Pflichtfelder (*) aus!</div>
                     </div>
                 </div>
             </section>
@@ -58,8 +59,9 @@
             <section class="row">
                 <div class="col">
                     <app-star-rating
-                    (rating)="setRating($event)"
-                    ></app-star-rating> 
+                    [ratingIn]="rating"
+                    (ratingOut)="setRating($event)"
+                    ></app-star-rating>
                 </div>
             </section>
             
@@ -74,7 +76,7 @@
                         #reviewer="ngModel"
                         maxlength="30"/>
 
-                    <label class="rating-labels" for="title">Titel Ihrer Bewertung</label>
+                    <label class="rating-labels" for="title">Titel Ihrer Bewertung *</label>
                     <input 
                         type="text" 
                         class="form-control" 
