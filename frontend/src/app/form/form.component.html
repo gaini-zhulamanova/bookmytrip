@@ -19,12 +19,37 @@
         <!-- Add Content Here -->
 
         <div class="container">
+
             <section class="row">
                 <div class="col">
                     <div class="title-rating">
                         <h4>Ihre Bewertung</h4>
                     </div>
-                    <div class="general-rating">
+                </div>
+            </section>
+
+            <section class="row">
+                <div class="col" style="margin-bottom: 20px; margin-top: 20px;" *ngIf="entry">
+                    <table>
+                        <tr>
+                            <td><h6>{{entryType}}:</h6></td>
+                            <td>{{entry.name}}</td>
+                        </tr>
+                        <tr>
+                            <td><h6>Adresse:</h6></td>
+                            <td>{{entry.contact | showAddress}}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 35%"><h6>letzter Stand:</h6></td>
+                            <td>Datum</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+
+            <section class="row">
+                <div class="col">
+                    <div class="general-rating" style="margin-bottom: 16px">
                         <h6>Wie können Sie Ihren Aufenthalt insgesamt bewerten?</h6>
                     </div>
                 </div>
@@ -47,11 +72,7 @@
                         ngModel 
                         name="reviewer" 
                         #reviewer="ngModel"
-                        required 
                         maxlength="30"/>
-                    <div class="alert alert-danger" *ngIf="reviewer.touched && !reviewer.valid">
-                        <div *ngIf="reviewer.errors.required">Geben Sie bitte Ihren Namen ein.</div>
-                    </div>
 
                     <label class="rating-labels" for="title">Titel Ihrer Bewertung</label>
                     <input 
@@ -60,7 +81,7 @@
                         ngModel 
                         name="title" 
                         #title="ngModel"
-                        required 
+                        required
                         maxlength="30"/>
                     <div class="alert alert-danger" *ngIf="title.touched && !title.valid">
                         <div *ngIf="title.errors.required">Geben Sie bitte einen Titel ein.</div>
@@ -76,12 +97,6 @@
                             name="comment">
                         </textarea>
                     </div>
-                </div>
-            </section>
-
-            <section class="row date">
-                <div class="col">
-                    <label class="rating-labels" for="title">Heute ist der </label>
                 </div>
             </section>
 

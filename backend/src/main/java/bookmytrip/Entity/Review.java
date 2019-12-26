@@ -13,7 +13,7 @@ import lombok.*;
 @Getter @Setter
 public class Review {
 	
-	@NotBlank
+//	@NotBlank
 	@Length(max = 500)
 	private String comment;
 	
@@ -28,7 +28,17 @@ public class Review {
 	@NotNull
 	@Min(1) @Max(5)
 	@Column(nullable = false)
-	private Integer rating;	
+	private Integer rating;
+	
+	@Length(max = 500)
+	private String reviewerName;
+	
+	@NotBlank
+	@Length(max = 500)
+	private String reviewTitle;
+	
+	@NotBlank
+	private String dateTime;
 }
 
  

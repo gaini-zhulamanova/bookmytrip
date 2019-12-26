@@ -15,7 +15,7 @@ export class EntryService {
   }
 
   public showById(city: string, entries: string, id: number): Observable<any> {
-    return this.http.get<any>(this.url + city + '/' + entries + id);
+    return this.http.get<any>(this.url + city + '/' + entries + '/' + id);
   }
 
   public showByName(city: string, entries:string, name: string): Observable<any[]> {

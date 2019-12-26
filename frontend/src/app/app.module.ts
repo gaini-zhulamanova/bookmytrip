@@ -48,6 +48,7 @@ import { ModalMoreOptionsComponent } from './sidebar-filter/sidebar/modal-more-o
 import { SearchFieldCitiesComponent } from './homepage/modal-entry-question/search-field-cities/search-field-cities.component';
 import { ShowTypesPipe } from './pipe/show-types.pipe';
 import { ShowInclusivePipe } from './pipe/show-inclusive.pipe';
+import { ShowAddressPipe } from './pipe/show-address.pipe';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { ShowInclusivePipe } from './pipe/show-inclusive.pipe';
     ModalMoreOptionsComponent,
     FilterMoreOptionsComponent,
     ShowInclusivePipe,
+    ShowAddressPipe,
   
   ],
   imports: [
