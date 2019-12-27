@@ -19,7 +19,7 @@ public class Entry {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToMany(mappedBy = "entry")
+	@OneToMany(mappedBy = "entry", cascade = CascadeType.ALL)
 	@JsonBackReference
 	private List<Review> reviews = new ArrayList<Review>();
 	

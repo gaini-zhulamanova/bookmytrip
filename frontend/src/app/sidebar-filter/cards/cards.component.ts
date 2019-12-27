@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EntryService } from 'src/app/service/entry.service';
 
 @Component({
   selector: 'app-cards',
@@ -12,8 +13,11 @@ export class CardsComponent implements OnInit {
   entriesURL: string;
   city: string;
 
+  isMouseOverIcon: boolean;
+
   constructor(private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private entryService: EntryService) { }
 
   ngOnInit() {
     this.entriesURL = this.route.snapshot.params.entries;
@@ -26,5 +30,20 @@ export class CardsComponent implements OnInit {
 
   toDetails(id: number) {
     this.router.navigate(['book-my-trip', this.city, this.entriesURL, id]);
+  }
+
+  isIcon(isMouseOverIcon: boolean) {
+    this.isMouseOverIcon = isMouseOverIcon;
+  }
+
+  onDelete(id: number) {
+    console.log("Nun soll das Element gelöscht werden, vorher aber vllt Fragen ob man sich sicher ist?");
+    // this.entryService.delete(this.city, this.entriesURL, id)
+    //   .subscribe(_ => window.location.reload());
+  }
+
+  toEntryForm(id: number) {
+    console.log("Nun soll es zum Form gehen!");
+    // this.router.navigate(['book-my-trip', ...])
   }
 }

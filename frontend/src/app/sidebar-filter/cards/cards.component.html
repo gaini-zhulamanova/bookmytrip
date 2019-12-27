@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row no-gutters">
         <div class="col flex-items" *ngFor="let entry of entries">
-            <div class="card" *ngIf="entry" (click)="toDetails(entry.id)">
+            <div class="card" *ngIf="entry" (click)="!isMouseOverIcon ? toDetails(entry.id) : false">
                 <img *ngIf="entryTypeMatches('restaurants')" src="assets/placeholder_restaurant.jpg" class="card-img-top" alt="...">
                 <img *ngIf="entryTypeMatches('museen')" src="assets/placeholder_museum.png" class="card-img-top" alt="...">
                 <img *ngIf="entryTypeMatches('hotels')" src="assets/placeholder_hotel.png" class="card-img-top" alt="...">
@@ -16,10 +16,10 @@
                             ({{entry.numOfReviews}})
                         </li>
                         <div class="icon-buttons">
-                            <button class="edit-button" type="button">
+                            <button class="edit-button" type="button" (mouseenter) ="isIcon(true)" (mouseleave) ="isIcon(false)" (click)="toEntryForm(entry.id)">
                                 <mat-icon>edit</mat-icon>
                             </button>
-                            <button class="delete-button" type="button">
+                            <button class="delete-button" type="button" (mouseenter) ="isIcon(true)" (mouseleave) ="isIcon(false)" (click)="onDelete(entry.id)">
                                 <mat-icon>delete_outline</mat-icon>
                             </button>
                         </div>

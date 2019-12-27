@@ -87,4 +87,30 @@ export class SidebarFilterComponent {
       this.rating, this.priceLevel, this.breakfast, this.stars, this.museumType)
       .subscribe(e => this.entries = e);
   }
+
+  sortArray(sortBy: string, direction: string) {
+    this.entries = this.entries.sort((e1,e2) => {
+      if (this.transformForSort(e1, sortBy) > this.transformForSort(e2, sortBy)) {
+        return this.directionCheck(direction);
+      }
+      if (this.transformForSort(e1, sortBy) < this.transformForSort(e2, sortBy)) {
+        return - this.directionCheck(direction);
+      }
+      return 0;
+    });
+  }
+
+  transformForSort(entry: any, sortBy:string) {
+    if(sortBy === 'name') {
+      return entry[sortBy].toLowerCase();
+    }
+    return entry[sortBy];
+  }
+
+  directionCheck(direction: string) {
+    if(direction === 'DESC') {
+      return -1
+    }
+    return 1;
+  }
 }

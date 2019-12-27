@@ -17,9 +17,7 @@ public class Cuisine {
 	@NotBlank
 	private String type;	
 
-	@ManyToMany(
-			mappedBy = "cuisines",
-			cascade = CascadeType.MERGE)
+	@ManyToMany(mappedBy = "cuisines", cascade = CascadeType.MERGE)
 	@JsonBackReference
 	private Set<Restaurant> restaurants;
 }
