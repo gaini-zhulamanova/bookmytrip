@@ -33,25 +33,6 @@ export class FormEntityComponent implements OnInit {
 
   hasUnitNumber = false;
 
-/*   states = [
-    {name: 'Baden-Württemberg', abbreviation: 'BW'},
-    {name: 'Bayern', abbreviation: 'BY'},
-    {name: 'Berlin', abbreviation: 'BE'},
-    {name: 'Brandenburg', abbreviation: 'BB'},
-    {name: 'Bremen', abbreviation: 'HB'},
-    {name: 'Hamburg', abbreviation: 'HH'},
-    {name: 'Hessen', abbreviation: 'HE'},
-    {name: 'Mecklenburg-Vorpommern', abbreviation: 'MV'},
-    {name: 'Niedersachsen', abbreviation: 'NI'},
-    {name: 'Nordrhein-Westfalen', abbreviation: 'NRW'},
-    {name: 'Rheinland-Pfalz', abbreviation: 'RP'},
-    {name: 'Saarland', abbreviation: 'SL'},
-    {name: 'Sachsen', abbreviation: 'SA'},
-    {name: 'Sachsen-Anhalt', abbreviation: 'CT'},
-    {name: 'Schleswig-Holstein', abbreviation: 'SH'},
-    {name: 'Thüringen', abbreviation: 'TH'},
-  ]; */
-
   constructor(private fb: FormBuilder) {}
 
   /* TODO: Thank you Modal integrieren */

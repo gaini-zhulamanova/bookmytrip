@@ -6,3 +6,9 @@
 .checkbox-item {
     padding: 0 5px;
 }
+
+.close-icon {
+    font-size: larger;
+    color: #BF417C;
+    font-weight: bold;
+}

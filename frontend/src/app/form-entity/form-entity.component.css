@@ -4,10 +4,12 @@
   
   h4 {
     margin: 0 auto;
+    padding: 20px 0;
   }
-  
-  .title {
-    display: inline-block;
+
+  .title-form {
+    padding: 20px 0;
+    text-align: center;
   }
   
   .mat-radio-button {
@@ -32,4 +34,8 @@
   
   button {
     margin: 20px 0;
+  }
+
+  .submit-button {
+    float: right;
   }
