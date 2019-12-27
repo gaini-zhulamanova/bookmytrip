@@ -101,14 +101,18 @@ public class HotelController {
 			@RequestBody @Valid Hotel hotel, 
 			@PathVariable String city) {
 		
-		City enumCity = City.convertToEnum(city);	
+		City enumCity = City.convertToEnum(city);
 		hotel.setId(id);
-		hotel.getContact().setCity(enumCity);
+		hotel.getContact().setCity(enumCity);	
+		hotel.setNumOfReviews(hotelRepo.updateNumOfReviews(enumCity, id));
+		hotel.setAvrgRating(hotelRepo.updateAvrgRating(enumCity, id));
+
 		if (hotelRepo.findByContactCityAndId(enumCity, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		hotelRepo.save(hotel);
 		return new ResponseEntity<>(HttpStatus.OK);
+		
 	}
 	
 	@DeleteMapping("/{id}")

@@ -103,12 +103,15 @@ public class MuseumController {
 		
 		City enumCity = City.convertToEnum(city);
 		museum.setId(id);
-		museum.getContact().setCity(enumCity);
+		museum.getContact().setCity(enumCity);	
+		museum.setNumOfReviews(museumRepo.updateNumOfReviews(enumCity, id));
+		museum.setAvrgRating(museumRepo.updateAvrgRating(enumCity, id));
+
 		if (museumRepo.findByContactCityAndId(enumCity, id).isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		museumRepo.save(museum);
-		return new ResponseEntity<>(museumRepo.findAll(),HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")
