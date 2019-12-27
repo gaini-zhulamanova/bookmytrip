@@ -49,6 +49,8 @@ import { SearchFieldCitiesComponent } from './homepage/modal-entry-question/sear
 import { ShowTypesPipe } from './pipe/show-types.pipe';
 import { ShowInclusivePipe } from './pipe/show-inclusive.pipe';
 import { ShowAddressPipe } from './pipe/show-address.pipe';
+import { ModalMuseumTypesComponent } from './form-entity/modal-museum-types/modal-museum-types.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -79,6 +81,7 @@ import { ShowAddressPipe } from './pipe/show-address.pipe';
     FilterMoreOptionsComponent,
     ShowInclusivePipe,
     ShowAddressPipe,
+    ModalMuseumTypesComponent,
   
   ],
   imports: [
@@ -87,7 +90,7 @@ import { ShowAddressPipe } from './pipe/show-address.pipe';
     LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule,
     MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatFormFieldModule,
     ReactiveFormsModule, AppRoutingModule, ReactiveFormsModule, MatInputModule, MatRadioModule,
-    MatAutocompleteModule, MatSelectModule],
+    MatAutocompleteModule, MatSelectModule, MatCheckboxModule],
   providers: [SearchCitiesPipe],
   bootstrap: [AppComponent]
 })

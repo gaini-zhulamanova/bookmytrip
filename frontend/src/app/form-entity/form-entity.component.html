@@ -1,4 +1,5 @@
-<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+<form [formGroup]="addressForm">
+ <!--  TODO: aktivieren, wenn Thank you Modal funktioniert: <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()"> -->
   
     <mat-card class="info-card">
   
@@ -46,7 +47,7 @@
           </div>
         </div>
           
-        <div class="row">
+<!--         <div class="row">
           <div class="col">
             <mat-form-field class="full-width">
               <mat-select placeholder="Bundesland" formControlName="state" required>
@@ -59,7 +60,7 @@
               </mat-error>
             </mat-form-field>
           </div>
-        </div>
+        </div> -->
         
         <div class="row">
           <div class="col">
@@ -120,9 +121,8 @@
   
         <div class="row">
           <div class="col">
-            <mat-form-field class="museum-type full-width">
-              <textarea matInput placeholder="Geben Sie bitte die Art Ihres Museums ein"></textarea>
-            </mat-form-field>
+            <p>Klicken Sie bitte auf den folgenden Button, um die Art Ihres Museums auszuwählen</p>
+            <app-modal-museum-types></app-modal-museum-types>
           </div>
         </div>
   

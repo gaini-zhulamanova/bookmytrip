@@ -1,0 +1,21 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Wählen Sie bitte den Typ Ihres Museums aus</h5>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- TODO: dynamisch ausgeben -->
+    <div class="modal-body columns">
+        <mat-checkbox class="checkbox-item">Kunstmuseum</mat-checkbox>
+        <mat-checkbox class="checkbox-item">Historisches Museum</mat-checkbox>
+        <mat-checkbox class="checkbox-item">Archäologisches Museum</mat-checkbox>
+        <mat-checkbox class="checkbox-item">Stadt- und Industriemuseum</mat-checkbox>
+        <mat-checkbox class="checkbox-item">Kriminalmuseum</mat-checkbox>
+        <mat-checkbox class="checkbox-item">Modemuseum</mat-checkbox>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Auswählen</button>
+    </div>
+</ng-template>
+<button mat-raised-button color="primary" (click)="openVerticallyCentered(content)">Museum auswählen</button>

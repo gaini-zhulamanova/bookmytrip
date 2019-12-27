@@ -33,7 +33,7 @@ export class FormEntityComponent implements OnInit {
 
   hasUnitNumber = false;
 
-  states = [
+/*   states = [
     {name: 'Baden-Württemberg', abbreviation: 'BW'},
     {name: 'Bayern', abbreviation: 'BY'},
     {name: 'Berlin', abbreviation: 'BE'},
@@ -50,13 +50,14 @@ export class FormEntityComponent implements OnInit {
     {name: 'Sachsen-Anhalt', abbreviation: 'CT'},
     {name: 'Schleswig-Holstein', abbreviation: 'SH'},
     {name: 'Thüringen', abbreviation: 'TH'},
-  ];
+  ]; */
 
   constructor(private fb: FormBuilder) {}
 
-  onSubmit() {
+  /* TODO: Thank you Modal integrieren */
+/*   onSubmit() {
     alert('Thanks!');
-  }
+  } */
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges
