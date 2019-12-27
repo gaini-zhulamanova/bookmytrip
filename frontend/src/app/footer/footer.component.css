@@ -2,22 +2,18 @@
 
 [class*="entypo-"]:before {
     font-family: 'entypo', sans-serif;
-    color: red;
+    color: #F2B705;
 }
 
 .footer-content {
-    color: white;
-    /* border: 1px dotted yellow; */
+    color: #fff;
  }
 
+ p {
+     margin: 15px 0;
+ }
 
-/* This makes problems with scrolling (the second scrollbar appears) */
-
-/* .footer {
-    border: 1px dotted green;
-} */
-
-/* p {
-    margin-top: 20px;
-} */
+ .mat-toolbar {
+    float: right;
+ }
 

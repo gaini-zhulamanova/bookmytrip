@@ -38,3 +38,29 @@ ul {
     text-align: left;
     padding-left: 14px;
 }
+
+.icon-buttons {
+    text-align: end;
+    margin: 5px 5px;
+}
+
+.edit-button {
+    background: transparent;
+    border: none;
+    
+}
+
+.delete-button {
+    background: transparent;
+    border: none;
+    margin: 0 5px;
+}
+
+.icon-buttons :hover {
+    background-color:#FFD857;
+}
+
+mat-icon {
+    font-size: large;
+    padding: 5px 5px;
+}

@@ -15,6 +15,14 @@
                             <span class="fa fa-star-o" *ngFor="let i of [1,2,3,4,5] | slice:entry.avrgRating:5;"></span>
                             ({{entry.numOfReviews}})
                         </li>
+                        <div class="icon-buttons">
+                            <button class="edit-button" type="button">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button class="delete-button" type="button">
+                                <mat-icon>delete_outline</mat-icon>
+                            </button>
+                        </div>
                         <li *ngIf="entryTypeMatches('museen')"><span class="card-text"><b>Museumsarten</b></span>: {{entry.museumTypes | showTypes}}</li>
                         <li *ngIf="entryTypeMatches('hotels')"><span class="card-text"><b>Sterne</b></span>: {{entry.stars}}</li>
                         <li *ngIf="entryTypeMatches('hotels')"><span class="card-text"><b>Frühstück</b></span>: {{entry.breakfastIncl | showInclusive}}</li>

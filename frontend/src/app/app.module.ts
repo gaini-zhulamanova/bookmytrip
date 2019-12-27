@@ -83,7 +83,7 @@ import { ThankYouModalFormEntityComponent } from './form-entity/thank-you-modal-
     ShowInclusivePipe,
     ShowAddressPipe,
     ModalMuseumTypesComponent,
-    ThankYouModalFormEntityComponent,
+    ThankYouModalFormEntityComponent
   
   ],
   imports: [

@@ -89,10 +89,6 @@ input[type='checkbox'] {
   margin: 5px 10px;
 }
 
-/* .button-filter {
-  text-align: center;
-} */
-
 .cards .no-results-message {
   display: none;
   text-align: center;
@@ -144,6 +140,7 @@ input[type='checkbox'] {
   padding: 15px 30px;
   text-align: left;
 }
+
 .close-area {
   padding: 15px 30px;
   background-color: #ad2665;
