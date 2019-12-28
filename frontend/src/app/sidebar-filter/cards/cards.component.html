@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{entry.name}}</h5>
                     <ul style="list-style-type:none">
-                        <li *ngIf="!entryTypeMatches('hotels')"><span class="card-text"><b>Preisstufe</b></span>: {{entry.priceLevel}}</li>
+                        <li *ngIf="!entryTypeMatches('hotels')"><span class="card-text"><b>Preisstufe</b></span>: {{entry.priceLevel | showPriceLevel}}</li>
                         <li *ngIf="entryTypeMatches('restaurants')"><span class="card-text"><b>Küchen</b></span>: {{entry.cuisines | showTypes}}</li>
                         <li><span class="card-text"><b>Bewertung</b></span>: 
                             <span class="fa fa-star" style="color: orange;" *ngFor="let i of [1,2,3,4,5] | slice:0:entry.avrgRating;"></span>

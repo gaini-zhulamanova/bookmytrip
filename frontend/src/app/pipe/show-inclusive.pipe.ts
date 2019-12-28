@@ -5,11 +5,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ShowInclusivePipe implements PipeTransform {
 
-  transform(value: boolean, ...args: any[]): string {
+  transform(value: boolean): string {
     if (value) {
       return "inklusive";
     }
     return "nicht inklusive";
   }
-
 }
