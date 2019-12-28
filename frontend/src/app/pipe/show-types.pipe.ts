@@ -16,11 +16,11 @@ export class ShowTypesPipe implements PipeTransform {
     length = types.length;
 
     for(let i = 0; i < length; i++) {
-      if (i > 4) {
-        concatTypes += ' und mehr';
+      if (i > 1) {
+        concatTypes += ' & mehr';
         break;
       }
-      if (length === 1 || i === (length - 1) || i === 4) {
+      if (length === 1 || i === (length - 1) || i === 1) {
         concatTypes += types[i].type;
       } else {
         concatTypes += types[i].type + ', ';
