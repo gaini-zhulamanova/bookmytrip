@@ -1,0 +1,16 @@
+<ng-template #content let-modal>
+    <div class="modal-body" style="text-align: center">
+        <p>Sind Sie sich sicher, dass Sie den Eintrag löschen möchten?
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button class="buttons" (click)="setChoice(false)">Abbrechen</button>
+        <button class="buttons" (click)="setChoice(true)">Ja</button>
+    </div>
+</ng-template>
+
+<button class="delete-button" type="button"
+    (click)="openVerticallyCentered(content)" (mouseenter) ="isIcon(true)" (mouseleave) ="isIcon(false)">
+    <mat-icon>delete_outline</mat-icon>
+</button>
+

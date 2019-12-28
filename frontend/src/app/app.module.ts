@@ -53,6 +53,7 @@ import { ModalMuseumTypesComponent } from './form-entity/modal-museum-types/moda
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ThankYouModalFormEntityComponent } from './form-entity/thank-you-modal-form-entity/thank-you-modal-form-entity.component';
 import { ShowPriceLevelPipe } from './pipe/show-price-level.pipe';
+import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { ShowPriceLevelPipe } from './pipe/show-price-level.pipe';
     ShowAddressPipe,
     ModalMuseumTypesComponent,
     ThankYouModalFormEntityComponent,
-    ShowPriceLevelPipe
+    ShowPriceLevelPipe,
+    DeleteModalComponent
   
   ],
   imports: [

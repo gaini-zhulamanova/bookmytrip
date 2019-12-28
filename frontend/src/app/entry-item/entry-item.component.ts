@@ -14,41 +14,51 @@ export class EntryItemComponent implements OnInit {
 
   city: string;
   entries: string;
+  entryType: string;
   id: number;
   entry: any;
   reviews: Review[];
   entriesURL: string;
 
   constructor(private entryService: EntryService,
-              private reviewService: ReviewService,
               private route: ActivatedRoute,
-              private router: Router,
-              private location: Location) { }
+              private router: Router) { }
 
   ngOnInit() {
-
     this.city = this.route.snapshot.params.city;
     this.entries = this.route.snapshot.params.entries;
     this.id = this.route.snapshot.params.id;
-    this.entriesURL = this.route.snapshot.params.entries;
 
     this.entryService.showById(this.city, this.entries, this.id)
       .subscribe(entry => this.entry = entry);
 
-    this.reviewService.getAll(this.city, this.entries, this.id)
-      .subscribe(reviews => this.reviews = reviews);
+    this.setEntryType();
+  }
 
+  setEntryType() {
+    if(this.entries === 'restaurants') {
+      this.entryType = 'Restaurant';
+    } else if(this.entries === 'hotels') {
+      this.entryType = 'Hotel';
+    } else if(this.entries === 'museen') {
+      this.entryType = 'Museum';
+    }
   }
 
   entryTypeMatches(entryType: string): boolean {
-    return this.entriesURL === entryType;
+    return this.entries === entryType;
   }
 
-  toEntryForm(id: number) {
-    this.router.navigate(['book-my-trip' + this.city + this.entries + this.id + '/' + 'bewertungen/' + 'neu']);
+  isNull(element: any): boolean {
+    return element === null || element === undefined
+  }
+
+  toReviewForm() {
+    this.router.navigate(['book-my-trip', this.city, this.entries, this.id, 'bewertungen', 'neu'])
+      .then(() => location.reload());
   }
 
   handleBackButton(){
-    this.location.back();
+    this.router.navigate(['book-my-trip', this.city, this.entries]);
   }
 }

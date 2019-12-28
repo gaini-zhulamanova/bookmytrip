@@ -1,4 +1,11 @@
  /* Styling for Comment Fields */
+ .parent {
+    display: flex;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
 
   #review-list {
       margin: 0;

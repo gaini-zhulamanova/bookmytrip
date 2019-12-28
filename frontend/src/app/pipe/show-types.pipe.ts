@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ShowTypesPipe implements PipeTransform {
 
-  transform(types: any[]): string {
+  transform(types: any[], origin: string): string {
 
     let concatTypes: string = '';
 
@@ -16,11 +16,11 @@ export class ShowTypesPipe implements PipeTransform {
     length = types.length;
 
     for(let i = 0; i < length; i++) {
-      if (i > 1) {
+      if (i > 1 && origin !== 'detailPage') {
         concatTypes += ' & mehr';
         break;
       }
-      if (length === 1 || i === (length - 1) || i === 1) {
+      if (length === 1 || i === (length - 1) || (i === 1  && origin !== 'detailPage')) {
         concatTypes += types[i].type;
       } else {
         concatTypes += types[i].type + ', ';

@@ -29,7 +29,8 @@ export class CardsComponent implements OnInit {
   }
 
   toDetails(id: number) {
-    this.router.navigate(['book-my-trip', this.city, this.entriesURL, id]);
+    this.router.navigate(['book-my-trip', this.city, this.entriesURL, id])
+      .then(() => location.reload());
   }
 
   isIcon(isMouseOverIcon: boolean) {
@@ -37,9 +38,8 @@ export class CardsComponent implements OnInit {
   }
 
   onDelete(id: number) {
-    console.log("Nun soll das Element gelöscht werden, vorher aber vllt Fragen ob man sich sicher ist?");
-    // this.entryService.delete(this.city, this.entriesURL, id)
-    //   .subscribe(_ => window.location.reload());
+    this.entryService.delete(this.city, this.entriesURL, id)
+      .subscribe(_ => window.location.reload());
   }
 
   toEntryForm(id: number) {

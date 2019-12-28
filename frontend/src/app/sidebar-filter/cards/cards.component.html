@@ -19,9 +19,11 @@
                             <button class="edit-button" type="button" (mouseenter) ="isIcon(true)" (mouseleave) ="isIcon(false)" (click)="toEntryForm(entry.id)">
                                 <mat-icon>edit</mat-icon>
                             </button>
-                            <button class="delete-button" type="button" (mouseenter) ="isIcon(true)" (mouseleave) ="isIcon(false)" (click)="onDelete(entry.id)">
-                                <mat-icon>delete_outline</mat-icon>
-                            </button>
+                            <app-delete-modal
+                            [elementId]="entry.id"
+                            (isMouseOverIcon)="isIcon($event)"
+                            (deleteElementById)="onDelete($event)"
+                            ></app-delete-modal>
                         </div>
                         <li *ngIf="entryTypeMatches('museen')"><span class="card-text"><b>Museumsarten</b></span>: {{entry.museumTypes | showTypes}}</li>
                         <li *ngIf="entryTypeMatches('hotels')"><span class="card-text"><b>Sterne</b></span>: {{entry.stars}}</li>

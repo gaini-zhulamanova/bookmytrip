@@ -1,66 +1,29 @@
 <div class="container">
-
   <div class="row">
-
     <section class="comment">
-
       <h4>Kommentare</h4>
       <ul id="review-list">
-
         <li *ngFor="let review of reviews">
-
-          <p>Name: {{review.reviewTitle}}</p>
-          <p>Name: {{review.reviewerName}}</p>
-          <p>Datum: {{review.dateTime}}</p>
-          <p *ngIf="comment">{{review.comment}}</p>
-
-          <div class=" row star-rating-container">
-
-            <div class="col-3">
-              <p class="title-rating">Insgesamt</p>
-              <div class="form-group">
-                <ngb-rating aria-valuemax="5" aria-valuemin="1">{{rating}}</ngb-rating>
-                <div class="form-text small"></div>
+          <p style="margin-bottom: 2px;">{{review.reviewerName}} schrieb am {{review.dateTime}}</p>
+          <p style="margin-bottom: 12px;"><b>{{review.reviewTitle}}</b></p>
+          <p *ngIf="review.comment">{{review.comment}}</p>
+          <p style="text-align:left;">
+            <span><b>Bewertung:&nbsp;&nbsp;</b></span>
+            <span class="fa fa-star" style="color: orange;" *ngFor="let i of [1,2,3,4,5] | slice:0:review.rating;"></span>
+            <span class="fa fa-star-o" *ngFor="let i of [1,2,3,4,5] | slice:review.rating:5;"></span>
+            <span style="float:right;">
+              <div class="icon-buttons">
+                <button class="edit-button" type="button"
+                  (click)="toReviewForm(review.id)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <app-delete-modal
+                [elementId]="review.id"
+                (deleteElementById)="onDelete($event)"
+                ></app-delete-modal>
               </div>
-            </div>
-
-
-            <div class="col-3">
-              <p class="title-rating">Service</p>
-              <div class="form-group">
-                <ngb-rating aria-valuemax="5" aria-valuemin="1"></ngb-rating>
-                <div class="form-text small"></div>
-              </div>
-            </div>
-
-            <div class="col-3">
-              <p class="title-rating">Essen</p>
-              <div class="form-group">
-                <ngb-rating aria-valuemax="5" aria-valuemin="1"></ngb-rating>
-                <div class="form-text small"></div>
-              </div>
-            </div>
-
-            <div class="col-3">
-              <p class="title-rating">Preis-Niveau</p>
-              <div class="form-group">
-                <ngb-rating aria-valuemax="5" aria-valuemin="1"></ngb-rating>
-                <div class="form-text small"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="icon-buttons">
-            <button class="edit-button" type="button" (mouseenter)="isIcon(true)" (mouseleave)="isIcon(false)"
-              (click)="toEntryForm(entry.id)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button class="delete-button" type="button" (mouseenter)="isIcon(true)" (mouseleave)="isIcon(false)"
-              (click)="onDelete(entry.id)">
-              <mat-icon>delete_outline</mat-icon>
-            </button>
-          </div>
-
+            </span>
+          </p>
         </li>
       </ul>
     </section>
