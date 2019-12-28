@@ -37,19 +37,19 @@
             <span class="spacer"></span>
             <!-- Button to create a new entry item -->
             <app-button-new-entry-item></app-button-new-entry-item>
-            <!-- <span class="spacer"></span> -->
         </mat-toolbar>
         <ng-content></ng-content>
         <!-- Add Content Here -->
-        <div class="container-fluid">
-            <main class="main-content">
+        <main class="container-fluid main-content">
+
                 <div class="row">
-                    <div class="col-1">
-                        <button class="filter-toggle-icon" type="button" mat-button (click)="drawer.toggle()">
+
+                    <div class="col">
+                        <span class="filter-toggle-icon" mat-button (click)="drawer.toggle()">
                             <i class="fa fa-filter fa-2x"></i>
-                        </button>
+                        </span>
                     </div>
-                    <div class="col-11">
+                    <div class="col-12">
                         <div class="city-name">
                             <div class="row justify-content-center">
                                 <h4>{{entriesURL.charAt(0) | uppercase}}{{entriesURL.substring(1)}} in {{city}}</h4>
@@ -69,6 +69,7 @@
                         </div>
                     </div>
                 </div>
+
             </main>
 
             <footer class="row">
@@ -76,7 +77,7 @@
                     <app-footer></app-footer>
                 </mat-toolbar>
             </footer>
-        </div>
+
     </mat-sidenav-content>
 </mat-sidenav-container>
   

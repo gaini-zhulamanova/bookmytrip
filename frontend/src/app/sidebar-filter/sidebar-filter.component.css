@@ -1,5 +1,5 @@
 .sidenav {
-  width: 270px;
+  width: 250px;
 }
 
 .mat-toolbar.mat-primary {
@@ -85,7 +85,6 @@ nav.fill ul li a:hover:after {
 }
 
 input[type='checkbox'] {
-  border: dotted #808080 1px;
   margin: 5px 10px;
 }
 
@@ -100,13 +99,15 @@ input[type='checkbox'] {
 
 .city-name {
   text-align: center;
-  margin: 10px 0;
+  margin: 0 0 10px 0;
   color: #a31f5d;
 }
 
 .filter-toggle-icon {
-  margin-top: 10px;
-  margin-left: 0;
+  margin-top: 2px;
+  padding-top: 2px;
+  background-color: #fff;
+  border: none;
 }
 
 .filter-toggle-icon:focus {
@@ -115,7 +116,7 @@ input[type='checkbox'] {
 }
 
 .fa-filter {
-  font-size: 25px;
+  font-size: 20px;
   margin: 0;
   padding: 0;
   color: #BF417C;
@@ -145,3 +146,4 @@ input[type='checkbox'] {
   padding: 15px 30px;
   background-color: #ad2665;
 }
+

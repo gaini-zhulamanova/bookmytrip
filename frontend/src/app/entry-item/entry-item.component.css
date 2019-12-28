@@ -8,9 +8,9 @@
   width: 200px;
 }
 
-/* .sidenav .mat-toolbar {
+.sidenav .mat-toolbar {
   background: inherit;
-} */
+}
 
 .mat-toolbar.mat-primary {
   position: sticky;
@@ -35,7 +35,6 @@
 }
 
 ol, ul {
-  border: dotted #808080 1px;
   padding-left: 1rem;
   list-style: none;
 }
@@ -50,32 +49,72 @@ li {
   padding-right: 20px;
 }
 
+
+nav {
+  margin-top: auto;
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+nav ul li a,
+nav ul li a:after,
+nav ul li a:before {
+  transition: all .5s;
+}
+
+
+/* stroke */
+nav.stroke ul li a,
+nav.fill ul li a {
+  position: relative;
+}
+nav.stroke ul li a:after,
+nav.fill ul li a:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  content: '.';
+  color: transparent;
+  background: #F2B705;
+  height: 2px;
+}
+nav.stroke ul li a:hover:after {
+  width: 100%;
+}
+
+nav.fill ul li a {
+  transition: all 2s;
+}
+
+nav.fill ul li a:after {
+  text-align: left;
+  content: '.';
+  margin: 0;
+  opacity: 0;
+}
+nav.fill ul li a:hover {
+  color: #fff;
+  z-index: 1;
+}
+nav.fill ul li a:hover:after {
+  z-index: -10;
+  animation: fill 1s forwards;
+  -webkit-animation: fill 1s forwards;
+  -moz-animation: fill 1s forwards;
+  opacity: 1;
+}
+
 /* Styling for Entry Parts */
 
-.columns {
-    border: 1px dotted grey;
-}
-
-.entry-item-details {
-  border: 1px dotted blue;
-}
-
-.entry-item-address {
-  border: 1px dotted rgb(247, 0, 255);
-}
-
 .entry-item-open-hours {
-  border: 1px dotted orange;
+  margin: 10px 0;
+  
 }
-
-.entry-comments {
-  border: 1px dotted rgb(0, 247, 255);
-}
-
-/*   .comment {
-  border: 1px dotted rgb(255, 0, 200);
-} */
-
 .table {
   font-size: 14px;
   line-height: 14px
@@ -90,9 +129,12 @@ img {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 5px;
 }
 
-.btn {
-  margin-top: 10px;
+#back-button {
+  margin-bottom: 20px;
+  float: right;
 }
+
 

@@ -1,5 +1,4 @@
 .container {
-    border: dotted grey 1px;
     display: flex;
     flex-flow: column wrap;
     justify-content: space-around;
@@ -8,21 +7,18 @@
 }
 
 .flex-items {
-    border: dotted rgb(42, 165, 149) 1px;
     padding: 5px;
     margin: 5px;
     text-align: center;
 }
 
 .card {
-    border: dotted red 1px;
     width: 300px;
     height: 360px;
     margin: 0 auto;
 }
 
 .card-body {
-    border: dotted gold 1px;
     padding: 3px 5px;
 }
 
@@ -41,19 +37,18 @@ ul {
 
 .icon-buttons {
     text-align: end;
-    margin: 5px 5px;
+    margin-top: 10px;
 }
 
 .edit-button {
     background: transparent;
     border: none;
-    
 }
 
 .delete-button {
     background: transparent;
     border: none;
-    margin: 0 5px;
+   /*  margin: 0 5px; */
 }
 
 .icon-buttons :hover {
@@ -62,5 +57,5 @@ ul {
 
 mat-icon {
     font-size: large;
-    padding: 5px 5px;
+    padding-top: 5px;
 }

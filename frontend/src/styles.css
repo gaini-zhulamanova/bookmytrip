@@ -4,7 +4,9 @@ html, body {
 }
 
 .main-content {
-    min-height: calc(100vh - 60px);
+    position: relative;
+    min-height: 100vh;
+   
 }
  
 .mat-drawer-container {

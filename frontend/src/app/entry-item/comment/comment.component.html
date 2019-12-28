@@ -1,97 +1,68 @@
 <div class="container">
-    
-    <div class="row">
 
-        <section class="comment">
+  <div class="row">
 
-            <h4>Kommentare</h4>
-            <ul id="review-list">
+    <section class="comment">
 
-                <li>
-                    <p>Name: Robert</p>
-                    <p>Datum: <19.11.2019> </p>
-                    <p>Tiramisu cotton candy jelly-o gummies cake. Croissant oat cake liquorice lollipop jelly-o halvah. Dessert gummies carrot cake marshmallow caramels pudding chocolate cake apple pie donut. Halvah sweet roll caramels sweet roll lemon drops tiramisu. Chocolate cake cookie jelly-o gingerbread lemon drops icing lemon drops sesame snaps. Cupcake jujubes powder gummi bears bonbon. Muffin muffin lemon drops candy canes sweet roll cotton candy.</p>
-                    
-                    <div class=" row star-rating-container">
+      <h4>Kommentare</h4>
+      <ul id="review-list">
 
-                        <div class="col-3">
-                            <p class="title-rating">Insgesamt</p>
-                            <div class="form-group">
-                                <ngb-rating aria-valuemax="5" aria-valuemin="1"></ngb-rating>
-                                <div class="form-text small"></div>
-                            </div>
-                        </div>
+        <li *ngFor="let review of reviews">
 
-                    
-                        <div class="col-3">
-                            <p class="title-rating">Service</p>
-                            <div class="form-group">
-                                <ngb-rating aria-valuemax="5" aria-valuemin="1"></ngb-rating>
-                                <div class="form-text small"></div>
-                            </div>
-                        </div>
+          <p>Name: {{review.reviewTitle}}</p>
+          <p>Name: {{review.reviewerName}}</p>
+          <p>Datum: {{review.dateTime}}</p>
+          <p *ngIf="comment">{{review.comment}}</p>
 
-                        <div class="col-3">
-                            <p class="title-rating">Essen</p>
-                            <div class="form-group">
-                                <ngb-rating aria-valuemax="5" aria-valuemin="1"></ngb-rating>
-                                <div class="form-text small"></div>
-                            </div>
-                        </div>
+          <div class=" row star-rating-container">
 
-                        <div class="col-3">
-                            <p class="title-rating">Preis-Niveau</p>
-                            <div class="form-group">
-                                <ngb-rating aria-valuemax="5" aria-valuemin="1"></ngb-rating>
-                                <div class="form-text small"></div>
-                            </div>
-                        </div>
-                    </div>                
-                </li>
+            <div class="col-3">
+              <p class="title-rating">Insgesamt</p>
+              <div class="form-group">
+                <ngb-rating aria-valuemax="5" aria-valuemin="1">{{rating}}</ngb-rating>
+                <div class="form-text small"></div>
+              </div>
+            </div>
 
- 
-                <li>
-                    <p>Name: Robert</p>
-                    <p>Datum: <19.12.2019></p>
-                    <p>Tiramisu cotton candy jelly-o gummies cake. Croissant oat cake liquorice lollipop jelly-o halvah. Dessert gummies carrot cake marshmallow caramels pudding chocolate cake apple pie donut. Halvah sweet roll caramels sweet roll lemon drops tiramisu. Chocolate cake cookie jelly-o gingerbread lemon drops icing lemon drops sesame snaps. Cupcake jujubes powder gummi bears bonbon. Muffin muffin lemon drops candy canes sweet roll cotton candy.</p>
-                    
-                    <div class=" row star-rating-container">
 
-                        <div class="col-3">
-                            <p class="title-rating">Insgesamt</p>
-                            <div class="form-group">
-                                <ngb-rating aria-valuemax="5" aria-valuemin="1"></ngb-rating>
-                                <div class="form-text small"></div>
-                            </div>
-                        </div>
+            <div class="col-3">
+              <p class="title-rating">Service</p>
+              <div class="form-group">
+                <ngb-rating aria-valuemax="5" aria-valuemin="1"></ngb-rating>
+                <div class="form-text small"></div>
+              </div>
+            </div>
 
-                    
-                        <div class="col-3">
-                            <p class="title-rating">Service</p>
-                            <div class="form-group">
-                                <ngb-rating aria-valuemax="5" aria-valuemin="1"></ngb-rating>
-                                <div class="form-text small"></div>
-                            </div>
-                        </div>
+            <div class="col-3">
+              <p class="title-rating">Essen</p>
+              <div class="form-group">
+                <ngb-rating aria-valuemax="5" aria-valuemin="1"></ngb-rating>
+                <div class="form-text small"></div>
+              </div>
+            </div>
 
-                        <div class="col-3">
-                            <p class="title-rating">Essen</p>
-                            <div class="form-group">
-                                <ngb-rating aria-valuemax="5" aria-valuemin="1"></ngb-rating>
-                                <div class="form-text small"></div>
-                            </div>
-                        </div>
+            <div class="col-3">
+              <p class="title-rating">Preis-Niveau</p>
+              <div class="form-group">
+                <ngb-rating aria-valuemax="5" aria-valuemin="1"></ngb-rating>
+                <div class="form-text small"></div>
+              </div>
+            </div>
+          </div>
 
-                        <div class="col-3">
-                            <p class="title-rating">Preis-Niveau</p>
-                            <div class="form-group">
-                                <ngb-rating aria-valuemax="5" aria-valuemin="1"></ngb-rating>
-                                <div class="form-text small"></div>
-                            </div>
-                        </div>
-                    </div>                
-                </li>
-            </ul>
-        </section>
-    </div>
+          <div class="icon-buttons">
+            <button class="edit-button" type="button" (mouseenter)="isIcon(true)" (mouseleave)="isIcon(false)"
+              (click)="toEntryForm(entry.id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button class="delete-button" type="button" (mouseenter)="isIcon(true)" (mouseleave)="isIcon(false)"
+              (click)="onDelete(entry.id)">
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+          </div>
+
+        </li>
+      </ul>
+    </section>
+  </div>
 </div>

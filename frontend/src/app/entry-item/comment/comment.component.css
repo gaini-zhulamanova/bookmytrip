@@ -1,73 +1,19 @@
-/* Navigation Styling */
-
-.sidenav-container {
-    height: 100%;
-  }
-  
-  .sidenav {
-    width: 200px;
-  }
-  
-  /* .sidenav .mat-toolbar {
-    background: inherit;
-  } */
-  
-  .mat-toolbar.mat-primary {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-  }
-  
-  .mat-toolbar {
-    font-size: medium;
-  }
-  
-  .spacer {
-    flex: 1 1 auto;
-  }
-  
-  .mat-toolbar a {
-    display: inline-block;
-    margin: 0 10px;
-    color: white;
-    text-decoration: none;
-    font-size: medium;
-  }
-
-  ol, ul {
-    border: dotted #808080 1px;
-    padding-left: 1rem;
-    list-style: none;
-  }
-  
-  input[type='checkbox'] {
-    border: dotted #808080 1px;
-    margin: 5px 10px;
-  
-  }
-  
-  li {
-    padding-right: 20px;
-  }
-
-  /* Styling for Comment Fields */
-
-  .name-date {
-    border: 1px dotted grey;
-  }
+ /* Styling for Comment Fields */
 
   #review-list {
       margin: 0;
       padding: 0;
-  }
-
-  #review-list li {
+      width: 510px;
+    }
+    
+    #review-list li {
       background-color: rgb(243, 243, 243);
       border: 2px solid #f3f3f3;
       margin: 0 0 30px;
       padding: 20px 20px;
       display: block;
       position: relative;
+      border-radius: 5px;
   }
 
   .container {
@@ -84,6 +30,27 @@
     margin-bottom: 20px;
   }
 
-/*   .comment {
-    margin: 40px 0;
-  } */
+  .icon-buttons {
+    text-align: end;
+    margin: 5px 5px;
+}
+
+.edit-button {
+    background: transparent;
+    border: none;
+    
+}
+
+.delete-button {
+    background: transparent;
+    border: none;
+    margin: 0 5px;
+}
+
+.icon-buttons :hover {
+    background-color:#FFD857;
+}
+
+mat-icon {
+    font-size: large;
+}
