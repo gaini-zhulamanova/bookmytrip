@@ -18,3 +18,38 @@
 .input-group-append :hover {
     background-color: #FFD857;
 }
+
+/* Breakpoints & Media Queries */
+
+@media(max-width: 1348px ) {
+
+}
+
+@media(max-width: 992px ) {
+
+    .form-inline {
+        width: 200px;
+    }
+}
+
+@media(max-width: 636px ) {
+
+    input[placeholder] {
+        font-size: small;
+    }
+
+    .search-button {
+        height: 33px;
+        width: 33px;
+    }
+
+    .input-group {
+        margin-top: 2px;
+        margin-bottom: 15px;
+        margin-right: 2px;
+    }
+
+    input[type="text"] {
+        border: #F2B705 solid 1px;
+    }
+}

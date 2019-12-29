@@ -43,3 +43,61 @@ ngb-carousel {
 .carousel-indicators{
     z-index: 20;
 }
+
+/* Breakpoints & Media Queries */
+
+@media(max-width: 991px ) {
+
+    ngb-carousel {
+        max-width: 500px;
+    }
+
+    h3 {
+       font-size: 20px;   
+    }
+}
+
+@media(max-width: 750px ) {
+
+    ngb-carousel {
+        max-width: 400px;
+    }
+
+    h3 {
+       font-size: 18px;   
+    }
+
+    p {
+        font-size: 13px;
+    }
+}
+
+@media(max-width: 670px ) {
+
+    ngb-carousel {
+        max-width: 350px;
+    }
+
+    h3 {
+       font-size: 16px;   
+    }
+
+    p {
+        font-size: 11px;
+    }
+}
+
+@media(max-width: 400px ) {
+
+    ngb-carousel {
+        max-width: 300px;
+    }
+
+    h3 {
+       font-size: 14px;   
+    }
+
+    p {
+        font-size: 10px;
+    }
+}

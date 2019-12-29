@@ -6,7 +6,6 @@ html, body {
 .main-content {
     position: relative;
     min-height: 100vh;
-   
 }
  
 .mat-drawer-container {
@@ -41,4 +40,33 @@ html, body {
 
 li {
     list-style: none;
+}
+
+dl, ol, ul {
+    margin-top: 15px;
+  }
+
+/* Breakpoints & Media Queries */
+
+@media(max-width: 750px ) {
+    .buttons {
+        height: 35px;
+        width: fit-content;
+        font-size: 13px;
+    }
+}
+
+@media(max-width: 670px ) {
+    .buttons {
+        width: fit-content;
+        font-size: 12px;
+    }
+}
+
+@media(max-width: 400px ) {
+    .buttons {
+        width: fit-content;
+        font-size: 11px;
+    }
+
 }

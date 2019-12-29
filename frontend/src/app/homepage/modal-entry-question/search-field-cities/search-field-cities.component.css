@@ -16,3 +16,48 @@ ol, ul, li { list-style: none }
     margin-bottom: 20px;
     
 }
+
+
+/* Breakpoints & Media Queries */
+
+@media(max-width: 750px ) {
+
+    input[placeholder] {
+        font-size: 15px;
+    }
+
+    ul {
+        font-size: 15px;
+    }
+}
+
+@media(max-width: 670px ) {
+
+    input[placeholder] {
+        font-size: 12px;
+    }
+
+    ul {
+        font-size: 12px;
+    }
+
+    .columns {
+        margin: 20px 5px;
+    }
+}
+
+@media(max-width: 400px ) {
+
+    input[placeholder] {
+        font-size: 11px;
+    }
+
+    ul {
+        font-size: 11px;
+    }
+
+    .columns {
+        column-count: 1;
+        margin: 10px 5px;
+    }
+}

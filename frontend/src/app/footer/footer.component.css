@@ -14,4 +14,21 @@
      text-align: right;
  }
 
+ /* Breakpoints & Media Queries */
+
+@media(max-width: 750px ) {
+
+    p {
+        font-size: 14px;
+    }
+
+}
+
+@media(max-width: 670px ) {
+
+    p {
+        font-size: 11px;
+    }
+
+}
 

@@ -32,27 +32,26 @@ li {
   padding-right: 20px;
 }
 
-nav {
-  margin-top: auto;
-}
-
-nav ul li {
-  display: inline-block;
-}
-
 nav ul li a,
 nav ul li a:after,
-nav ul li a:before {
+nav ul li a:before,
+#nav-mobile ul li a,
+#nav-mobile ul li a:hover,
+#nav-mobile ul li a:before{
   transition: all .5s;
 }
 
-/* stroke styling */
+/* stroke */
 nav.stroke ul li a,
-nav.fill ul li a {
+nav.fill ul li a, 
+#nav-mobile.stroke ul li a,
+#nav-mobile.fill ul li a {
   position: relative;
 }
 nav.stroke ul li a:after,
-nav.fill ul li a:after {
+nav.fill ul li a:after, 
+#nav-mobile.stroke ul li a:after,
+#nav-mobile.fill ul li a:after {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -64,31 +63,40 @@ nav.fill ul li a:after {
   background: #F2B705;
   height: 2px;
 }
-nav.stroke ul li a:hover:after {
+
+nav.stroke ul li a:hover:after, 
+#nav-mobile.stroke ul li a:hover:after {
   width: 100%;
 }
 
-nav.fill ul li a {
+nav.fill ul li a, 
+#nav-mobile.fill ul li a {
   transition: all 2s;
 }
 
-nav.fill ul li a:after {
+nav.fill ul li a:after, 
+#nav-mobile.fill li a:after {
   text-align: left;
   content: '.';
   margin: 0;
   opacity: 0;
 }
-nav.fill ul li a:hover {
+
+nav.fill ul li a:hover, 
+#nav-mobile.fill ul li a:hover{
   color: #fff;
   z-index: 1;
 }
-nav.fill ul li a:hover:after {
+
+nav.fill ul li a:hover:after, 
+#nav-mobile.fill ul li a:hover:after{
   z-index: -10;
   animation: fill 1s forwards;
   -webkit-animation: fill 1s forwards;
   -moz-animation: fill 1s forwards;
   opacity: 1;
 }
+
 
 .mat-toolbar-row, .mat-toolbar-single-row {
   padding: 0 0;
@@ -125,5 +133,6 @@ img {
   margin-bottom: 20px;
   float: right;
 }
+
 
 

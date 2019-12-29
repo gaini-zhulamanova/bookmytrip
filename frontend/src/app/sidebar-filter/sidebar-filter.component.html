@@ -1,83 +1,121 @@
-<mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav" fixedInViewport = false>
-        <mat-toolbar color="primary">
-            <tr class="filter-header">
-                <td class="filter-category-title">Filter-Kategorien</td>
-                <td class="close-area">
-                    <button type="button" class="close" (click)="drawer.toggle()">
-                        <span class="close-icon" aria-hidden="true">&times;</span>
-                    </button>
-                </td>
-            </tr>  
-        </mat-toolbar>
-        <mat-nav-list>
-            <app-sidebar></app-sidebar>
-        </mat-nav-list>
+
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+
+      <button mat-icon-button (click)="sidenav.toggle()" class="hidden">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <span>
+        <a class="navbar-brand d-lg-inline-block" href="/book-my-trip">
+          <img src="/assets/logo.svg" height="36" alt="Logo">
+        </a>
+      </span>
+
+      <span class="spacer"></span>
+
+      <span class="hidden">
+        <app-search-field (searchedName)="showByName($event)"></app-search-field>
+      </span>
+
+      <span class="spacer"></span>
+
+      <!-- Navigation in the header on big screens -->
+      <div>
+        <nav class="stroke">
+          <ul class="hidden">
+            <li><a href="/book-my-trip/{{city}}/restaurants">Restaurants</a></li>
+            <li><a href="/book-my-trip/{{city}}/hotels">Hotels</a></li>
+            <li><a href="/book-my-trip/{{city}}/museen">Museen</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <span class="spacer"></span>
+
+      <!-- Button to create a new entry item -->
+      <app-button-new-entry-item></app-button-new-entry-item>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container">
+
+    <!-- Navigation for smaller screens -->
+    <mat-sidenav #sidenav id="nav-mobile" class="stroke">
+      <mat-nav-list>
+        <a (click)="sidenav.toggle()" class="close" mat-list-item>Schließen</a>
+        <ul>
+          <li><a href="/book-my-trip/{{city}}/restaurants">Restaurants</a></li>
+          <li><a href="/book-my-trip/{{city}}/hotels">Hotels</a></li>
+          <li><a href="/book-my-trip/{{city}}/museen">Museen</a></li>
+        </ul>
+      </mat-nav-list>
     </mat-sidenav>
+
+    <mat-sidenav #drawer class="sidenav" fixedInViewport=false>
+      <mat-toolbar color="primary">
+        <tr class="filter-header">
+          <td class="filter-category-title">Filter-Kategorien</td>
+          <td class="close-area">
+            <button type="button" class="close" (click)="drawer.toggle()">
+              <span class="close-icon" aria-hidden="true">&times;</span>
+            </button>
+          </td>
+        </tr>
+      </mat-toolbar>
+
+      <!-- Sidebar with filter -->
+      <mat-nav-list>
+        <app-sidebar></app-sidebar>
+      </mat-nav-list>
+    </mat-sidenav>
+
     <mat-sidenav-content>
-        <mat-toolbar color="primary">
-            <span>        
-                <a class="navbar-brand d-none d-lg-inline-block" href="/book-my-trip">
-                    <img src="/assets/logo.svg" height="36" alt="Logo">
-                </a>
+
+      <ng-content></ng-content>
+      <!-- Add Main Content Here -->
+      <main class="container-fluid main-content">
+
+        <div class="row">
+
+          <div class="col">
+            <span class="filter-toggle-icon" mat-button (click)="drawer.toggle()">
+              <i class="fa fa-filter fa-2x"></i>
             </span>
-            <span class="spacer"></span>
-            <!-- <span>Book My Trip</span> -->
-            <app-search-field
-            (searchedName)="showByName($event)"
-            ></app-search-field>
-            <span class="spacer"></span>
-            <nav class="stroke">
-                <ul>
-                    <li><a href="/book-my-trip/{{city}}/restaurants">Restaurants</a></li>
-                    <li><a href="/book-my-trip/{{city}}/hotels">Hotels</a></li>
-                    <li><a href="/book-my-trip/{{city}}/museen">Museen</a></li>
-                </ul>
-            </nav>
-            <span class="spacer"></span>
-            <!-- Button to create a new entry item -->
-            <app-button-new-entry-item></app-button-new-entry-item>
+          </div>
+
+            <span class="hidden-on-big-screen">
+              <app-search-field (searchedName)="showByName($event)"></app-search-field>
+            </span>
+          
+
+          <div class="col-12">
+            <div class="city-name">
+              <div class="row justify-content-center">
+                <h4>{{entriesURL.charAt(0) | uppercase}}{{entriesURL.substring(1)}} in {{city}}</h4>
+              </div>
+            </div>
+          </div>
+          <app-cards [entries]="entries"></app-cards>
+
+          <div class="col-12">
+            <div class="row cards">
+              <div class="col-12">
+                <app-cards></app-cards>
+                <div class="no-results-message">No results found</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
+
+      <footer class="row">
+        <mat-toolbar color="primary">
+          <app-footer></app-footer>
         </mat-toolbar>
-        <ng-content></ng-content>
-        <!-- Add Content Here -->
-        <main class="container-fluid main-content">
-
-                <div class="row">
-
-                    <div class="col">
-                        <span class="filter-toggle-icon" mat-button (click)="drawer.toggle()">
-                            <i class="fa fa-filter fa-2x"></i>
-                        </span>
-                    </div>
-                    <div class="col-12">
-                        <div class="city-name">
-                            <div class="row justify-content-center">
-                                <h4>{{entriesURL.charAt(0) | uppercase}}{{entriesURL.substring(1)}} in {{city}}</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <app-cards
-                    [entries]="entries"
-                    ></app-cards>             
-
-                    <div class="col-12">
-                        <div class="row cards">
-                            <div class="col-12">
-                                <app-cards></app-cards>
-                                <div class="no-results-message">No results found</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </main>
-
-            <footer class="row">
-                <mat-toolbar color="primary">
-                    <app-footer></app-footer>
-                </mat-toolbar>
-            </footer>
+      </footer>
 
     </mat-sidenav-content>
-</mat-sidenav-container>
-  
+  </mat-sidenav-container>
