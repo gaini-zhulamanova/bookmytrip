@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row no-gutters">
+    <div class="col flex-items" *ngFor="let entry of entries">
+      <div class="card" *ngIf="entry" (click)="!isMouseOverIcon ? toDetails(entry.id) : false">
+        <img *ngIf="entryTypeMatches('restaurants')" src="assets/placeholder_restaurant.jpg" class="card-img-top"
+          alt="...">
+        <img *ngIf="entryTypeMatches('museen')" src="assets/placeholder_museum.jpg" class="card-img-top" alt="...">
+        <img *ngIf="entryTypeMatches('hotels')" src="assets/placeholder_hotel.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{entry.name}}</h5>
+          <ul style="list-style-type:none">
+            <li *ngIf="!entryTypeMatches('hotels')"><span class="card-text"><b>Preisstufe</b></span>:
+              {{entry.priceLevel | showPriceLevel}}</li>
+            <li *ngIf="entryTypeMatches('restaurants')"><span class="card-text"><b>Küchen</b></span>:
+              {{entry.cuisines | showTypes}}</li>
+            <li *ngIf="entryTypeMatches('museen')"><span class="card-text"><b>Museumsarten</b></span>:
+              {{entry.museumTypes | showTypes}}</li>
+            <li *ngIf="entryTypeMatches('hotels')"><span class="card-text"><b>Sterne</b></span>:
+              {{entry.stars}}</li>
+            <li *ngIf="entryTypeMatches('hotels')"><span class="card-text"><b>Frühstück</b></span>:
+              {{entry.breakfastIncl | showInclusive}}</li>
+            <li><span class="card-text"><b>Bewertung</b></span>:
+              <span class="fa fa-star" style="color: orange;"
+                *ngFor="let i of [1,2,3,4,5] | slice:0:entry.avrgRating;"></span>
+              <span class="fa fa-star-o" *ngFor="let i of [1,2,3,4,5] | slice:entry.avrgRating:5;"></span>
+              ({{entry.numOfReviews}})
+            </li>
+            <div class=" row icon-buttons justify-content-end">
+              <button class="edit-button" type="button" (mouseenter)="isIcon(true)" (mouseleave)="isIcon(false)"
+                (click)="toEntryForm(entry.id)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <div class="delete-button">
+                <app-delete-modal [elementId]="entry.id" (isMouseOverIcon)="isIcon($event)"
+                  (deleteElementById)="onDelete($event)"></app-delete-modal>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

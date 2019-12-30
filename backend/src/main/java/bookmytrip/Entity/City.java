@@ -2,7 +2,7 @@ package bookmytrip.Entity;
 
 public enum City {
 	
-	FRANKFURT_AM_MAIN("Frankfurt am Main"), 
+	FRANKFURT("Frankfurt"), 
 	BERLIN("Berlin"), 
 	KÖLN("Köln"), 
 	HAMBURG("Hamburg"), 

@@ -2,13 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import {HttpClientModule} from '@angular/common/http';
-import {FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FooterComponent } from './footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SidebarFilterComponent } from './sidebar-filter/sidebar-filter.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,38 +17,38 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
-import { FormComponent } from './form/form.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormReviewComponent } from './form-review/form-review.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule  } from "@angular/forms";
-import { EntryItemComponent } from './entry-item/entry-item.component';
+import { EntryDetailsComponent } from './entry-details/entry-details.component';
 
 import { AppRoutingModule } from './app-routing.module';
-import { ModalEntryQuestionComponent } from './homepage/modal-entry-question/modal-entry-question.component';
+import { CityQuestionModalComponent } from './homepage/city-question-modal/city-question-modal.component';
 import { CarouselCardsComponent } from './homepage/carousel-cards/carousel-cards.component';
-import { SidebarComponent } from './sidebar-filter/sidebar/sidebar.component';
-import { StarRatingComponent } from './form/star-rating/star-rating.component';
-import { CommentComponent } from './entry-item/comment/comment.component';
-import { ThankYouModalComponent } from './form/thank-you-modal/thank-you-modal.component';
-import { SearchFieldComponent } from './sidebar-filter/search-field/search-field.component';
-import { FormEntityComponent } from './form-entity/form-entity.component';
-import { SearchCitiesPipe } from './pipe/search-cities.pipe';
-import { CardsComponent } from './sidebar-filter/cards/cards.component';
+import { StarRatingComponent } from './form-review/star-rating/star-rating.component';
+import { CommentComponent } from './entry-details/comment/comment.component';
+import { ThankYouModalComponent } from './form-review/thank-you-modal/thank-you-modal.component';
+import { FormEntityComponent } from './form-entry/form-entity.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
-import { ButtonNewEntryItemComponent } from './form-entity/button-new-entry-item/button-new-entry-item.component';
-import { FilterMoreOptionsComponent } from './sidebar-filter/filter-more-options/filter-more-options.component';
-import { ModalMoreOptionsComponent } from './sidebar-filter/sidebar/modal-more-options/modal-more-options.component';
-import { SearchFieldCitiesComponent } from './homepage/modal-entry-question/search-field-cities/search-field-cities.component';
-import { ShowTypesPipe } from './pipe/show-types.pipe';
-import { ShowInclusivePipe } from './pipe/show-inclusive.pipe';
-import { ShowAddressPipe } from './pipe/show-address.pipe';
-import { ModalMuseumTypesComponent } from './form-entity/modal-museum-types/modal-museum-types.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import { ThankYouModalFormEntityComponent } from './form-entity/thank-you-modal-form-entity/thank-you-modal-form-entity.component';
-import { ShowPriceLevelPipe } from './pipe/show-price-level.pipe';
-import { DeleteModalComponent } from './delete-modal/delete-modal.component';
+import { ButtonNewEntryComponent } from './form-entry/button-new-entry/button-new-entry.component';
+import { SearchFieldCitiesComponent } from './homepage/city-question-modal/search-field-cities/search-field-cities.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ThankYouModalFormEntityComponent } from './form-entry/thank-you-modal-form-entity/thank-you-modal-form-entity.component';
+import { SearchCitiesPipe } from './homepage/city-question-modal/search-field-cities/search-cities-pipe/search-cities.pipe';
+import { ShowAddressPipe } from './entry-details/show-address-pipe/show-address.pipe';
+import { EntriesListComponent } from './entries-list/entries-list.component';
+import { SidebarComponent } from './entries-list/sidebar/sidebar.component';
+import { CardComponent } from './entries-list/card/card.component';
+import { SearchFieldComponent } from './entries-list/search-field/search-field.component';
+import { ShowTypesPipe } from './entries-list/card/show-types-pipe/show-types.pipe';
+import { ModalMoreOptionsComponent } from './entries-list/sidebar/modal-more-options/modal-more-options.component';
+import { FilterMoreOptionsComponent } from './entries-list/filter-more-options/filter-more-options.component';
+import { ShowInclusivePipe } from './entries-list/card/show-inclusive-pipe/show-inclusive.pipe';
+import { ShowPriceLevelPipe } from './entries-list/card/show-price-level-pipe/show-price-level.pipe';
+import { DeleteModalComponent } from './entries-list/delete-modal/delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -57,26 +56,25 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
     SidebarComponent,
     HomepageComponent,
     FooterComponent,
-    CardsComponent,
+    CardComponent,
     CarouselCardsComponent,
-    ModalEntryQuestionComponent,
+    CityQuestionModalComponent,
     SearchFieldCitiesComponent,
     SearchCitiesPipe,
-    SidebarFilterComponent,
-    FormComponent,
+    EntriesListComponent,
+    FormReviewComponent,
     StarRatingComponent,
-    EntryItemComponent,
+    EntryDetailsComponent,
     CommentComponent,
     ThankYouModalComponent,
     SearchFieldComponent,
     FormEntityComponent,
     ShowTypesPipe,
-    ButtonNewEntryItemComponent,
+    ButtonNewEntryComponent,
     ModalMoreOptionsComponent,
     FilterMoreOptionsComponent,
     ShowInclusivePipe,
     ShowAddressPipe,
-    ModalMuseumTypesComponent,
     ThankYouModalFormEntityComponent,
     ShowPriceLevelPipe,
     DeleteModalComponent

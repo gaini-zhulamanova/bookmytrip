@@ -1,0 +1,46 @@
+.full-width {
+  width: 100%;
+}
+
+h4 {
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.title-form {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.mat-radio-button {
+  margin: 5px 0;
+  margin-left: 16px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
+}
+
+.columns {
+  column-count: 4;
+  margin: 20px 20px;
+}
+
+.submit-button {
+  float: right;
+  margin-right: 15px;
+}
+
+.checkbox-item {
+  padding: 0 5px;
+}
