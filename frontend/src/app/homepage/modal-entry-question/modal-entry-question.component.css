@@ -1,68 +1,67 @@
 .close-icon {
-    font-size: larger;
-    color: #BF417C;
-    font-weight: bold;
+  font-size: larger;
+  color: #bf417c;
+  font-weight: bold;
 }
 
 /* Breakpoints & Media Queries */
 
-@media(max-width: 750px ) {
-    .modal-content {
-        width: 90%;
-    }
+@media (max-width: 750px) {
+  .modal-content {
+    width: 90%;
+  }
 
-    .modal-title {
-        font-size: 20px;
-    }
+  .modal-title {
+    font-size: 20px;
+  }
 
-    .modal-dialog {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+  .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
-@media(max-width: 670px ) {
-    .modal-content {
-        width: 75%;
-    }
+@media (max-width: 670px) {
+  .modal-content {
+    width: 75%;
+  }
 
-    .modal-title {
-        font-size: 18px;
-    }
+  .modal-title {
+    font-size: 18px;
+  }
 
-    .close-icon {
-        font-size: 20px;
-    }
+  .close-icon {
+    font-size: 20px;
+  }
 
-    .modal-dialog {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+  .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
-@media(max-width: 400px ) {
-    .modal-content {
-        width: 70%;
-    }
-    
-    .modal-dialog {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+@media (max-width: 400px) {
+  .modal-content {
+    width: 70%;
+  }
 
-    .modal-title {
-        font-size: 12px;
-    }
+  .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .close-icon {
-        font-size: 15px;
-    }
+  .modal-title {
+    font-size: 12px;
+  }
 
-    .modal-header .close {
-        padding-top: 8px;
-    }
+  .close-icon {
+    font-size: 15px;
+  }
+
+  .modal-header .close {
+    padding-top: 8px;
+  }
 }
-

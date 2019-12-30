@@ -1,55 +1,51 @@
 .search-button {
-    background-color:#F2B705;
-    border: none;
-    height: 38px;
-    width: 30px;
-    border-radius: 2px;
-    display: inline-block;
-    outline: none !important;
+  background-color: #f2b705;
+  border: none;
+  height: 38px;
+  width: 30px;
+  border-radius: 2px;
+  display: inline-block;
+  outline: none !important;
 }
 
-
 .input-group :focus {
-    outline: none !important;
-    box-shadow: none !important;
-    border: none;
+  outline: none !important;
+  box-shadow: none !important;
+  border: none;
 }
 
 .input-group-append :hover {
-    background-color: #FFD857;
+  background-color: #ffd857;
 }
 
 /* Breakpoints & Media Queries */
 
-@media(max-width: 1348px ) {
-
+@media (max-width: 1348px) {
 }
 
-@media(max-width: 992px ) {
-
-    .form-inline {
-        width: 200px;
-    }
+@media (max-width: 992px) {
+  .form-inline {
+    width: 200px;
+  }
 }
 
-@media(max-width: 636px ) {
+@media (max-width: 636px) {
+  input[placeholder] {
+    font-size: small;
+  }
 
-    input[placeholder] {
-        font-size: small;
-    }
+  .search-button {
+    height: 33px;
+    width: 33px;
+  }
 
-    .search-button {
-        height: 33px;
-        width: 33px;
-    }
+  .input-group {
+    margin-top: 2px;
+    margin-bottom: 15px;
+    margin-right: 2px;
+  }
 
-    .input-group {
-        margin-top: 2px;
-        margin-bottom: 15px;
-        margin-right: 2px;
-    }
-
-    input[type="text"] {
-        border: #F2B705 solid 1px;
-    }
+  input[type="text"] {
+    border: #f2b705 solid 1px;
+  }
 }

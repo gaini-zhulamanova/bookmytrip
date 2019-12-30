@@ -1,12 +1,10 @@
 <ng-template #content let-modal>
-    <div class="modal-body">
-        <p>Vielen Dank für Ihren Eintrag!</p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="buttons" (click)="modal.close('Close click')">Zurück</button>
-    </div>
+  <div class="modal-body">
+    <p>Vielen Dank für Ihren Eintrag!</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="buttons" (click)="modal.close('Close click')">Zurück</button>
+  </div>
 </ng-template>
 
 <button mat-raised-button class="buttons" type="submit" (click)="openVerticallyCentered(content)">Abschicken</button>
-  
-  

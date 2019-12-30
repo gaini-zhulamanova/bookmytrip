@@ -1,178 +1,170 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav-content>
+    <!-- Header -->
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()" class="hidden">
+        <mat-icon>menu</mat-icon>
+      </button>
 
-    <button mat-icon-button (click)="sidenav.toggle()" class="hidden">
-      <mat-icon>menu</mat-icon>
-    </button>
+      <span>
+        <a class="navbar-brand d-lg-inline-block" href="/book-my-trip">
+          <img src="/assets/logo.svg" height="36" alt="Logo">
+        </a>
+      </span>
 
-    <span>
-      <a class="navbar-brand d-lg-inline-block" href="/book-my-trip">
-        <img src="/assets/logo.svg" height="36" alt="Logo">
-      </a>
-    </span>
+      <span class="spacer"></span>
 
-    <span class="spacer"></span>
+      <!-- Navigation in the header on big screens -->
+      <div>
+        <nav class="stroke">
+          <ul class="hidden">
+            <li><a href="/book-my-trip/{{city}}/restaurants">Restaurants</a></li>
+            <li><a href="/book-my-trip/{{city}}/hotels">Hotels</a></li>
+            <li><a href="/book-my-trip/{{city}}/museen">Museen</a></li>
+          </ul>
+        </nav>
+      </div>
 
-    <!-- Navigation in the header on big screens -->
-    <div>
-      <nav class="stroke">
-        <ul class="hidden">
+      <span class="spacer"></span>
+
+      <!-- Button to create a new entry review -->
+      <div>
+        <button class="buttons" id="new-rating-button" (click)="toReviewForm()">Bewertung abgeben</button>
+      </div>
+
+    </mat-toolbar>
+
+    <!-- Navigation for smaller screens -->
+    <mat-sidenav #sidenav id="nav-mobile" class="stroke" position="end">
+      <mat-nav-list>
+        <a (click)="sidenav.toggle()" class="close" mat-list-item>Schließen</a>
+        <ul>
           <li><a href="/book-my-trip/{{city}}/restaurants">Restaurants</a></li>
           <li><a href="/book-my-trip/{{city}}/hotels">Hotels</a></li>
           <li><a href="/book-my-trip/{{city}}/museen">Museen</a></li>
         </ul>
-      </nav>
-    </div>
+      </mat-nav-list>
+    </mat-sidenav>
 
-    <!-- Button to create a new entry review -->
-    <div>
-      <button class="buttons" id="new-rating-button" (click)="toReviewForm()">Bewertung abgeben</button>
-    </div>
+    <!-- Main content -->
 
-  </mat-toolbar-row>
-</mat-toolbar>
-
-<mat-sidenav-container class="sidenav-container">
-  <!-- Navigation for smaller screens -->
-  <mat-sidenav #sidenav id="nav-mobile" class="stroke">
-    <mat-nav-list>
-      <a (click)="sidenav.toggle()" class="close" mat-list-item>Schließen</a>
-      <ul>
-        <li><a href="/book-my-trip/{{city}}/restaurants">Restaurants</a></li>
-        <li><a href="/book-my-trip/{{city}}/hotels">Hotels</a></li>
-        <li><a href="/book-my-trip/{{city}}/museen">Museen</a></li>
-      </ul>
-    </mat-nav-list>
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-    <ng-content></ng-content>
-    <!-- Add Content Here -->
-
-    <main class="container">
-
+    <main class="container main-content">
       <div class="row">
-        <section class="col-6 columns" *ngIf="entry">
-          <div class="row">
-            <div class="col-12">
-              <div class="entry-item-name">
-                <h4 *ngIf="entry">{{entryType}} &ndash; {{entry.name}}</h4>
-                <img *ngIf="entryTypeMatches('restaurants')" src="assets/placeholder_restaurant.jpg" width="540px"
-                  alt="Bild vom Restaurant">
-                <img *ngIf="entryTypeMatches('museen')" src="assets/placeholder_museum.png" width="540px"
-                  alt="Bild vom Museum">
-                <img *ngIf="entryTypeMatches('hotels')" src="assets/placeholder_hotel.png" width="540px"
-                  alt="Bild vom Hotel">
-              </div>
-            </div>
+
+        <!-- Seaction for category details -->
+        <section *ngIf="entry" class="col-6">
+
+          <div class="entry-item-name">
+            <h4 *ngIf="entry">{{entryType}} &ndash; {{entry.name}}</h4>
+            <img *ngIf="entryTypeMatches('restaurants')" src="assets/placeholder_restaurant.jpg" width="540px"
+              alt="Bild vom Restaurant">
+            <img *ngIf="entryTypeMatches('museen')" src="assets/placeholder_museum.jpg" width="540px"
+              alt="Bild vom Museum">
+            <img *ngIf="entryTypeMatches('hotels')" src="assets/placeholder_hotel.jpg" width="540px"
+              alt="Bild vom Hotel">
           </div>
 
-          <!-- Details anzeigen -->
-          <div class="row">
-            <div class="col-12 entry-item-details" style="margin-bottom: 20px; margin-top: 20px;" *ngIf="entry">
+          <!-- Show details -->
+          <div class="entry-item-details" style="margin-bottom: 20px; margin-top: 20px;" *ngIf="entry">
+            <table>
+              <tr>
+                <th>Adresse:</th>
+                <td>{{entry.contact | showAddress}}</td>
+              </tr>
+              <tr *ngIf="!isNull(entry.contact.phoneNumber)">
+                <th>Telefonnummer:</th>
+                <td>{{entry.contact.phoneNumber}}</td>
+              </tr>
+              <tr>
+                <th style="width: 35%">Bewertung:</th>
+                <td><span class="fa fa-star" style="color: orange;"
+                    *ngFor="let i of [1,2,3,4,5] | slice:0:entry.avrgRating;"></span>
+                  <span class="fa fa-star-o" *ngFor="let i of [1,2,3,4,5] | slice:entry.avrgRating:5;"></span>
+                  ({{entry.numOfReviews}})</td>
+              </tr>
+              <tr>
+                <th>&nbsp;</th>
+              </tr>
+              <tr *ngIf="entryTypeMatches('restaurants')">
+                <th>Küchen:</th>
+                <td>{{entry.cuisines | showTypes:"detailPage"}}</td>
+              </tr>
+              <tr *ngIf="entryTypeMatches('museen')">
+                <th>Museumsarten:</th>
+                <td>{{entry.museumTypes | showTypes:"detailPage"}}</td>
+              </tr>
+              <tr *ngIf="!entryTypeMatches('hotels')">
+                <th>Preisstufe:</th>
+                <td>{{entry.priceLevel | showPriceLevel}}</td>
+              </tr>
+              <tr *ngIf="entryTypeMatches('hotels')">
+                <th>Sterne:</th>
+                <td>{{entry.stars}}</td>
+              </tr>
+              <tr *ngIf="entryTypeMatches('hotels')">
+                <th>Frühstück:</th>
+                <td>{{entry.breakfastIncl | showInclusive}}</td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Show static open hours -->
+          <div class="entry-item-details">
+            <div class="entry-item-open-hours">
               <table>
                 <tr>
-                  <th>Adresse:</th>
-                  <td>{{entry.contact | showAddress}}</td>
-                </tr>
-                <tr *ngIf="!isNull(entry.contact.phoneNumber)">
-                  <th>Telefonnummer:</th>
-                  <td>{{entry.contact.phoneNumber}}</td>
+                  <th style="width: 60%" scope="col">Tag der Woche</th>
+                  <th scope="col">Öffnungszeiten</th>
                 </tr>
                 <tr>
-                  <th style="width: 35%">Bewertung:</th>
-                  <td><span class="fa fa-star" style="color: orange;"
-                      *ngFor="let i of [1,2,3,4,5] | slice:0:entry.avrgRating;"></span>
-                    <span class="fa fa-star-o" *ngFor="let i of [1,2,3,4,5] | slice:entry.avrgRating:5;"></span>
-                    ({{entry.numOfReviews}})</td>
+                  <td>Montag</td>
+                  <td>16:00 &nbsp;&ndash;&nbsp; 21:00</td>
                 </tr>
                 <tr>
-                  <th>&nbsp;</th>
+                  <td>Dienstag</td>
+                  <td>10:00 &nbsp;&ndash;&nbsp; 21:00</td>
                 </tr>
-                <tr *ngIf="entryTypeMatches('restaurants')">
-                  <th>Küchen:</th>
-                  <td>{{entry.cuisines | showTypes:"detailPage"}}</td>
+                <tr>
+                  <td>Mittwoch</td>
+                  <td>10:00 &nbsp;&ndash;&nbsp; 21:00</td>
                 </tr>
-                <tr *ngIf="entryTypeMatches('museen')">
-                  <th>Museumsarten:</th>
-                  <td>{{entry.museumTypes | showTypes:"detailPage"}}</td>
+                <tr>
+                  <td>Donnerstag</td>
+                  <td>10:00 &nbsp;&ndash;&nbsp; 21:00</td>
                 </tr>
-                <tr *ngIf="!entryTypeMatches('hotels')">
-                  <th>Preisstufe:</th>
-                  <td>{{entry.priceLevel | showPriceLevel}}</td>
+                <tr>
+                  <td>Freitag</td>
+                  <td>10:00 &nbsp;&ndash;&nbsp; 21:00</td>
                 </tr>
-                <tr *ngIf="entryTypeMatches('hotels')">
-                  <th>Sterne:</th>
-                  <td>{{entry.stars}}</td>
+                <tr>
+                  <td>Samstag</td>
+                  <td>10:00 &nbsp;&ndash;&nbsp; 21:00</td>
                 </tr>
-                <tr *ngIf="entryTypeMatches('hotels')">
-                  <th>Frühstück:</th>
-                  <td>{{entry.breakfastIncl | showInclusive}}</td>
+                <tr>
+                  <td>Sonntag</td>
+                  <td>10:00 &nbsp;&ndash;&nbsp; 17:00</td>
                 </tr>
               </table>
             </div>
           </div>
+        </section>
 
-          <!-- statische Öffnungszeiten anzeigen -->
+        <!-- Section for comments -->
+        <section class="col-6">
+          <div class="toReviewForm() entry-comments">
+            <div class="comment">
+              <app-comment [entry]="entry"></app-comment>
+            </div>
+          </div>
+        </section>
+
+        <section class="col">
           <div class="row">
-            <div class="col-12 entry-item-details">
-              <div class="entry-item-open-hours">
-                <table>
-                  <tr>
-                    <th style="width: 60%" scope="col">Tag der Woche</th>
-                    <th scope="col">Öffnungszeiten</th>
-                  </tr>
-                  <tr>
-                    <td>Montag</td>
-                    <td>16:00 &nbsp;&ndash;&nbsp; 21:00</td>
-                  </tr>
-                  <tr>
-                    <td>Dienstag</td>
-                    <td>10:00 &nbsp;&ndash;&nbsp; 21:00</td>
-                  </tr>
-                  <tr>
-                    <td>Mittwoch</td>
-                    <td>10:00 &nbsp;&ndash;&nbsp; 21:00</td>
-                  </tr>
-                  <tr>
-                    <td>Donnerstag</td>
-                    <td>10:00 &nbsp;&ndash;&nbsp; 21:00</td>
-                  </tr>
-                  <tr>
-                    <td>Freitag</td>
-                    <td>10:00 &nbsp;&ndash;&nbsp; 21:00</td>
-                  </tr>
-                  <tr>
-                    <td>Samstag</td>
-                    <td>10:00 &nbsp;&ndash;&nbsp; 21:00</td>
-                  </tr>
-                  <tr>
-                    <td>Sonntag</td>
-                    <td>10:00 &nbsp;&ndash;&nbsp; 17:00</td>
-                  </tr>
-                </table>
-              </div>
-            </div>
+            <button class="buttons" id="back-button" (click)="handleBackButton()">Zur Übersicht</button>
           </div>
         </section>
 
-        <section class="col-6 columns">
-          <div class="col">
-            <div class="entry-comments">
-              <div class="row nested comment">
-                <app-comment [entry]="entry"></app-comment>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
-
-      <section class="row">
-        <div class="col">
-          <button class="buttons" id="back-button" (click)="handleBackButton()">Zurück</button>
-        </div>
-      </section>
-
     </main>
 
     <footer class="row">

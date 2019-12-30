@@ -1,6 +1,6 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Wählen Sie bitte die {{choice}} aus</h4> <!-- TODO: dynamische Anpassung implementieren -->
+    <h4 class="modal-title">Wählen Sie bitte die {{choice}} aus</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span class="close-icon" aria-hidden="true">&times;</span>
     </button>
@@ -9,7 +9,7 @@
     <ul style="list-style-type:none" *ngFor="let option of options">
       <li>
         <label>
-          <input type="radio" name="checkedOption" value={{option}} [(ngModel)]="checkedOptionIn" >
+          <input type="radio" name="checkedOption" value={{option}} [(ngModel)]="checkedOptionIn">
           {{option}}
         </label>
       </li>
@@ -19,8 +19,5 @@
     <button type="button" class="buttons" (click)="handleChoice()">Auswählen</button>
   </div>
 </ng-template>
-  
+
 <span class="more-link" (click)="openVerticallyCentered(content)">Mehr anzeigen</span>
-<!-- <span class="expand-icon">
-    <mat-icon>expand_more</mat-icon>
-</span> -->

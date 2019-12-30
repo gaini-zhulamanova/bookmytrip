@@ -7,7 +7,6 @@ import {FormsModule } from '@angular/forms';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FooterComponent } from './footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent } from './modal/modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarFilterComponent } from './sidebar-filter/sidebar-filter.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -26,12 +25,9 @@ import { EntryItemComponent } from './entry-item/entry-item.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ModalEntryQuestionComponent } from './homepage/modal-entry-question/modal-entry-question.component';
-import { DropdownButtonComponent } from './old stuff/dropdown-button/dropdown-button.component';
-import { PageWithFiltersComponent } from './old stuff/page-with-filters/page-with-filters.component';
 import { CarouselCardsComponent } from './homepage/carousel-cards/carousel-cards.component';
 import { SidebarComponent } from './sidebar-filter/sidebar/sidebar.component';
 import { StarRatingComponent } from './form/star-rating/star-rating.component';
-import { HeaderComponent } from './old stuff/header/header.component';
 import { CommentComponent } from './entry-item/comment/comment.component';
 import { ThankYouModalComponent } from './form/thank-you-modal/thank-you-modal.component';
 import { SearchFieldComponent } from './sidebar-filter/search-field/search-field.component';
@@ -58,15 +54,11 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     SidebarComponent,
     HomepageComponent,
     FooterComponent,
     CardsComponent,
-    DropdownButtonComponent,
-    PageWithFiltersComponent,
     CarouselCardsComponent,
-    ModalComponent,
     ModalEntryQuestionComponent,
     SearchFieldCitiesComponent,
     SearchCitiesPipe,
@@ -88,7 +80,6 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
     ThankYouModalFormEntityComponent,
     ShowPriceLevelPipe,
     DeleteModalComponent
-  
   ],
   imports: [
     // tslint:disable-next-line: max-line-length

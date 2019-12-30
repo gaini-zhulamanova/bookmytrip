@@ -9,18 +9,17 @@
           <p *ngIf="review.comment">{{review.comment}}</p>
           <p style="text-align:left;">
             <span><b>Bewertung:&nbsp;&nbsp;</b></span>
-            <span class="fa fa-star" style="color: orange;" *ngFor="let i of [1,2,3,4,5] | slice:0:review.rating;"></span>
+            <span class="fa fa-star" style="color: orange;"
+              *ngFor="let i of [1,2,3,4,5] | slice:0:review.rating;"></span>
             <span class="fa fa-star-o" *ngFor="let i of [1,2,3,4,5] | slice:review.rating:5;"></span>
             <span style="float:right;">
-              <div class="icon-buttons">
-                <button class="edit-button" type="button"
-                  (click)="toReviewForm(review.id)">
+              <div class="row icon-buttons">
+                <button class="edit-button" type="button" (click)="toReviewForm(review.id)">
                   <mat-icon>edit</mat-icon>
                 </button>
-                <app-delete-modal
-                [elementId]="review.id"
-                (deleteElementById)="onDelete($event)"
-                ></app-delete-modal>
+                <div class="delete-button">
+                  <app-delete-modal [elementId]="review.id" (deleteElementById)="onDelete($event)"></app-delete-modal>
+                </div>
               </div>
             </span>
           </p>

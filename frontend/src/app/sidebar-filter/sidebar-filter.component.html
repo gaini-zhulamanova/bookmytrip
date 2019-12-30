@@ -1,7 +1,7 @@
-
-  <mat-toolbar color="primary">
-    <mat-toolbar-row>
-
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav-content>
+    <!-- Header -->
+    <mat-toolbar color="primary">
       <button mat-icon-button (click)="sidenav.toggle()" class="hidden">
         <mat-icon>menu</mat-icon>
       </button>
@@ -13,14 +13,14 @@
       </span>
 
       <span class="spacer"></span>
-
+      <!-- Search bar -->
       <span class="hidden">
         <app-search-field (searchedName)="showByName($event)"></app-search-field>
       </span>
 
       <span class="spacer"></span>
 
-      <!-- Navigation in the header on big screens -->
+      <!-- Navigation in the header for big screens -->
       <div>
         <nav class="stroke">
           <ul class="hidden">
@@ -32,17 +32,12 @@
       </div>
 
       <span class="spacer"></span>
-
       <!-- Button to create a new entry item -->
       <app-button-new-entry-item></app-button-new-entry-item>
+    </mat-toolbar>
 
-    </mat-toolbar-row>
-  </mat-toolbar>
-
-  <mat-sidenav-container class="sidenav-container">
-
-    <!-- Navigation for smaller screens -->
-    <mat-sidenav #sidenav id="nav-mobile" class="stroke">
+    <!-- Navigation for smaller screens through hamburger menu & sidenav on the right side-->
+    <mat-sidenav #sidenav id="nav-mobile" class="stroke" position="end">
       <mat-nav-list>
         <a (click)="sidenav.toggle()" class="close" mat-list-item>Schließen</a>
         <ul>
@@ -53,6 +48,7 @@
       </mat-nav-list>
     </mat-sidenav>
 
+    <!-- Sidebar with filter on the left side-->
     <mat-sidenav #drawer class="sidenav" fixedInViewport=false>
       <mat-toolbar color="primary">
         <tr class="filter-header">
@@ -64,58 +60,55 @@
           </td>
         </tr>
       </mat-toolbar>
-
-      <!-- Sidebar with filter -->
       <mat-nav-list>
         <app-sidebar></app-sidebar>
       </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content>
+    <!-- Main content -->
+    <main class="container-fluid main-content">
+      <div class="row">
 
-      <ng-content></ng-content>
-      <!-- Add Main Content Here -->
-      <main class="container-fluid main-content">
+        <div class="col">
+          <span class="filter-toggle-icon" mat-button (click)="drawer.toggle()">
+            <i class="fa fa-filter fa-2x"></i>
+          </span>
+          <span class="sort-icon">
+            <mat-icon>sort</mat-icon>
+          </span>
+        </div>
+        <!-- Search bar for smaller screens -->
+        <span class="hidden-on-big-screen">
+          <app-search-field (searchedName)="showByName($event)"></app-search-field>
+        </span>
 
-        <div class="row">
 
-          <div class="col">
-            <span class="filter-toggle-icon" mat-button (click)="drawer.toggle()">
-              <i class="fa fa-filter fa-2x"></i>
-            </span>
-          </div>
-
-            <span class="hidden-on-big-screen">
-              <app-search-field (searchedName)="showByName($event)"></app-search-field>
-            </span>
-          
-
-          <div class="col-12">
-            <div class="city-name">
-              <div class="row justify-content-center">
-                <h4>{{entriesURL.charAt(0) | uppercase}}{{entriesURL.substring(1)}} in {{city}}</h4>
-              </div>
+        <div class="col-12">
+          <div class="city-name">
+            <div class="row justify-content-center">
+              <h4>{{entriesURL.charAt(0) | uppercase}}{{entriesURL.substring(1)}} in {{city}}</h4>
             </div>
           </div>
-          <app-cards [entries]="entries"></app-cards>
+        </div>
+        <app-cards [entries]="entries"></app-cards>
 
-          <div class="col-12">
-            <div class="row cards">
-              <div class="col-12">
-                <app-cards></app-cards>
-                <div class="no-results-message">No results found</div>
-              </div>
+        <div class="col-12">
+          <div class="row cards">
+            <div class="col-12">
+              <app-cards></app-cards>
+              <div class="no-results-message">No results found</div>
             </div>
           </div>
         </div>
 
-      </main>
+      </div>
+    </main>
 
-      <footer class="row">
-        <mat-toolbar color="primary">
-          <app-footer></app-footer>
-        </mat-toolbar>
-      </footer>
+    <footer class="row">
+      <mat-toolbar color="primary">
+        <app-footer></app-footer>
+      </mat-toolbar>
+    </footer>
 
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+  </mat-sidenav-content>
+</mat-sidenav-container>

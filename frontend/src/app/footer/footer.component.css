@@ -1,34 +1,29 @@
 @import url(http://weloveiconfonts.com/api/?family=entypo);
 
 [class*="entypo-"]:before {
-    font-family: 'entypo', sans-serif;
-    color: #F2B705;
+  font-family: "entypo", sans-serif;
+  color: #f2b705;
 }
 
 .footer-content {
-    color: #fff;
- }
-
- p {
-     margin: 15px 10px;
-     text-align: right;
- }
-
- /* Breakpoints & Media Queries */
-
-@media(max-width: 750px ) {
-
-    p {
-        font-size: 14px;
-    }
-
+  color: #fff;
 }
 
-@media(max-width: 670px ) {
-
-    p {
-        font-size: 11px;
-    }
-
+p {
+  margin: 15px 10px;
+  text-align: right;
 }
 
+/* Breakpoints & Media Queries */
+
+@media (max-width: 750px) {
+  p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 670px) {
+  p {
+    font-size: 11px;
+  }
+}

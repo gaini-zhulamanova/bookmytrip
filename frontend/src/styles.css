@@ -42,10 +42,6 @@ li {
     list-style: none;
 }
 
-dl, ol, ul {
-    margin-top: 15px;
-  }
-
 /* Breakpoints & Media Queries */
 
 @media(max-width: 750px ) {

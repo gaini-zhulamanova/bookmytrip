@@ -1,47 +1,46 @@
 .filter {
-    margin: 10px 0;
-    padding: 10px 10px;
+  margin: 10px 0;
+  padding: 10px 10px;
 }
 
 .filter form {
-    height: 100vh;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-    
+  height: 100vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-ol, ul {
-    padding-left: 1rem;
-    list-style: none;
+ol,
+ul {
+  padding-left: 1rem;
+  list-style: none;
 }
 
-input[type='radio'] {
-    margin: 5px 10px;
-
+input[type="radio"] {
+  margin: 5px 10px;
 }
 
 li {
-    padding-right: 20px;
-    font-size: small;
+  padding-right: 20px;
+  font-size: small;
 }
 
 span .fa .fa-star {
-    color: orange;
+  color: orange;
 }
 
 .filter-button {
-    text-align: center;
+  text-align: center;
 }
 
 .btn {
-    display: inline-block;
+  display: inline-block;
 }
 
 .more-link {
-    font-size: small;
-    text-decoration: underline;
+  font-size: small;
+  text-decoration: underline;
 }
 
 .more-link :hover {
-    color: purple;
+  color: purple;
 }

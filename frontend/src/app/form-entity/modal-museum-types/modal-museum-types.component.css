@@ -1,14 +1,14 @@
 .columns {
-    column-count: 2;
-    margin: 20px 20px;
+  column-count: 2;
+  margin: 20px 20px;
 }
 
 .checkbox-item {
-    padding: 0 5px;
+  padding: 0 5px;
 }
 
 .close-icon {
-    font-size: larger;
-    color: #BF417C;
-    font-weight: bold;
+  font-size: larger;
+  color: #bf417c;
+  font-weight: bold;
 }
