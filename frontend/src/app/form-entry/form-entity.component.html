@@ -61,10 +61,7 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Name Ihres Geschäftes" formControlName="company" [value]="entry?.name" required>
-            <mat-error *ngIf="form.controls['company'].hasError('required')">
-              <strong>Pflichtfeld</strong>
-            </mat-error>
+            <input matInput placeholder="Name Ihres Geschäftes" formControlName="company" required>
           </mat-form-field>
         </div>
       </div>
@@ -72,7 +69,7 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Straße und Hausnummer" formControlName="address" [value]="entry?.contact.address.split('|')[0]" required>
+            <input matInput placeholder="Straße und Hausnummer" formControlName="address" required>
             <mat-error *ngIf="form.controls['address'].hasError('required')">
               <strong>Pflichtfeld</strong>
             </mat-error>
@@ -83,25 +80,18 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput #postalCode maxlength="5" placeholder="PLZ" type="number" formControlName="postalCode" [value]="entry?.contact.address.split('|')[1]"
-              required maxlength="5" minlength="5">
+            <input matInput #postalCode maxlength="5" placeholder="PLZ" type="number" formControlName="postalCode" required>
             <mat-error *ngIf="form.controls['postalCode'].hasError('required')">
               <strong>Pflichtfeld</strong>
             </mat-error>
-            <!-- TODO: show error when not 5 -->
-            <mat-error *ngIf="form.controls['postalCode'].hasError('maxlength') || form.controls['postalCode'].hasError('minlength')">
-              <strong>Die Länge muss 5 sein</strong>
-            </mat-error>
-            <mat-hint layout-align="end">{{postalCode.value.length}} / 5</mat-hint>
           </mat-form-field>
         </div>
       </div>
 
-
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput type="tel" id="phone" placeholder="Telefonnummer" formControlName="phoneNumber" [value]="entry?.contact.phoneNumber">
+            <input matInput type="tel" id="phone" placeholder="Telefonnummer" formControlName="phoneNumber">
             <mat-icon matSuffix>phone</mat-icon>
           </mat-form-field>
         </div>
@@ -110,7 +100,7 @@
       <div class="row" *ngIf="entriesURL === 'museen' || entriesURL === 'restaurants'">
         <div class="col">
           <p>Wählen Sie bitte Ihre Preisstufe aus *</p>
-          <mat-radio-group aria-label="Select an option" class="radio-buttons" formControlName="priceLevel" name="priceLevel" required>
+          <mat-radio-group aria-label="Select an option" class="radio-buttons" formControlName="priceLevel" name="priceLevel" [required]="!hasEntriesURL">
             <mat-radio-button value="1" [checked]="entry?.priceLevel === 1">Guenstige Preise</mat-radio-button>
             <mat-radio-button value="2" [checked]="entry?.priceLevel === 2">Mittlere Preise</mat-radio-button>
             <mat-radio-button value="3" [checked]="entry?.priceLevel === 3">Teure Preise</mat-radio-button>
@@ -122,7 +112,7 @@
         <div class="col">
           <div class="stars"></div>
           <p>Wählen Sie bitte aus, wie viele Sterne Ihr Hotel hat *</p>
-          <mat-radio-group *ngFor="let star of [1, 2, 3, 4, 5]" aria-label="Select an option" formControlName="stars" name="stars" required>
+          <mat-radio-group *ngFor="let star of [1, 2, 3, 4, 5]" aria-label="Select an option" formControlName="stars" name="stars" [required]="!hasEntriesURL">
             <mat-radio-button [value]="star" [checked]="entry?.stars === star">{{star}}</mat-radio-button>
           </mat-radio-group>
         </div>
@@ -131,7 +121,7 @@
       <div class="row" *ngIf="entriesURL === 'hotels'">
         <div class="col breakfastIncl">
           <p>Wählen Sie bitte aus, ob Sie das Frühstück inklusive anbieten *</p>
-          <mat-radio-group aria-label="Select an option" class="radio-buttons" formControlName="breakfastIncl" name="breakfastIncl" required>
+          <mat-radio-group aria-label="Select an option" class="radio-buttons" formControlName="breakfastIncl" name="breakfastIncl" [required]="!hasEntriesURL">
             <mat-radio-button value="true" [checked]="entry?.breakfastIncl === true">Ja</mat-radio-button>
             <mat-radio-button value="false" [checked]="entry?.breakfastIncl === false">Nein</mat-radio-button>
           </mat-radio-group>
@@ -144,7 +134,7 @@
           <p *ngIf="entriesURL === 'restaurants'">Wählen Sie bitte die Art(en) Ihrer Küche aus *</p>
             <div class="columns">
               <div *ngFor="let type of types">
-                <mat-checkbox class="checkbox-item" #checkbox="matCheckbox" [checked]="isTypeChecked(type)" (change)="onChange(checkbox, type)">
+                <mat-checkbox class="checkbox-item" #checkbox="matCheckbox" (change)="onChange(checkbox, type)" required>
                   {{type}}
                 </mat-checkbox>
               </div>

@@ -56,7 +56,20 @@ export class FormEntityComponent implements OnInit {
     this.entryId = this.route.snapshot.params.id;
 
     if (this.entryId) {
-      this.entryService.showById(this.cityURL, this.entriesURL, this.entryId).subscribe(entry => this.entry = entry);
+      this.entryService.showById(this.cityURL, this.entriesURL, this.entryId).subscribe(entry => {
+        this.entry = entry;
+        this.form = this.fb.group({
+          city: [this.cityURL],
+          entryType: [this.entriesURL],
+          company: [this.entry.name],
+          address: [this.entry.contact.address.split('|')[0]],
+          postalCode: [this.entry.contact.address.split('|')[1]],
+          phoneNumber: [this.entry.contact.phoneNumber],
+          priceLevel: [this.entry.priceLevel],
+          stars: [''],
+          breakfastIncl: ['']
+        })
+      });
     }
     
     this.cityService.getAllCities().subscribe(cities => this.cities = cities);
@@ -110,22 +123,21 @@ export class FormEntityComponent implements OnInit {
     this.location.back();
   }
 
-  isTypeChecked(type: string): boolean {
-    let foundType: any;
-    if (this.entryId) {
-      if (this.entriesURL === 'museen') {
-        foundType = this.entry.museumTypes.find(m => m.type === type);
-      } else {
-        foundType = this.entry.cuisines.find(c => c.type === type);
-      }
-    }
-    
-    if (foundType) {
-      this.typesChecked.push(foundType);
-      return true;
-    }
-    return false;
-  }
+  // isTypeChecked(type: string) {
+  //   let foundType: any;
+  //   if (this.entryId) {
+  //     if (this.entriesURL === 'museen') {
+  //       foundType = this.entry.museumTypes.find(m => m.type === type);
+  //     } else {
+  //       foundType = this.entry.cuisines.find(c => c.type === type);
+  //     }      
+  //   }    
+  //   if (foundType) {
+  //     this.typesChecked.push(foundType.type);
+  //     return true;   
+  //   }
+  //   return false;
+  // }
 
   transformTypesIntoObjects(): any[] {
     let types: any[] = [];
@@ -203,12 +215,10 @@ export class FormEntityComponent implements OnInit {
         this.entryService.update(this.cityURL, this.entriesURL, this.entryId, entry)
           .subscribe(entry => 
             this.router.navigate(['book-my-trip', this.cityURL, this.entriesURL]));
-        console.log("updated entry");
       } else {
         this.entryService.add(this.cityURL, this.entriesURL, entry)
           .subscribe(entry => 
             this.router.navigate(['book-my-trip', this.cityURL, this.entriesURL]));
-        console.log("new entry");
       }      
     }    
   }
