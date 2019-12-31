@@ -14,6 +14,7 @@ export class StarRatingComponent implements OnInit, OnChanges {
 
   constructor(config: NgbRatingConfig) {
     config.max = 5;
+    config.readonly = false;
    }
 
   ngOnInit() {

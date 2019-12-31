@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EntryService } from '../services/entry-service/entry.service';
 
@@ -9,8 +9,6 @@ import { EntryService } from '../services/entry-service/entry.service';
   styleUrls: ['./entries-list.component.css']
 })
 export class EntriesListComponent {
-
-  isCollapsed = false;
 
   city: string;
   entriesURL: string;
@@ -26,20 +24,17 @@ export class EntriesListComponent {
 
   entries: any[];
 
-  constructor(private breakpointObserver: BreakpointObserver,
-              private router: Router,
+  isMouseOverSortIcon: boolean;
+  isMouseOverFilterIcon: boolean;
+  selectedIcon: string;
+
+  isSideNavOpen: boolean;
+  sortBy: string;
+  direction: string;
+
+  constructor(private router: Router,
               private route: ActivatedRoute,
-              private entryService: EntryService) {}
-
-  drawerToggle(){
-    this.isCollapsed = !this.isCollapsed;
-  }
-
- /*  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    ); */  
+              private entryService: EntryService) {} 
 
   ngOnInit() {    
     this.city = this.route.snapshot.params.city;
@@ -63,11 +58,15 @@ export class EntriesListComponent {
     } else {
       this.getAll();
     }
+
+    this.sortBy = 'name';
+    this.direction = 'ASC';
   }
 
   getAll(){
     this.entryService.getAll(this.city, this.entriesURL)
-      .subscribe(e => this.entries = e);
+    .subscribe(e => {this.entries = e;
+                     this.sortArray()});
   }
 
   showByName(searchText: string) {
@@ -75,7 +74,8 @@ export class EntriesListComponent {
       {queryParams: {name: searchText}})
 
     this.entryService.showByName(this.city, this.entriesURL, searchText)
-      .subscribe(e => this.entries = e);
+      .subscribe(e => {this.entries = e;
+                       this.sortArray()});
   }
 
   showByFilter() {
@@ -85,16 +85,19 @@ export class EntriesListComponent {
 
     this.entryService.showByFilter(this.city, this.entriesURL, this.cuisine, 
       this.rating, this.priceLevel, this.breakfast, this.stars, this.museumType)
-      .subscribe(e => this.entries = e);
+        .subscribe(e => {this.entries = e;
+                         this.sortArray()});
   }
 
-  sortArray(sortBy: string, direction: string) {
+  sortArray() {
+    this.isSideNavOpen = false;
+
     this.entries = this.entries.sort((e1,e2) => {
-      if (this.transformForSort(e1, sortBy) > this.transformForSort(e2, sortBy)) {
-        return this.directionCheck(direction);
+      if (this.transformForSort(e1, this.sortBy) > this.transformForSort(e2, this.sortBy)) {
+        return this.directionCheck(this.direction);
       }
-      if (this.transformForSort(e1, sortBy) < this.transformForSort(e2, sortBy)) {
-        return - this.directionCheck(direction);
+      if (this.transformForSort(e1, this.sortBy) < this.transformForSort(e2, this.sortBy)) {
+        return - this.directionCheck(this.direction);
       }
       return 0;
     });
@@ -112,5 +115,27 @@ export class EntriesListComponent {
       return -1
     }
     return 1;
+  }
+  
+  isFilter(isMouseOverFilterIcon: boolean) {
+    this.isMouseOverFilterIcon = isMouseOverFilterIcon;
+    if(this.isMouseOverFilterIcon) {
+      this.selectedIcon = 'filter';
+    }
+  }
+
+  isSort(isMouseOverSortIcon: boolean) {
+    this.isMouseOverSortIcon = isMouseOverSortIcon;
+    if(this.isMouseOverSortIcon) {
+      this.selectedIcon = 'sort';
+    }
+  }
+
+  setSortBy(sortBy: string) {
+    this.sortBy = sortBy;
+  }
+
+  setDirection(direction: string) {
+    this.direction = direction;
   }
 }

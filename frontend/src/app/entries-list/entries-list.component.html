@@ -49,10 +49,11 @@
     </mat-sidenav>
 
     <!-- Sidebar with filter on the left side-->
-    <mat-sidenav #drawer class="sidenav" fixedInViewport=false>
+    <mat-sidenav #drawer class="sidenav" fixedInViewport=false [(opened)]="isSideNavOpen">
       <mat-toolbar color="primary">
         <tr class="filter-header">
-          <td class="filter-category-title">Filter-Kategorien</td>
+          <td class="filter-category-title" *ngIf="selectedIcon === 'filter'">Filter-Kategorien</td>
+          <td class="filter-category-title" *ngIf="selectedIcon === 'sort'">Sortier-Kategorien</td>
           <td class="close-area">
             <button type="button" class="close" (click)="drawer.toggle()">
               <span class="close-icon" aria-hidden="true">&times;</span>
@@ -61,7 +62,12 @@
         </tr>
       </mat-toolbar>
       <mat-nav-list>
-        <app-sidebar></app-sidebar>
+        <app-sidebar
+        [selectedIcon]="selectedIcon"
+        (sortByOut)="setSortBy($event)"
+        (directionOut)="setDirection($event)"
+        (sortButtonPressed)="sortArray()"
+        ></app-sidebar>
       </mat-nav-list>
     </mat-sidenav>
 
@@ -70,10 +76,10 @@
       <div class="row">
 
         <div class="col">
-          <span class="filter-toggle-icon" mat-button (click)="drawer.toggle()">
+          <span class="filter-toggle-icon" mat-button (click)="drawer.toggle()" (mouseenter) ="isFilter(true)" (mouseleave) ="isFilter(false)">
             <i class="fa fa-filter fa-2x"></i>
           </span>
-          <span class="sort-icon">
+          <span class="sort-icon" mat-button (click)="drawer.toggle()" (mouseenter) ="isSort(true)" (mouseleave) ="isSort(false)">
             <mat-icon>sort</mat-icon>
           </span>
         </div>
@@ -96,7 +102,7 @@
           <div class="row cards">
             <div class="col-12">
               <app-card></app-card>
-              <div class="no-results-message">No results found</div>
+              <div class="no-results-message" *ngIf="entries && entries.length === 0">Es wurden leider keine Ergebnisse gefunden!</div>
             </div>
           </div>
         </div>

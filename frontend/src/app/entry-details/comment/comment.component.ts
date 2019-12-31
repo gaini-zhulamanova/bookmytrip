@@ -40,8 +40,7 @@ export class CommentComponent implements OnInit {
   
   toReviewForm(reviewId: number) {
     this.router.navigate(['book-my-trip', this.city, this.entries, this.id, 
-      'bewertungen', reviewId, 'editieren'])
-      .then(() => location.reload());
+      'bewertungen', reviewId, 'editieren']);
   }
 
   updateEntry() {

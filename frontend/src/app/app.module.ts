@@ -45,7 +45,6 @@ import { CardComponent } from './entries-list/card/card.component';
 import { SearchFieldComponent } from './entries-list/search-field/search-field.component';
 import { ShowTypesPipe } from './entries-list/card/show-types-pipe/show-types.pipe';
 import { ModalMoreOptionsComponent } from './entries-list/sidebar/modal-more-options/modal-more-options.component';
-import { FilterMoreOptionsComponent } from './entries-list/filter-more-options/filter-more-options.component';
 import { ShowInclusivePipe } from './entries-list/card/show-inclusive-pipe/show-inclusive.pipe';
 import { ShowPriceLevelPipe } from './entries-list/card/show-price-level-pipe/show-price-level.pipe';
 import { DeleteModalComponent } from './entries-list/delete-modal/delete-modal.component';
@@ -72,7 +71,6 @@ import { DeleteModalComponent } from './entries-list/delete-modal/delete-modal.c
     ShowTypesPipe,
     ButtonNewEntryComponent,
     ModalMoreOptionsComponent,
-    FilterMoreOptionsComponent,
     ShowInclusivePipe,
     ShowAddressPipe,
     ThankYouModalFormEntityComponent,

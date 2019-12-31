@@ -1,4 +1,5 @@
-<div class="filter">
+<!-- filter -->
+<div class="filter" *ngIf="selectedIcon === 'filter'">
   <form>
     <!-- filter-block -->
     <div class="filter-block" *ngIf="options">
@@ -79,3 +80,41 @@
     </div>
   </form>
 </div>
+
+
+<!-- sort -->
+<div class="filter" *ngIf="selectedIcon === 'sort'">  
+  <form>
+  <div class="filter-block">
+      <h6>Wonach</h6>
+      <ul class="filter-content filters list">
+          <li><label><input type="radio" name="sortBy" (change)="emitSortBy('name')" checked>
+              {{entries.charAt(0).toUpperCase()}}{{entries.substring(1, entries.length - 1)}}name</label>
+          </li>
+          <li><label><input type="radio" name="sortBy" (change)="emitSortBy('avrgRating')">
+              Bewertung</label>
+          </li>
+          <li *ngIf="entries !== 'hotels'"><label><input type="radio" name="sortBy" (change)="emitSortBy('priceLevel')">
+              Preisstufe</label>
+          </li>
+      </ul>
+  </div>
+
+  <div class="filter-block">
+      <h6>Wie</h6>
+      <ul class="filter-content filters list">
+          <li><label><input type="radio" name="direction" (change)="emitDirection('ASC')" checked>
+              aufsteigend</label>
+          </li>
+          <li><label><input type="radio" name="direction" (change)="emitDirection('DESC')">
+              absteigend</label>
+          </li>
+      </ul>
+  </div>
+
+  <div class="filter-button">
+      <button class="buttons" (click)="handleSort()">Sortieren</button>
+  </div>
+  </form>
+</div>
+

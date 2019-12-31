@@ -52,8 +52,7 @@ export class EntryDetailsComponent implements OnInit {
   }
 
   toReviewForm() {
-    this.router.navigate(['book-my-trip', this.city, this.entries, this.id, 'bewertungen', 'neu'])
-      .then(() => location.reload());
+    this.router.navigate(['book-my-trip', this.city, this.entries, this.id, 'bewertungen', 'neu']);
   }
 
   handleBackButton(){

@@ -29,8 +29,7 @@ export class CardComponent implements OnInit {
   }
 
   toDetails(id: number) {
-    this.router.navigate(['book-my-trip', this.city, this.entriesURL, id])
-      .then(() => location.reload());
+    this.router.navigate(['book-my-trip', this.city, this.entriesURL, id]);
   }
 
   isIcon(isMouseOverIcon: boolean) {
@@ -43,7 +42,6 @@ export class CardComponent implements OnInit {
   }
 
   toEntryForm(id: number) {
-    console.log("Nun soll es zum Form gehen!");
-    // this.router.navigate(['book-my-trip', ...])
+    this.router.navigate(['book-my-trip', this.city, this.entriesURL, id, 'editieren']);
   }
 }

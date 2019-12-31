@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CuisineService } from 'src/app/services/cuisine-service/cuisine.service';
 import { MuseumTypeService } from 'src/app/services/museum-type-service/museum-type.service';
@@ -9,6 +9,14 @@ import { MuseumTypeService } from 'src/app/services/museum-type-service/museum-t
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+
+  @Input() selectedIcon: string;
+  @Output() sortByOut = new EventEmitter<string>();
+  @Output() directionOut = new EventEmitter<string>();
+  @Output() sortButtonPressed = new EventEmitter<void>();
+
+  sortBy: string = 'name';
+  direction: string = 'ASC';
 
   options: string[];
   optionsTitle: string;
@@ -95,6 +103,18 @@ export class SidebarComponent implements OnInit {
             || this.options[1] === this.checkedOption
             || this.options[2] === this.checkedOption
             || this.checkedOption === undefined;
+  }
+
+  emitSortBy(sortBy: string) {
+    this.sortByOut.emit(sortBy);
+  }
+
+  emitDirection(direction: string) {
+    this.directionOut.emit(direction);
+  }
+
+  handleSort() {
+    this.sortButtonPressed.emit(); 
   }
 
 }

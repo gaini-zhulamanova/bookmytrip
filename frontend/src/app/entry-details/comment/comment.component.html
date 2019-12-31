@@ -2,6 +2,7 @@
   <div class="row">
     <section class="comment">
       <h4>Kommentare</h4>
+      <div style="text-align: center;" *ngIf="reviews.length === 0">Es liegen keine Bewertungen zu diesem Eintrag vor!</div>
       <ul id="review-list">
         <li *ngFor="let review of reviews">
           <p style="margin-bottom: 2px;">{{review.reviewerName}} schrieb am {{review.dateTime}}</p>
