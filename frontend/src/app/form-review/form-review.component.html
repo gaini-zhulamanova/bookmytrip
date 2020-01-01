@@ -1,22 +1,44 @@
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav-content>
-        <mat-toolbar color="primary">
-            <span>        
-                <a class="navbar-brand d-none d-lg-inline-block" href="/book-my-trip">
-                    <img src="/assets/logo.svg" height="36" alt="Logo">
-                </a>
-            </span>
-            <span class="spacer"></span>
-            <nav class="stroke">
-                <ul>
-                    <li><a href="/book-my-trip/{{city}}/restaurants">Restaurants</a></li>
-                    <li><a href="/book-my-trip/{{city}}/hotels">Hotels</a></li>
-                    <li><a href="/book-my-trip/{{city}}/museen">Museen</a></li>
-                </ul>
-            </nav>
-        </mat-toolbar>
-        <ng-content></ng-content>
-        <!-- Add Content Here -->
+ <!-- Header -->
+ <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()" class="hidden">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span>
+      <a class="navbar-brand d-lg-inline-block" href="/book-my-trip">
+        <img src="/assets/logo.svg" height="36" alt="Logo">
+      </a>
+    </span>
+
+    <span class="spacer"></span>
+
+    <!-- Navigation in the header on big screens -->
+    <div>
+      <nav class="stroke">
+        <ul class="hidden">
+          <li><a href="/book-my-trip/{{city}}/restaurants">Restaurants</a></li>
+          <li><a href="/book-my-trip/{{city}}/hotels">Hotels</a></li>
+          <li><a href="/book-my-trip/{{city}}/museen">Museen</a></li>
+        </ul>
+      </nav>
+    </div>
+
+  </mat-toolbar>
+
+  <!-- Navigation for smaller screens -->
+  <mat-sidenav #sidenav id="nav-mobile" class="stroke" position="end">
+    <mat-nav-list>
+      <a (click)="sidenav.toggle()" class="close" mat-list-item>Schließen</a>
+      <ul>
+        <li><a href="/book-my-trip/{{city}}/restaurants">Restaurants</a></li>
+        <li><a href="/book-my-trip/{{city}}/hotels">Hotels</a></li>
+        <li><a href="/book-my-trip/{{city}}/museen">Museen</a></li>
+      </ul>
+    </mat-nav-list>
+  </mat-sidenav>
+        <!-- Main Content -->
 
         <div class="container">
 
