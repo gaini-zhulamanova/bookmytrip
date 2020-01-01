@@ -24,7 +24,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 					return review.getEntry() instanceof Restaurant;
 				case "hotels":
 					return review.getEntry() instanceof Hotel;
-				case "museums":
+				case "museen":
 					return review.getEntry() instanceof Museum;
 				default:
 					return false;
