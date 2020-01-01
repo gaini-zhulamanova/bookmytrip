@@ -35,9 +35,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-##Aknowledgment
+## Aknowledgment
 
-- Big thanks to the coaches from ITF Frankfurt
+- We are very greatful to the coaches from ITF Frankfurt for their help, time, and mentorship.
 - Images was taken from pexels.com. Credits to: 
--- Restaurant & Hotels Placeholder Images: Photo by Pixabay from Pexels
--- Museum Placeholder Image: Photo by Una Laurencic from Pexels
+..* Restaurant & Hotels Placeholder Images: Photo by Pixabay from Pexels
+..* Museum Placeholder Image: Photo by Una Laurencic from Pexels
