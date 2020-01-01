@@ -14,11 +14,11 @@ The app was built with the following technologies and resources:
 - HTML
 - CSS
 - Bootstrap
-- Angular
+- Angular Framework & Typescript
 - Angular Material
 - Java
-- Spring Boot
-- Spring Hibernate
+- Spring Boot Framework
+- PostgreSQL
 - Icons from Fontawesom & Angular Material
 - Free to use mages from pexels.com
 
