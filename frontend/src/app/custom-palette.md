@@ -1,0 +1,68 @@
+<!-- Please insert these color palettes into the file "_theming.scss" in this folder:
+node_modules/@angular/material/_theming.scss -->
+<!-- 
+$mat-mulberry: (
+  50: #f7e8ef,
+  100: #ecc6d8,
+  200: #dfa0be,
+  300: #d27aa3,
+  400: #c95e90,
+  500: #bf417c,
+  600: #b93b74,
+  700: #b13269,
+  800: #a92a5f,
+  900: #9b1c4c,
+  A100: #ffd4e3,
+  A200: #ffa1c1,
+  A400: #ff6ea0,
+  A700: #ff548f,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$mat-mulberry-dark: (
+  50: #f7eaed,
+  100: #eccad3,
+  200: #dfa7b6,
+  300: #d28399,
+  400: #c96983,
+  500: #bf4e6d,
+  600: #b94765,
+  700: #b13d5a,
+  800: #a93550,
+  900: #9b253e,
+  A100: #ffdae1,
+  A200: #ffa7b8,
+  A400: #ff748e,
+  A700: #ff5a7a,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+); -->
