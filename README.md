@@ -20,7 +20,7 @@ The app was built with the following technologies and resources:
 - Spring Boot Framework
 - PostgreSQL
 - Icons from Fontawesom & Angular Material
-- Free to use mages from pexels.com
+- Free to use mages from [pexels.com](https://www.pexels.com/)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
 
@@ -37,7 +37,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Aknowledgment
 
-- We are very greatful to the coaches from ITF Frankfurt for their help, time, and mentorship.
-- Images was taken from pexels.com. Credits to: 
-..* Restaurant & Hotels Placeholder Images: Photo by Pixabay from Pexels
-..* Museum Placeholder Image: Photo by Una Laurencic from Pexels
+* We are very greatful to the coaches from the IT Frankfurt GmbH for their help, time, and mentorship.
+* Images was taken from pexels.com. Credits to: 
+..* Restaurant Placeholder Image: [Photo by Pixabay from Pexels](https://www.pexels.com/photo/blur-breakfast-chef-cooking-262978/)
+..* Hotels Placeholder Image: [Photo by Pixabay from Pexels](https://www.pexels.com/photo/alone-bed-bedroom-blur-271897/)
+..* Museum Placeholder Image: [Photo by Una Laurencic from Pexels](https://www.pexels.com/photo/red-art-relaxation-girl-20967/)
