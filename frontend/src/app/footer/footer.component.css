@@ -9,8 +9,10 @@
   color: #fff;
 }
 
-p {
-  margin: 15px 10px;
+.footer-text {
+  padding-top: 20px;
+  padding-left: 10px;
+  font-size: 14px;
 }
 
 /* Breakpoints & Media Queries */

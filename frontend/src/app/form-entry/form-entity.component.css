@@ -201,6 +201,12 @@ button.hidden {
 
 /* Breakpoints & Media Queries */
 
+@media (max-width: 1348px) {
+  span.hidden-on-big-screen {
+    display: none;
+  }
+}
+
 @media (max-width: 992px) {
   ul.hidden {
     display: none;
@@ -219,12 +225,6 @@ button.hidden {
 
   span.hidden-on-big-screen {
     display: unset;
-  }
-}
-
-@media (max-width: 1348px) {
-  span.hidden-on-big-screen {
-    display: none;
   }
 }
 

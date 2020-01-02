@@ -41,8 +41,7 @@
 
     <!-- Main content -->
 
-    <main class="container main-content">
-
+    <main class="container-fluid main-content">
       <form [formGroup]="form">
         <h4 class="form-title">Neuer Eintrag</h4>
 
@@ -51,9 +50,9 @@
             <h4>Tragen Sie bitte hier Ihre Daten ein:</h4>
           </mat-card-header>
         </section>
-        
+
         <section class="col">
-        <mat-card class="info-card">
+          <mat-card class="info-card">
             <mat-card-content>
 
               <div class="row">
@@ -207,9 +206,10 @@
             </mat-card-content>
           </mat-card>
         </section>
-        </form>
-    </main>
+      </form>
 
+    </main>
+    
     <footer class="row">
       <mat-toolbar color="primary">
         <app-footer></app-footer>
