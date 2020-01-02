@@ -45,8 +45,7 @@ export class FormEntityComponent implements OnInit {
               private museumTypeService: MuseumTypeService,
               private entryService: EntryService,
               private router: Router,
-              private route: ActivatedRoute,
-              private location: Location) {}
+              private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.cityURL = this.route.snapshot.params.city;
@@ -125,7 +124,16 @@ export class FormEntityComponent implements OnInit {
   }
 
   onCancel() {
-    this.location.back();
+
+    if (this.entriesURL) {
+      this.router.navigate(['book-my-trip', this.cityURL, this.entriesURL])
+      .then(() => window.location.reload())
+      .then(() => window.scroll(0,0));
+    } else {
+      this.router.navigate(['book-my-trip'])
+      .then(() => window.location.reload())
+      .then(() => window.scroll(0,0));
+    }
   }
 
   isTypeChecked(type: string) {
@@ -221,12 +229,15 @@ export class FormEntityComponent implements OnInit {
       if (this.entryId) {
         this.entryService.update(this.cityURL, this.entriesURL, this.entryId, entry)
           .subscribe(
-            entry =>  this.router.navigate(['book-my-trip', this.cityURL, this.entriesURL])
+            entry =>  {this.router.navigate(['book-my-trip', this.cityURL, this.entriesURL])
+                      .then(() => window.location.reload())
+                      .then(() => window.scroll(0,0));}
           );
       } else {
         this.entryService.add(this.cityURL, this.entriesURL, entry)
-          .subscribe(entry => 
-            this.router.navigate(['book-my-trip', this.cityURL, this.entriesURL]));
+          .subscribe(entry => {this.router.navigate(['book-my-trip', this.cityURL, this.entriesURL])
+                              .then(() => window.location.reload())
+                              .then(() => window.scroll(0,0))});
       }      
     }    
   }
