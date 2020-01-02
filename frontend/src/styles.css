@@ -7,10 +7,6 @@ html, body {
     position: relative;
     min-height: 100vh;
 }
- 
-.mat-drawer-container {
-    background-color: #fff;
-}
 
 .buttons {
     text-align: center;

@@ -39,6 +39,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 * We are very greatful to the coaches from the IT Frankfurt GmbH for their help, time, and mentorship.
 * Images was taken from pexels.com. Credits to: 
-..* Restaurant Placeholder Image: [Photo by Pixabay from Pexels](https://www.pexels.com/photo/blur-breakfast-chef-cooking-262978/)
-..* Hotels Placeholder Image: [Photo by Pixabay from Pexels](https://www.pexels.com/photo/alone-bed-bedroom-blur-271897/)
-..* Museum Placeholder Image: [Photo by Una Laurencic from Pexels](https://www.pexels.com/photo/red-art-relaxation-girl-20967/)
+Restaurant Placeholder Image: [Photo by Pixabay from Pexels](https://www.pexels.com/photo/blur-breakfast-chef-cooking-262978/)
+Hotels Placeholder Image: [Photo by Pixabay from Pexels](https://www.pexels.com/photo/alone-bed-bedroom-blur-271897/)
+Museum Placeholder Image: [Photo by Una Laurencic from Pexels](https://www.pexels.com/photo/red-art-relaxation-girl-20967/)
