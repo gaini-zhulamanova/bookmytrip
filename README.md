@@ -29,7 +29,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Download this repository to the desktop.
 - Open the root folder in a terminal. 
 - Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-- The app has a custom color palette which has to be inserted under the following path: node_modules --> @angular --> material _theming.scss. The palette is provided in the file "___".
+- The app has a custom color palette which has to be inserted into the file _theming.scss. Please find further details here: frontend/custom-palette.md
 
 ## Further help
 
