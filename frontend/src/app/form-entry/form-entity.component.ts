@@ -57,7 +57,12 @@ export class FormEntityComponent implements OnInit {
 
     if (this.entryId) {
       this.entryService.showById(this.cityURL, this.entriesURL, this.entryId).subscribe(entry => {
-        this.entry = entry;
+        this.entry = entry; 
+        
+        //this.entry.cuisines wird übersetzt in this.typesChecked // is missing
+        // Vor BE call this.typesChecked => this.entry.cuisines // is existing in: transformTypesIntoObjects
+        this.typesChecked = this.entry.cuisines.map(cuisine => cuisine.type);
+
         this.form = this.fb.group({
           city: [this.cityURL],
           entryType: [this.entriesURL],
@@ -115,7 +120,7 @@ export class FormEntityComponent implements OnInit {
       this.typesChecked.push(type);
     } else {
       this.typesChecked.splice(
-        this.typesChecked.indexOf(type), 1);
+        this.typesChecked.indexOf(type), 1); //TODO: Double Check deletion
     }
   }
 
@@ -123,21 +128,21 @@ export class FormEntityComponent implements OnInit {
     this.location.back();
   }
 
-  // isTypeChecked(type: string) {
-  //   let foundType: any;
-  //   if (this.entryId) {
-  //     if (this.entriesURL === 'museen') {
-  //       foundType = this.entry.museumTypes.find(m => m.type === type);
-  //     } else {
-  //       foundType = this.entry.cuisines.find(c => c.type === type);
-  //     }      
-  //   }    
-  //   if (foundType) {
-  //     this.typesChecked.push(foundType.type);
-  //     return true;   
-  //   }
-  //   return false;
-  // }
+  isTypeChecked(type: string) {
+    let foundType: any;
+    if (this.entryId) {
+      if (this.entriesURL === 'museen') {
+        foundType = this.entry.museumTypes.find(m => m.type === type);
+      } else {
+        foundType = this.entry.cuisines.find(c => c.type === type);
+      }      
+    }    
+    if (foundType) {
+      //this.typesChecked.push(foundType.type);       // TODO: Check if correct, I assume duplicate into types.checked?
+      return true;   
+    }
+    return false;
+  }
 
   transformTypesIntoObjects(): any[] {
     let types: any[] = [];
@@ -187,6 +192,7 @@ export class FormEntityComponent implements OnInit {
   }
 
   isFormValid(): boolean {
+
     let hasTypes: boolean = true;
     if (this.entriesURL !== 'hotels') {
       hasTypes = this.typesChecked.length !== 0
@@ -211,10 +217,12 @@ export class FormEntityComponent implements OnInit {
     }
 
     if (this.isFormValid()) {
+      
       if (this.entryId) {
         this.entryService.update(this.cityURL, this.entriesURL, this.entryId, entry)
-          .subscribe(entry => 
-            this.router.navigate(['book-my-trip', this.cityURL, this.entriesURL]));
+          .subscribe(
+            entry =>  this.router.navigate(['book-my-trip', this.cityURL, this.entriesURL])
+          );
       } else {
         this.entryService.add(this.cityURL, this.entriesURL, entry)
           .subscribe(entry => 

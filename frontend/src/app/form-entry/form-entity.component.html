@@ -186,8 +186,7 @@
                   <p *ngIf="entriesURL === 'restaurants'">Wählen Sie bitte die Art(en) Ihrer Küche aus *</p>
                   <div class="columns">
                     <div *ngFor="let type of types">
-                      <mat-checkbox class="checkbox-item" #checkbox="matCheckbox" (change)="onChange(checkbox, type)"
-                        required>
+                      <mat-checkbox class="checkbox-item" #checkbox="matCheckbox" [checked]="isTypeChecked(type)" (change)="onChange(checkbox, type)">
                         {{type}}
                       </mat-checkbox>
                     </div>
