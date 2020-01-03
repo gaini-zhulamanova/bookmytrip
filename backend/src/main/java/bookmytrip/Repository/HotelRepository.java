@@ -4,9 +4,7 @@ import java.util.List;
 
 import bookmytrip.Entity.*;
 
-public interface HotelRepository extends EntryRepository<Hotel> {
-	
-	// TODO: implement a sorting functionality (according to different criteria - name, price level, rating etc.)
+public interface HotelRepository extends EntryRepository<Hotel> {	
 	
 	List<Hotel> findByContactCityAndBreakfastInclOrderByName(City city, Boolean breakfastIncl);
 	

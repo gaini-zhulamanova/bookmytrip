@@ -36,6 +36,5 @@ public class Entry {
 	
 	@NotNull
 	@Column(nullable = false)
-	private Integer numOfReviews = 0;
-	
+	private Integer numOfReviews = 0;	
 }

@@ -73,7 +73,6 @@ nav.fill ul li a:after,
   text-align: left;
   content: ".";
   margin: 0;
-  /*   opacity: 0; */
 }
 
 nav.fill ul li a:hover,
@@ -88,7 +87,6 @@ nav.fill ul li a:hover:after,
   animation: fill 1s forwards;
   -webkit-animation: fill 1s forwards;
   -moz-animation: fill 1s forwards;
-  /*   opacity: 1; */
 }
 
 input[type="checkbox"] {
@@ -224,7 +222,7 @@ ul {
   }
 }
 
-@media (max-width: 1348px) {
+@media (max-width: 1600px) {
   span.hidden-on-big-screen {
     display: none;
   }

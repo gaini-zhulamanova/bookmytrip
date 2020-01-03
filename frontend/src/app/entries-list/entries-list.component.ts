@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EntryService } from '../services/entry-service/entry.service';
 

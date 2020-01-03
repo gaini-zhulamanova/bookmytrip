@@ -20,9 +20,6 @@
 
 /* Breakpoints & Media Queries */
 
-@media (max-width: 1348px) {
-}
-
 @media (max-width: 992px) {
   .form-inline {
     width: 200px;

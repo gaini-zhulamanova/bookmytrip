@@ -53,6 +53,7 @@ nav.fill ul li a,
 #nav-mobile.fill ul li a {
   position: relative;
 }
+
 nav.stroke ul li a:after,
 nav.fill ul li a:after,
 #nav-mobile.stroke ul li a:after,
@@ -215,7 +216,6 @@ button.hidden {
   button.hidden {
     display: unset;
   }
-
 }
 
 @media (max-width: 636px) {

@@ -9,10 +9,6 @@ import bookmytrip.Entity.*;
 
 public interface EntryRepository<T extends Entry> extends JpaRepository<T, Long> {
 	
-	// TODO: implement a sorting functionality (according to different criteria - name, price level, rating etc.)
-	
-//	List<T> findByCity(City city);
-	
 	List<T> findByContactCity(City city);
 	
 	List<T> findByContactCityOrderByName(City city);
@@ -45,14 +41,12 @@ public interface EntryRepository<T extends Entry> extends JpaRepository<T, Long>
 				.average().orElse(0));
 	}
 	
-	default Long updateAvrgRating(City enumCity, Long id) {
-		
+	default Long updateAvrgRating(City enumCity, Long id) {		
 		T entry = findByContactCityAndId(enumCity, id).get();
 		return calculateAvrgRating(entry);
 	}
 	
-	default Integer updateNumOfReviews(City enumCity, Long id) {
-		
+	default Integer updateNumOfReviews(City enumCity, Long id) {		
 		T entry = findByContactCityAndId(enumCity, id).get();
 		return entry.getReviews().size();
 	}

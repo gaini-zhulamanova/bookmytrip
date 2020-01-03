@@ -19,16 +19,16 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 	}
 	
 	default boolean entryTypeMatches(String entries, Review review) {
-			switch (entries) {
-				case "restaurants":
-					return review.getEntry() instanceof Restaurant;
-				case "hotels":
-					return review.getEntry() instanceof Hotel;
-				case "museen":
-					return review.getEntry() instanceof Museum;
-				default:
-					return false;
-			}
+		switch (entries) {
+			case "restaurants":
+				return review.getEntry() instanceof Restaurant;
+			case "hotels":
+				return review.getEntry() instanceof Hotel;
+			case "museen":
+				return review.getEntry() instanceof Museum;
+			default:
+				return false;
+		}
 	}
 	
 	default List<Review> filterByRating(City city, String entries, Long entryId, Integer rating) {

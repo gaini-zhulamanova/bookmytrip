@@ -17,8 +17,7 @@ export class StarRatingComponent implements OnInit, OnChanges {
     config.readonly = false;
    }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges) {
     this.currentRate = this.ratingIn;
@@ -31,5 +30,4 @@ export class StarRatingComponent implements OnInit, OnChanges {
   onClick() {
     this.ratingOut.emit(this.currentRate);
   }
-
 }

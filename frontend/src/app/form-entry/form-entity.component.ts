@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatCheckbox } from '@angular/material/checkbox';
-import { Location } from '@angular/common';
 import { Hotel } from '../entity-models/hotel.model';
 import { Restaurant } from '../entity-models/restaurant.model';
 import { Museum } from '../entity-models/museum.model';
@@ -51,16 +50,19 @@ export class FormEntityComponent implements OnInit {
     this.cityURL = this.route.snapshot.params.city;
     this.hasCityURL = this.cityURL !== undefined;
     this.entriesURL = this.route.snapshot.params.entries;
-    this.hasEntriesURL = this.cityURL !== undefined;
+    this.hasEntriesURL = this.entriesURL !== undefined;
     this.entryId = this.route.snapshot.params.id;
 
     if (this.entryId) {
-      this.entryService.showById(this.cityURL, this.entriesURL, this.entryId).subscribe(entry => {
+      this.entryService.showById(this.cityURL, this.entriesURL, this.entryId)
+      .subscribe(entry => {
         this.entry = entry; 
-        
-        //this.entry.cuisines wird übersetzt in this.typesChecked // is missing
-        // Vor BE call this.typesChecked => this.entry.cuisines // is existing in: transformTypesIntoObjects
-        this.typesChecked = this.entry.cuisines.map(cuisine => cuisine.type);
+
+        if (this.entriesURL === 'restaurants') {
+          this.typesChecked = this.entry.cuisines.map(cuisine => cuisine.type);
+        } else if (this.entriesURL === 'museen') {
+          this.typesChecked = this.entry.museumTypes.map(museumType => museumType.type);
+        }
 
         this.form = this.fb.group({
           city: [this.cityURL],
@@ -119,20 +121,15 @@ export class FormEntityComponent implements OnInit {
       this.typesChecked.push(type);
     } else {
       this.typesChecked.splice(
-        this.typesChecked.indexOf(type), 1); //TODO: Double Check deletion
+        this.typesChecked.indexOf(type), 1);
     }
   }
 
   onCancel() {
-
     if (this.entriesURL) {
       this.router.navigate(['book-my-trip', this.cityURL, this.entriesURL])
-      .then(() => window.location.reload())
-      .then(() => window.scroll(0,0));
     } else {
       this.router.navigate(['book-my-trip'])
-      .then(() => window.location.reload())
-      .then(() => window.scroll(0,0));
     }
   }
 
@@ -146,7 +143,6 @@ export class FormEntityComponent implements OnInit {
       }      
     }    
     if (foundType) {
-      //this.typesChecked.push(foundType.type);       // TODO: Check if correct, I assume duplicate into types.checked?
       return true;   
     }
     return false;
@@ -200,7 +196,6 @@ export class FormEntityComponent implements OnInit {
   }
 
   isFormValid(): boolean {
-
     let hasTypes: boolean = true;
     if (this.entriesURL !== 'hotels') {
       hasTypes = this.typesChecked.length !== 0
@@ -224,20 +219,15 @@ export class FormEntityComponent implements OnInit {
         break;
     }
 
-    if (this.isFormValid()) {
-      
+    if (this.isFormValid()) {      
       if (this.entryId) {
         this.entryService.update(this.cityURL, this.entriesURL, this.entryId, entry)
           .subscribe(
-            entry =>  {this.router.navigate(['book-my-trip', this.cityURL, this.entriesURL])
-                      .then(() => window.location.reload())
-                      .then(() => window.scroll(0,0));}
+            entry =>  this.router.navigate(['book-my-trip', this.cityURL, this.entriesURL])
           );
       } else {
         this.entryService.add(this.cityURL, this.entriesURL, entry)
-          .subscribe(entry => {this.router.navigate(['book-my-trip', this.cityURL, this.entriesURL])
-                              .then(() => window.location.reload())
-                              .then(() => window.scroll(0,0))});
+          .subscribe(entry => this.router.navigate(['book-my-trip', this.cityURL, this.entriesURL]));
       }      
     }    
   }

@@ -29,7 +29,9 @@ export class CardComponent implements OnInit {
   }
 
   toDetails(id: number) {
-    this.router.navigate(['book-my-trip', this.city, this.entriesURL, id]);
+    this.router.navigate(['book-my-trip', this.city, this.entriesURL, id])
+    .then(() => window.location.reload())
+    .then(() => window.scroll(0,0));
   }
 
   isIcon(isMouseOverIcon: boolean) {

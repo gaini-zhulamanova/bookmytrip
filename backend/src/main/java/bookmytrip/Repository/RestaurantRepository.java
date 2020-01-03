@@ -7,8 +7,6 @@ import bookmytrip.Entity.*;
 
 public interface RestaurantRepository extends EntryRepository<Restaurant> {
 	
-	// TODO: implement a sorting functionality (according to different criteria - name, price level, rating etc.)
-	
 	default List<Restaurant> findByContactCityAndCuisineOrderByName(City city, String cuisine) {
 		return findByContactCity(city).stream()
 				.filter(r -> r.getCuisines().stream()

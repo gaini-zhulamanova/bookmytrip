@@ -26,6 +26,4 @@ export class SearchFieldComponent implements OnInit {
       this.form.reset();
     }
   }
-
-
 }

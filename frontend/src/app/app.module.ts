@@ -78,7 +78,6 @@ import { DeleteModalComponent } from './entries-list/delete-modal/delete-modal.c
     DeleteModalComponent
   ],
   imports: [
-    // tslint:disable-next-line: max-line-length
     BrowserModule, HttpClientModule, FormsModule, NgbModule, BrowserAnimationsModule,
     LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule,
     MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatFormFieldModule,
@@ -87,4 +86,4 @@ import { DeleteModalComponent } from './entries-list/delete-modal/delete-modal.c
   providers: [SearchCitiesPipe],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

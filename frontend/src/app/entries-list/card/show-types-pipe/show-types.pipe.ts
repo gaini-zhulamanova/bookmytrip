@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ShowTypesPipe implements PipeTransform {
 
   transform(types: any[], origin: string): string {
-
     let concatTypes: string = '';
 
     if (!types) {return ''}

@@ -16,8 +16,7 @@ public class MuseumTypeController {
 	private final MuseumTypeRepository museumTypeRepo;
 	
 	@GetMapping
-	public List<String> showAllMuseumTypes() {
-		
+	public List<String> showAllMuseumTypes() {		
 		return museumTypeRepo.findAll().stream()
 				.map(m -> m.getType())
 				.collect(Collectors.toList());

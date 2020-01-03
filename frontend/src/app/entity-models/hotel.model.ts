@@ -2,6 +2,7 @@ import { Contact } from './contact.model';
 import { Review } from './review.model';
 
 export interface Hotel {
+    
     id?: number;
     name: string;
     contact: Contact;

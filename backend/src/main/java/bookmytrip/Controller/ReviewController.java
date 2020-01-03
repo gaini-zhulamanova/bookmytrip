@@ -16,11 +16,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/book-my-trip/{city}/{entries}/{entryId}/reviews")
 public class ReviewController {
 
-	// TODO: create tests
-	
-	// TODO: make sure 404 error is thrown when we try to access reviews of the entry
-	// that doesn't exist (id isn't valid)
-
 	private final ReviewRepository reviewRepo;
 
 	@GetMapping

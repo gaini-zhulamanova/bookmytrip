@@ -12,8 +12,7 @@ import lombok.*;
 @Entity
 @Getter @Setter
 public class Review {
-	
-//	@NotBlank
+
 	@Length(max = 500)
 	private String comment;
 	

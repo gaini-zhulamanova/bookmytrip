@@ -12,9 +12,9 @@ export class ThankYouModalFormEntityComponent implements OnInit {
   @Input() valid: boolean;
   @Output() submit = new EventEmitter();
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   openVerticallyCentered(content) {   
       this.modalService.open(content, { centered: true });

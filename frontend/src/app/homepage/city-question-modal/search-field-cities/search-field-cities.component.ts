@@ -14,7 +14,7 @@ export class SearchFieldCitiesComponent implements OnInit {
   searchText: string;
 
   constructor(private cityService: CityService,
-              private router: Router) { }
+              private router: Router) {}
 
   ngOnInit() {
     this.cityService.getAllCities()

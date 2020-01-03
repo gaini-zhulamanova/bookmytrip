@@ -30,5 +30,4 @@ export class ReviewService {
   public delete(city: string, entries: string, entryId: number, reviewId: number): Observable<any> {
     return this.http.delete<any>(this.url + city + '/' + entries + '/' + entryId  + '/reviews/' + reviewId);
   }
-
 }

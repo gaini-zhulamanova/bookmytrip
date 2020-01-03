@@ -12,10 +12,9 @@ export class ThankYouModalComponent implements OnInit {
   @Input() successfulPostIn: boolean;
   @Output() successfulPostOut = new EventEmitter<void>();
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   openVerticallyCentered(content) {
     if(this.successfulPostIn) {
@@ -25,5 +24,4 @@ export class ThankYouModalComponent implements OnInit {
       window.scroll(0, 0);
     }
   }
-
 }

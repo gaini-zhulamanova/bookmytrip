@@ -22,5 +22,4 @@ public class MuseumType {
 			cascade = CascadeType.MERGE)
 	@JsonBackReference
 	private Set<Museum> museums;
-
 }

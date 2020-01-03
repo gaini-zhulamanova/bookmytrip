@@ -32,7 +32,7 @@ export class FormReviewComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               private entryService: EntryService,
-              private reviewService: ReviewService) { }
+              private reviewService: ReviewService) {}
 
   openVerticallyCentered(content) {
     this.modalService.open(content, {centered: true});

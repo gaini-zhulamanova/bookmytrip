@@ -16,8 +16,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/book-my-trip/{city}/museen")
 public class MuseumController {
 	
-	// TODO: create tests
-	
 	private final MuseumRepository museumRepo;
 	
 	@GetMapping

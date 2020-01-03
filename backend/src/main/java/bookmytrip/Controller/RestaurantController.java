@@ -17,8 +17,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/book-my-trip/{city}/restaurants")
 public class RestaurantController {
 	
-	// TODO: create tests
-	
 	private final RestaurantRepository restaurantRepo;
 	
 	@GetMapping
@@ -57,8 +55,6 @@ public class RestaurantController {
 		
 		List<Restaurant> maybeRestaurants = null;
 		City enumCity = City.convertToEnum(city);
-		
-		// TODO: filter by several cuisines (for instance, Italian + German)
 		
 		if (cuisine != null) {
 			maybeRestaurants = restaurantRepo.findByContactCityAndCuisineOrderByName(enumCity, cuisine);

@@ -29,7 +29,7 @@ export class ModalMoreOptionsComponent implements OnInit {
   @Output() checkedOptionOut = new EventEmitter<string>();
 
   constructor(private modalService: NgbModal,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) {}
 
   openVerticallyCentered(content) {
     this.modalService.open(content, {centered: true});

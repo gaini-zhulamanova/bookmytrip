@@ -3,6 +3,7 @@ import { Contact } from './contact.model';
 import { Review } from './review.model';
 
 export interface Restaurant {
+    
     id?: number;
     name: string;
     contact: Contact;

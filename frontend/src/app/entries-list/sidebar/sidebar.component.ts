@@ -116,5 +116,4 @@ export class SidebarComponent implements OnInit {
   handleSort() {
     this.sortButtonPressed.emit(); 
   }
-
 }

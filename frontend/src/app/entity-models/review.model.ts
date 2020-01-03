@@ -1,4 +1,5 @@
 export interface Review {
+    
     id?: number;
     entry: any;
     rating: number;

@@ -17,8 +17,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/book-my-trip/{city}/hotels")
 public class HotelController {
 	
-	// TODO: create tests
-	
 	private final HotelRepository hotelRepo;
 	
 	@GetMapping
@@ -61,8 +59,6 @@ public class HotelController {
 		if (breakfast != null) {
 			maybeHotels = hotelRepo.findByContactCityAndBreakfastInclOrderByName(enumCity, breakfast);
 		}
-		
-		// TODO: filter by several stars (for instance, 3* + 4*)
 		
 		if (maybeHotels != null && stars != null) {
 			maybeHotels.retainAll(hotelRepo
@@ -111,8 +107,7 @@ public class HotelController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 		hotelRepo.save(hotel);
-		return new ResponseEntity<>(HttpStatus.OK);
-		
+		return new ResponseEntity<>(HttpStatus.OK);		
 	}
 	
 	@DeleteMapping("/{id}")
