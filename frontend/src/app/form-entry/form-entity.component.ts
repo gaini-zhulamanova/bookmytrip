@@ -24,6 +24,7 @@ export class FormEntityComponent implements OnInit {
   entriesURL: string;
   hasEntriesURL: boolean;
   entryId: number;
+  hasEntryId: boolean;
 
   entry: any;
 
@@ -52,6 +53,7 @@ export class FormEntityComponent implements OnInit {
     this.entriesURL = this.route.snapshot.params.entries;
     this.hasEntriesURL = this.entriesURL !== undefined;
     this.entryId = this.route.snapshot.params.id;
+    this.hasEntryId = this.entryId !== undefined;
 
     if (this.entryId) {
       this.entryService.showById(this.cityURL, this.entriesURL, this.entryId)
@@ -72,8 +74,8 @@ export class FormEntityComponent implements OnInit {
           postalCode: [this.entry.contact.address.split('|')[1]],
           phoneNumber: [this.entry.contact.phoneNumber],
           priceLevel: [this.entry.priceLevel],
-          stars: [''],
-          breakfastIncl: ['']
+          stars: [this.entry.stars],
+          breakfastIncl: [this.entry.breakfastIncl]
         })
       });
     }

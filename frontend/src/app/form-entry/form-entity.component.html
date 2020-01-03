@@ -132,7 +132,7 @@
                 <div class="col">
                   <p>Wählen Sie bitte Ihre Preisstufe aus *</p>
                   <mat-radio-group aria-label="Select an option" class="radio-buttons" formControlName="priceLevel"
-                    name="priceLevel" [required]="!hasEntriesURL">
+                    name="priceLevel" [required]="!hasEntryId">
                     <mat-radio-button value="1" [checked]="entry?.priceLevel === 1">Guenstige Preise</mat-radio-button>
                     <mat-radio-button value="2" [checked]="entry?.priceLevel === 2">Mittlere Preise</mat-radio-button>
                     <mat-radio-button value="3" [checked]="entry?.priceLevel === 3">Teure Preise</mat-radio-button>
@@ -145,7 +145,7 @@
                   <div class="stars"></div>
                   <p>Wählen Sie bitte aus, wie viele Sterne Ihr Hotel hat *</p>
                   <mat-radio-group *ngFor="let star of [1, 2, 3, 4, 5]" aria-label="Select an option"
-                    formControlName="stars" name="stars" [required]="!hasEntriesURL">
+                    formControlName="stars" name="stars" [required]="!hasEntryId">
                     <mat-radio-button [value]="star" [checked]="entry?.stars === star">{{star}}</mat-radio-button>
                   </mat-radio-group>
                 </div>
@@ -155,7 +155,7 @@
                 <div class="col breakfastIncl">
                   <p>Wählen Sie bitte aus, ob Sie das Frühstück inklusive anbieten *</p>
                   <mat-radio-group aria-label="Select an option" class="radio-buttons" formControlName="breakfastIncl"
-                    name="breakfastIncl" [required]="!hasEntriesURL">
+                    name="breakfastIncl" [required]="!hasEntryId">
                     <mat-radio-button value="true" [checked]="entry?.breakfastIncl === true">Ja</mat-radio-button>
                     <mat-radio-button value="false" [checked]="entry?.breakfastIncl === false">Nein</mat-radio-button>
                   </mat-radio-group>
